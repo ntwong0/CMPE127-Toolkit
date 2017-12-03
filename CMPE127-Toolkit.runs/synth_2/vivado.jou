@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.3 (64-bit)
+# SW Build 2018833 on Wed Oct  4 19:58:07 MDT 2017
+# IP Build 2016188 on Wed Oct  4 21:52:56 MDT 2017
+# Start of session at: Tue Nov 28 18:38:13 2017
+# Process ID: 4846
+# Current directory: /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2
+# Command line: vivado -log PWMCaptureTop.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source PWMCaptureTop.tcl
+# Log file: /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2/PWMCaptureTop.vds
+# Journal file: /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2/vivado.jou
+#-----------------------------------------------------------
+source PWMCaptureTop.tcl -notrace
