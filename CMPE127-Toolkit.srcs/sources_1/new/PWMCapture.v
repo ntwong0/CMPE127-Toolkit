@@ -56,7 +56,7 @@ assign data       = oe ? out : 32'bz;
 //// Modules
 // ==================================
 // ==================================
-//// Logic Block
+//// Behavioral Block
 // ==================================
 always @(posedge clk or posedge rst)
 begin

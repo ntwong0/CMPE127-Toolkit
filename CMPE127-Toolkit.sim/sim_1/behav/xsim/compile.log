@@ -1,7 +1,5 @@
-INFO: [VRFC 10-2263] Analyzing Verilog file "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/PWMCapture.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module PWMCapture
-INFO: [VRFC 10-2263] Analyzing Verilog file "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_PWMCapture.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module Test_PWMCapture
-INFO: [VRFC 10-2458] undeclared symbol int, assumed default net type wire [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_PWMCapture.v:44]
-WARNING: [VRFC 10-2292] extra semicolon is not allowed here in this dialect. Use SystemVerilog mode [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_PWMCapture.v:72]
-WARNING: [VRFC 10-2292] extra semicolon is not allowed here in this dialect. Use SystemVerilog mode [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_PWMCapture.v:86]
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AmbientLightSensor
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Test_AmbientLightSensor
+WARNING: [VRFC 10-2292] extra semicolon is not allowed here in this dialect. Use SystemVerilog mode [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v:64]

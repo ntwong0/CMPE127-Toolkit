@@ -69,7 +69,7 @@ ExtToIntSync U1(
     .int_signal(phase_b)
 );
 // ==================================
-//// Logic Block
+//// Behavioral Block
 // ==================================
 always @(posedge clk or posedge rst) begin
     if (rst) begin

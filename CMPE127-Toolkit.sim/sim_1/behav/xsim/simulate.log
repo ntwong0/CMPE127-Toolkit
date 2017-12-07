@@ -1,3 +1,64 @@
 Vivado Simulator 2017.3
 Time resolution is 1 ps
 **PASSED** TEST!
+**PASSED** TEST!
+Stopped at time : 35 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 77
+Stopped at time : 45 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 77
+Stopped at time : 45 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 90
+Stopped at time : 45 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 95
+Stopped at time : 45 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 96
+Stopped at time : 45 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 97
+Stopped at time : 45 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 98
+Stopped at time : 45 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 63
+Stopped at time : 50 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 75
+Stopped at time : 55 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 77
+**PASSED** TEST!
+Stopped at time : 45 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 90
+Stopped at time : 45 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 95
+Stopped at time : 45 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 96
+Stopped at time : 45 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 97
+Stopped at time : 45 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 98
+Stopped at time : 45 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 63
+Stopped at time : 50 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 75
+Stopped at time : 50 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 70
+Stopped at time : 50 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 70
+Stopped at time : 50 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 72
+Stopped at time : 55 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 73
+Stopped at time : 55 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 74
+Stopped at time : 55 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 65
+Stopped at time : 55 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 77
+Stopped at time : 55 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 103
+Stopped at time : 55 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 107
+Stopped at time : 55 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 112
+Stopped at time : 55 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 114
+Stopped at time : 55 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 63
+Stopped at time : 60 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 75
+**PASSED** TEST!
+Stopped at time : 45 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 90
+Stopped at time : 150050 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 75
+Stopped at time : 150050 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 70
+Stopped at time : 150050 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 70
+Stopped at time : 150050 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 72
+Stopped at time : 150055 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 73
+Stopped at time : 150055 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 74
+Stopped at time : 150055 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 65
+Stopped at time : 150055 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 77
+Stopped at time : 150055 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 103
+Stopped at time : 150055 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 107
+Stopped at time : 150055 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 112
+Stopped at time : 150055 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 114
+Stopped at time : 150055 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 63
+Stopped at time : 150060 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 75
+Stopped at time : 150060 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 70
+Stopped at time : 150060 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 70
+Stopped at time : 150060 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 72
+Stopped at time : 150065 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 73
+Stopped at time : 150065 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" Line 74
+Stopped at time : 150065 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 65
+Stopped at time : 150065 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 77
+Stopped at time : 150065 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 103
+Stopped at time : 150065 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 107
+Stopped at time : 150065 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 112
+Stopped at time : 45 ns : File "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" Line 90
+**PASSED** TEST!
+**PASSED** TEST!

@@ -51,7 +51,7 @@ reg  [COUNT_WIDTH-1:0] tmp_compare_value;
 //// Modules
 // ==================================
 // ==================================
-//// Logic Block
+//// Behavioral Block
 // ==================================
 always @(posedge clk or
 		 posedge rst) begin

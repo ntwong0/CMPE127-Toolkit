@@ -79,6 +79,6 @@ ServoModule U3(
     .signal(signal[3])
 );
 // ==================================
-//// Logic Block
+//// Behavioral Block
 // ==================================
 endmodule
