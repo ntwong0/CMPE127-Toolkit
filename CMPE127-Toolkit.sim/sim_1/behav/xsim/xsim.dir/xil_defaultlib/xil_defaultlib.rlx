@@ -3,12 +3,14 @@
 Oct  4 2017
 20:01:51
 /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.sim/sim_1/behav/xsim/glbl.v,1507081072,verilog,,,,glbl,,,,,,,,
+/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/TestDemux.v,1513643876,verilog,,,,TestDemux,,,,,,,,
 /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v,1512374681,verilog,,,,Test_AmbientLightSensor,,,,,,,,
 /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_Motherboard.v,1511729435,verilog,,,,Test_Motherboard,,,,,,,,
 /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_PWMCapture.v,1511919270,verilog,,,,Test_PWMCapture,,,,,,,,
 /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_ServoController.v,1511736649,verilog,,,,Test_ServoController,,,,,,,,
 /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/imports/new/ExtToIntSync.v,1445790326,verilog,,/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/QuadratureDecoder.v,,ExtToIntSync,,,,,,,,
 /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v,1512375030,verilog,,/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v,,AmbientLightSensor,,,,,,,,
+/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v,1513643597,verilog,,/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/TestDemux.v,,AND;COUNTER;DECODER;DEMUX;DFLIPFLOP;DLATCH;ENCODER;MUX;NAND;NOR;NOT;OR;RSLATCH;TRIBUFFER;TRIDLATCH;XNOR;XOR,,,,,,,,
 /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/PWMCapture.v,1511918883,verilog,,/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_PWMCapture.v,,PWMCapture,,,,,,,,
 /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/QuadratureDecoder.v,1511744755,verilog,,/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_QuadratureDecoder.v,,QuadratureDecoder,,,,,,,,
 /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/ServoController.v,1511734438,verilog,,/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/ServoModule.v,,ServoController,,,,,,,,

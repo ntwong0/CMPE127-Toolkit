@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////
-// Inverting Buffer
+// Buffers
 //////////////////////////////////
 
 module NOT #(parameter WIDTH = 1)(
@@ -29,6 +29,16 @@ module NOT #(parameter WIDTH = 1)(
 );
 
 assign out = ~in;
+
+endmodule
+
+module TRIBUFFER #(parameter WIDTH = 1)(
+	input wire oe,
+	input wire [WIDTH-1:0] in,
+	output wire [WIDTH-1:0] out
+);
+
+assign out = (oe) ? in : 'bZ;
 
 endmodule
 
@@ -95,15 +105,92 @@ assign out = ~^in;
 endmodule
 
 //////////////////////////////////
-// Composition Modules
+// Multiplex - Demultiplex
+//////////////////////////////////
+
+module MUX #(
+	parameter WIDTH  = 1,
+	parameter INPUTS = 2
+)(
+	input wire [7:0] select,
+	// INPUTS x WIDTH bit array
+	input wire [(WIDTH*INPUTS)-1:0] in,
+	output wire [WIDTH-1:0] out
+);
+
+assign out = in[select];
+
+endmodule
+
+module DEMUX #(
+	parameter WIDTH  = 1,
+	parameter OUTPUTS = 2
+)(
+	input wire [7:0] select,
+	// INPUTS x WIDTH bit array
+	input wire [WIDTH-1:0] in,
+	output wire [(WIDTH*OUTPUTS)-1:0] out
+);
+
+assign out = (in << select*WIDTH);
+
+endmodule
+
+//////////////////////////////////
+// Encoder - Decoder
+//////////////////////////////////
+
+module DECODER #(parameter INPUT_WIDTH = 4)
+(
+	input wire enable,
+	input wire [INPUT_WIDTH-1:0] in,
+	output wire [(2 ** INPUT_WIDTH)-1:0] out
+);
+
+assign out = (enable) ? (1 << in) : 0;
+
+endmodule
+
+module ENCODER #(parameter OUTPUT_WIDTH = 4)
+(
+	input wire enable,
+	input wire [(2^OUTPUT_WIDTH)-1:0] in,
+	output reg [OUTPUT_WIDTH-1:0] out
+);
+
+integer i;
+
+always @(*)
+begin
+	if(enable)
+	begin
+		for (i = (2^OUTPUT_WIDTH)-1; i >= 0; i = i - 1)
+		begin
+			if(in[i] == 1)
+			begin
+				out <= i;
+			end
+		end
+	end
+	else
+	begin
+		out = 0;
+	end
+end
+
+endmodule
+
+
+//////////////////////////////////
+// Latches
 //////////////////////////////////
 
 module RSLATCH (
 	input wire rst,
 	input wire R,
 	input wire S,
-	output reg Q
-	output reg nQ
+	output wire Q,
+	output wire nQ
 );
 
 NOR set (
@@ -144,18 +231,107 @@ module TRIDLATCH #(parameter WIDTH = 1)(
 	input wire C,
 	input wire oe,
 	input wire [WIDTH-1:0] D,
-	output reg [WIDTH-1:0] Q,
+	output reg [WIDTH-1:0] Q
 );
 
 wire Q_int;
 
 assign Q_int = (oe) ? Q : 'bZ;
 
-DLATCH U0 #(WIDTH)(
+DLATCH #(WIDTH) U0 (
 	.rst(rst),
 	.C(C),
 	.D(D),
 	.Q(Q)
-)
+);
+
+endmodule
+
+//////////////////////////////////
+// Flip Flops
+//////////////////////////////////
+
+module DFLIPFLOP #(parameter WIDTH = 1)(
+	input wire rst,
+	input wire clk,
+	input wire [WIDTH-1:0] D,
+	output reg [WIDTH-1:0] Q
+);
+
+always @(posedge clk or posedge rst)
+begin
+    if (rst)
+    begin
+    	Q <= 0;
+    end
+    else
+    begin
+        Q <= D;
+    end
+end
+
+endmodule
+
+//////////////////////////////////
+// Registers
+//////////////////////////////////
+
+module SHIFTREGISTER #(parameter WIDTH = 8)(
+	input wire rst,
+	input wire clk,
+	input wire clr,
+	input wire in,
+	output reg [WIDTH-1:0] Q
+);
+
+always @(posedge clk or posedge rst)
+begin
+    if (rst)
+    begin
+    	Q <= 0;
+    end
+    else
+    begin
+        Q <= { Q[7:1], in };
+    end
+end
+
+endmodule
+
+//////////////////////////////////
+// COUNTERS
+//////////////////////////////////
+
+module COUNTER #(parameter WIDTH = 4)(
+	input wire rst,
+	input wire clk,
+	input wire load,
+	input wire dec,
+	input wire enable,
+	input wire [WIDTH-1:0] D,
+	output reg [WIDTH-1:0] Q
+);
+
+always @(posedge clk or posedge rst)
+begin
+    if (rst)
+    begin
+    	Q <= 0;
+    end
+    else if(load && enable)
+    begin
+        Q <= D;
+    end
+    else if(enable)
+    begin
+    	if(dec)
+    	begin
+	        Q <= Q + 1;
+    	end
+    	else begin
+    		Q <= Q - 1;
+    	end
+    end
+end
 
 endmodule

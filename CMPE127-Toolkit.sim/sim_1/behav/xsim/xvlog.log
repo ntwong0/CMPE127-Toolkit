@@ -1,5 +1,22 @@
-INFO: [VRFC 10-2263] Analyzing Verilog file "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/AmbientLightSensor.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module AmbientLightSensor
-INFO: [VRFC 10-2263] Analyzing Verilog file "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module Test_AmbientLightSensor
-WARNING: [VRFC 10-2292] extra semicolon is not allowed here in this dialect. Use SystemVerilog mode [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v:64]
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module NOT
+INFO: [VRFC 10-311] analyzing module TRIBUFFER
+INFO: [VRFC 10-311] analyzing module AND
+INFO: [VRFC 10-311] analyzing module OR
+INFO: [VRFC 10-311] analyzing module XOR
+INFO: [VRFC 10-311] analyzing module NAND
+INFO: [VRFC 10-311] analyzing module NOR
+INFO: [VRFC 10-311] analyzing module XNOR
+INFO: [VRFC 10-311] analyzing module MUX
+INFO: [VRFC 10-311] analyzing module DEMUX
+INFO: [VRFC 10-311] analyzing module DECODER
+INFO: [VRFC 10-311] analyzing module ENCODER
+INFO: [VRFC 10-311] analyzing module RSLATCH
+INFO: [VRFC 10-311] analyzing module DLATCH
+INFO: [VRFC 10-311] analyzing module TRIDLATCH
+INFO: [VRFC 10-311] analyzing module DFLIPFLOP
+INFO: [VRFC 10-311] analyzing module COUNTER
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/TestDemux.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module TestDemux
+WARNING: [VRFC 10-2292] extra semicolon is not allowed here in this dialect. Use SystemVerilog mode [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/TestDemux.v:58]
+WARNING: [VRFC 10-2292] extra semicolon is not allowed here in this dialect. Use SystemVerilog mode [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/TestDemux.v:93]

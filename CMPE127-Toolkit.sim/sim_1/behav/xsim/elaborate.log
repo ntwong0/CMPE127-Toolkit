@@ -1,14 +1,14 @@
 Vivado Simulator 2017.3
 Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
-Running: /home/kammce/.local/user-share/Xilinx/Vivado/Vivado/2017.3/bin/unwrapped/lnx64.o/xelab -wto b88e81cc53414897a6cdb318bade6df8 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Test_AmbientLightSensor_behav xil_defaultlib.Test_AmbientLightSensor xil_defaultlib.glbl -log elaborate.log 
+Running: /home/kammce/.local/user-share/Xilinx/Vivado/Vivado/2017.3/bin/unwrapped/lnx64.o/xelab -wto b88e81cc53414897a6cdb318bade6df8 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot TestDemux_behav xil_defaultlib.TestDemux xil_defaultlib.glbl -log elaborate.log 
 Using 8 slave threads.
 Starting static elaboration
-WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 8 for port data [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_AmbientLightSensor.v:48]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.AmbientLightSensor
-Compiling module xil_defaultlib.Test_AmbientLightSensor
+Compiling module xil_defaultlib.DEMUX(WIDTH=8)
+Compiling module xil_defaultlib.DECODER(INPUT_WIDTH=3)
+Compiling module xil_defaultlib.TestDemux
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot Test_AmbientLightSensor_behav
+Built simulation snapshot TestDemux_behav
