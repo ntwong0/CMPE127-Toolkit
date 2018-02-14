@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_2" LaunchPart="xc7a100tcsg324-1" LaunchTime="1511923091">
-  <File Type="PA-TCL" Name="PWMCaptureTop.tcl"/>
-  <File Type="RDS-DCP" Name="PWMCaptureTop.dcp"/>
-  <File Type="REPORTS-TCL" Name="PWMCaptureTop_reports.tcl"/>
-  <File Type="RDS-RDS" Name="PWMCaptureTop.vds"/>
-  <File Type="RDS-UTIL-PB" Name="ServoTop_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="PWMCaptureTop_utilization_synth.rpt"/>
+<GenRun Id="synth_2" LaunchPart="xc7a100tcsg324-1" LaunchTime="1518577859">
+  <File Type="VDS-TIMING-PB" Name="VGA_TOP_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="VGA_TOP_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="VGA_TOP.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="VGA_TOP_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="VGA_TOP_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="VGA_TOP_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="VGA_TOP.vds"/>
+  <File Type="REPORTS-TCL" Name="VGA_TOP_reports.tcl"/>
+  <File Type="PA-TCL" Name="VGA_TOP.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PSRCDIR/sources_1/new/PWMCapture.v">
+    <File Path="$PSRCDIR/sources_1/new/Font.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/PWMCaptureTop.v">
+    <File Path="$PSRCDIR/sources_1/new/VGA.v">
       <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/AmbientLightSensor.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -33,6 +44,30 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/QuadratureDecoder.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/Motherboard.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/BinaryToLEDDisplay.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/PWMCapture.v">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -72,7 +107,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/Motherboard.v">
+    <File Path="$PSRCDIR/sources_1/new/PWMCaptureTop.v">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -80,7 +115,23 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/BinaryToLEDDisplay.v">
+    <File Path="$PSRCDIR/sources_1/new/SPI.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/AmbientLightSensorTop.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/GlueLogic.v">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -90,7 +141,7 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="PWMCaptureTop"/>
+      <Option Name="TopModule" Val="VGA_TOP"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">

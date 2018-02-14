@@ -29,7 +29,7 @@ eval( EAInclude(ISEJScriptLib) );
 // pre-commands:
 ISETouchFile( "init_design", "begin" );
 ISEStep( "vivado",
-         "-log PWMCaptureTop.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source PWMCaptureTop.tcl -notrace" );
+         "-log VGA_TOP.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source VGA_TOP.tcl -notrace" );
 
 
 

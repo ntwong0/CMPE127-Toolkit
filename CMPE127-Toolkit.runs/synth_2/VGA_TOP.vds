@@ -1,0 +1,667 @@
+#-----------------------------------------------------------
+# Vivado v2017.3 (64-bit)
+# SW Build 2018833 on Wed Oct  4 19:58:07 MDT 2017
+# IP Build 2016188 on Wed Oct  4 21:52:56 MDT 2017
+# Start of session at: Tue Feb 13 19:11:01 2018
+# Process ID: 20878
+# Current directory: /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2
+# Command line: vivado -log VGA_TOP.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source VGA_TOP.tcl
+# Log file: /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2/VGA_TOP.vds
+# Journal file: /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2/vivado.jou
+#-----------------------------------------------------------
+source VGA_TOP.tcl -notrace
+Command: synth_design -top VGA_TOP -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 20901 
+WARNING: [Synth 8-2292] literal value truncated to fit in 8 bits [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:1493]
+WARNING: [Synth 8-2611] redeclaration of ansi port hsync is not allowed [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:49]
+WARNING: [Synth 8-2611] redeclaration of ansi port vsync is not allowed [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:49]
+WARNING: [Synth 8-976] hsync has already been declared [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:49]
+WARNING: [Synth 8-2654] second declaration of hsync ignored [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:49]
+INFO: [Synth 8-994] hsync is declared here [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:27]
+INFO: [Synth 8-994] vsync is declared here [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:28]
+WARNING: [Synth 8-2507] parameter declaration becomes local in TextModule with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:231]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1245.402 ; gain = 72.277 ; free physical = 2093 ; free virtual = 22421
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'VGA_TOP' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:24]
+INFO: [Synth 8-638] synthesizing module 'PixelClock' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:316]
+	Parameter FREQ_IN bound to: 100000000 - type: integer 
+	Parameter FREQ_OUT bound to: 25000000 - type: integer 
+	Parameter HOLD_TICK_COUNT bound to: 2 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'PixelClock' (1#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:316]
+INFO: [Synth 8-638] synthesizing module 'VGA' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:344]
+	Parameter DISPLAY_WIDTH bound to: 639 - type: integer 
+	Parameter DISPLAY_HEIGHT bound to: 479 - type: integer 
+	Parameter HORIZONTAL_FRONT_PORCH bound to: 16 - type: integer 
+	Parameter HORIZONTAL_SYNC_PULSE bound to: 96 - type: integer 
+	Parameter HORIZONTAL_BACK_PORCH bound to: 48 - type: integer 
+	Parameter VERTICAL_FRONT_PORCH bound to: 11 - type: integer 
+	Parameter VERTICAL_SYNC_PULSE bound to: 2 - type: integer 
+	Parameter VERTICAL_BACK_PORCH bound to: 31 - type: integer 
+WARNING: [Synth 8-6014] Unused sequential element hblank_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:387]
+WARNING: [Synth 8-6014] Unused sequential element vblank_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:390]
+INFO: [Synth 8-256] done synthesizing module 'VGA' (2#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:344]
+INFO: [Synth 8-638] synthesizing module 'TextModule' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:216]
+	Parameter ROW bound to: 0 - type: integer 
+	Parameter COLUMN bound to: 0 - type: integer 
+	Parameter LENGTH bound to: 17 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'HEXToASCII' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:188]
+INFO: [Synth 8-256] done synthesizing module 'HEXToASCII' (3#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:188]
+WARNING: [Synth 8-689] width (5) of port connection 'hex' does not match port width (4) of module 'HEXToASCII' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:257]
+INFO: [Synth 8-638] synthesizing module 'FontROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:23]
+WARNING: [Synth 8-151] case item 8'b00010000 is unreachable [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:34]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:34]
+INFO: [Synth 8-256] done synthesizing module 'FontROM' (4#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:23]
+WARNING: [Synth 8-689] width (32) of port connection 'column' does not match port width (4) of module 'FontROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:291]
+INFO: [Synth 8-256] done synthesizing module 'TextModule' (5#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:216]
+INFO: [Synth 8-638] synthesizing module 'TextModule__parameterized0' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:216]
+	Parameter ROW bound to: 1 - type: integer 
+	Parameter COLUMN bound to: 0 - type: integer 
+	Parameter LENGTH bound to: 17 - type: integer 
+WARNING: [Synth 8-689] width (5) of port connection 'hex' does not match port width (4) of module 'HEXToASCII' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:257]
+WARNING: [Synth 8-689] width (32) of port connection 'column' does not match port width (4) of module 'FontROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:291]
+INFO: [Synth 8-256] done synthesizing module 'TextModule__parameterized0' (5#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:216]
+INFO: [Synth 8-638] synthesizing module 'TextModule__parameterized1' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:216]
+	Parameter ROW bound to: 2 - type: integer 
+	Parameter COLUMN bound to: 0 - type: integer 
+	Parameter LENGTH bound to: 17 - type: integer 
+WARNING: [Synth 8-689] width (5) of port connection 'hex' does not match port width (4) of module 'HEXToASCII' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:257]
+WARNING: [Synth 8-689] width (32) of port connection 'column' does not match port width (4) of module 'FontROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:291]
+INFO: [Synth 8-256] done synthesizing module 'TextModule__parameterized1' (5#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:216]
+INFO: [Synth 8-638] synthesizing module 'TextModule__parameterized2' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:216]
+	Parameter ROW bound to: 3 - type: integer 
+	Parameter COLUMN bound to: 0 - type: integer 
+	Parameter LENGTH bound to: 17 - type: integer 
+WARNING: [Synth 8-689] width (5) of port connection 'hex' does not match port width (4) of module 'HEXToASCII' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:257]
+WARNING: [Synth 8-689] width (32) of port connection 'column' does not match port width (4) of module 'FontROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:291]
+INFO: [Synth 8-256] done synthesizing module 'TextModule__parameterized2' (5#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:216]
+INFO: [Synth 8-638] synthesizing module 'TextModule__parameterized3' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:216]
+	Parameter ROW bound to: 4 - type: integer 
+	Parameter COLUMN bound to: 0 - type: integer 
+	Parameter LENGTH bound to: 17 - type: integer 
+WARNING: [Synth 8-689] width (5) of port connection 'hex' does not match port width (4) of module 'HEXToASCII' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:257]
+WARNING: [Synth 8-689] width (32) of port connection 'column' does not match port width (4) of module 'FontROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:291]
+INFO: [Synth 8-256] done synthesizing module 'TextModule__parameterized3' (5#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:216]
+INFO: [Synth 8-638] synthesizing module 'TextModule__parameterized4' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:216]
+	Parameter ROW bound to: 5 - type: integer 
+	Parameter COLUMN bound to: 0 - type: integer 
+	Parameter LENGTH bound to: 17 - type: integer 
+WARNING: [Synth 8-689] width (5) of port connection 'hex' does not match port width (4) of module 'HEXToASCII' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:257]
+WARNING: [Synth 8-689] width (32) of port connection 'column' does not match port width (4) of module 'FontROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:291]
+INFO: [Synth 8-256] done synthesizing module 'TextModule__parameterized4' (5#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:216]
+INFO: [Synth 8-638] synthesizing module 'TextModule__parameterized5' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:216]
+	Parameter ROW bound to: 6 - type: integer 
+	Parameter COLUMN bound to: 0 - type: integer 
+	Parameter LENGTH bound to: 17 - type: integer 
+WARNING: [Synth 8-689] width (5) of port connection 'hex' does not match port width (4) of module 'HEXToASCII' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:257]
+WARNING: [Synth 8-689] width (32) of port connection 'column' does not match port width (4) of module 'FontROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:291]
+INFO: [Synth 8-256] done synthesizing module 'TextModule__parameterized5' (5#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:216]
+INFO: [Synth 8-638] synthesizing module 'TextModule__parameterized6' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:216]
+	Parameter ROW bound to: 7 - type: integer 
+	Parameter COLUMN bound to: 0 - type: integer 
+	Parameter LENGTH bound to: 17 - type: integer 
+WARNING: [Synth 8-689] width (5) of port connection 'hex' does not match port width (4) of module 'HEXToASCII' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:257]
+WARNING: [Synth 8-689] width (32) of port connection 'column' does not match port width (4) of module 'FontROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:291]
+INFO: [Synth 8-256] done synthesizing module 'TextModule__parameterized6' (5#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:216]
+INFO: [Synth 8-638] synthesizing module 'TextModule__parameterized7' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:216]
+	Parameter ROW bound to: 8 - type: integer 
+	Parameter COLUMN bound to: 0 - type: integer 
+	Parameter LENGTH bound to: 17 - type: integer 
+WARNING: [Synth 8-689] width (5) of port connection 'hex' does not match port width (4) of module 'HEXToASCII' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:257]
+WARNING: [Synth 8-689] width (32) of port connection 'column' does not match port width (4) of module 'FontROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:291]
+INFO: [Synth 8-256] done synthesizing module 'TextModule__parameterized7' (5#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:216]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[9] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[10] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+INFO: [Synth 8-256] done synthesizing module 'VGA_TOP' (6#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:24]
+WARNING: [Synth 8-3331] design TextModule__parameterized7 has unconnected port value[24]
+WARNING: [Synth 8-3331] design TextModule__parameterized6 has unconnected port value[24]
+WARNING: [Synth 8-3331] design TextModule__parameterized5 has unconnected port value[24]
+WARNING: [Synth 8-3331] design TextModule__parameterized4 has unconnected port value[24]
+WARNING: [Synth 8-3331] design TextModule__parameterized3 has unconnected port value[24]
+WARNING: [Synth 8-3331] design TextModule__parameterized2 has unconnected port value[24]
+WARNING: [Synth 8-3331] design TextModule__parameterized1 has unconnected port value[24]
+WARNING: [Synth 8-3331] design TextModule__parameterized0 has unconnected port value[24]
+WARNING: [Synth 8-3331] design TextModule has unconnected port value[24]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1282.652 ; gain = 109.527 ; free physical = 2104 ; free virtual = 22433
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1282.652 ; gain = 109.527 ; free physical = 2112 ; free virtual = 22436
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/constrs_1/new/Motherboard.xdc]
+Finished Parsing XDC File [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/constrs_1/new/Motherboard.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/constrs_1/new/Motherboard.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/VGA_TOP_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/VGA_TOP_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1628.246 ; gain = 0.000 ; free physical = 1955 ; free virtual = 22230
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:32 ; elapsed = 00:00:47 . Memory (MB): peak = 1628.246 ; gain = 455.121 ; free physical = 1852 ; free virtual = 22177
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:32 ; elapsed = 00:00:47 . Memory (MB): peak = 1628.246 ; gain = 455.121 ; free physical = 1852 ; free virtual = 22177
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:00:47 . Memory (MB): peak = 1628.246 ; gain = 455.121 ; free physical = 1854 ; free virtual = 22179
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:331]
+WARNING: [Synth 8-6014] Unused sequential element hcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:372]
+WARNING: [Synth 8-6014] Unused sequential element vcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:377]
+INFO: [Synth 8-5546] ROM "out" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-6014] Unused sequential element count_reg[0] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[1] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[2] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[3] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[4] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[5] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[6] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[7] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[8] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:34 ; elapsed = 00:00:50 . Memory (MB): peak = 1628.246 ; gain = 455.121 ; free physical = 1868 ; free virtual = 22191
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     16 Bit       Adders := 1     
++---Registers : 
+	                1 Bit    Registers := 3     
++---Muxes : 
+	 128 Input      8 Bit        Muxes := 144   
+	   2 Input      1 Bit        Muxes := 11    
+	 128 Input      1 Bit        Muxes := 9     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module PixelClock 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     16 Bit       Adders := 1     
++---Registers : 
+	                1 Bit    Registers := 1     
+Module VGA 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 2     
+Module FontROM 
+Detailed RTL Component Info : 
++---Muxes : 
+	 128 Input      8 Bit        Muxes := 16    
+	 128 Input      1 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-6014] Unused sequential element hcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:372]
+WARNING: [Synth 8-6014] Unused sequential element vcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:377]
+WARNING: [Synth 8-6014] Unused sequential element U0/count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:331]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[0] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[1] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[2] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[3] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[4] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[5] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[6] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[7] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[8] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:75]
+WARNING: [Synth 8-3331] design TextModule__parameterized7 has unconnected port value[24]
+WARNING: [Synth 8-3331] design TextModule__parameterized6 has unconnected port value[24]
+WARNING: [Synth 8-3331] design TextModule__parameterized5 has unconnected port value[24]
+WARNING: [Synth 8-3331] design TextModule__parameterized4 has unconnected port value[24]
+WARNING: [Synth 8-3331] design TextModule__parameterized3 has unconnected port value[24]
+WARNING: [Synth 8-3331] design TextModule__parameterized2 has unconnected port value[24]
+WARNING: [Synth 8-3331] design TextModule__parameterized1 has unconnected port value[24]
+WARNING: [Synth 8-3331] design TextModule__parameterized0 has unconnected port value[24]
+WARNING: [Synth 8-3331] design TextModule has unconnected port value[24]
+INFO: [Synth 8-3886] merging instance 'CP0_reg14/rom/out_reg[15][7]' (FDE_1) to 'CP0_reg14/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg14/rom/out_reg[0][7]' (FDE_1) to 'CP0_reg14/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg14/rom/out_reg[15][6]' (FDE_1) to 'CP0_reg14/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg14/rom/out_reg[1][6]' (FDE_1) to 'CP0_reg14/rom/out_reg[1][2]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg14/rom/out_reg[0][6]' (FDE_1) to 'CP0_reg14/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg14/rom/out_reg[15][5]' (FDE_1) to 'CP0_reg14/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg14/rom/out_reg[15][4]' (FDE_1) to 'CP0_reg14/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg14/rom/out_reg[15][3]' (FDE_1) to 'CP0_reg14/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg14/rom/out_reg[15][2]' (FDE_1) to 'CP0_reg14/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg14/rom/out_reg[0][2]' (FDE_1) to 'CP0_reg14/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg14/rom/out_reg[15][1]' (FDE_1) to 'CP0_reg14/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg14/rom/out_reg[0][1]' (FDE_1) to 'CP0_reg14/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg13/rom/out_reg[15][7]' (FDE_1) to 'CP0_reg13/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg13/rom/out_reg[0][7]' (FDE_1) to 'CP0_reg13/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg13/rom/out_reg[15][6]' (FDE_1) to 'CP0_reg13/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg13/rom/out_reg[1][6]' (FDE_1) to 'CP0_reg13/rom/out_reg[1][2]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg13/rom/out_reg[0][6]' (FDE_1) to 'CP0_reg13/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg13/rom/out_reg[15][5]' (FDE_1) to 'CP0_reg13/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg13/rom/out_reg[15][4]' (FDE_1) to 'CP0_reg13/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg13/rom/out_reg[15][3]' (FDE_1) to 'CP0_reg13/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg13/rom/out_reg[15][2]' (FDE_1) to 'CP0_reg13/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg13/rom/out_reg[0][2]' (FDE_1) to 'CP0_reg13/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg13/rom/out_reg[15][1]' (FDE_1) to 'CP0_reg13/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg13/rom/out_reg[0][1]' (FDE_1) to 'CP0_reg13/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg12/rom/out_reg[15][7]' (FDE_1) to 'CP0_reg12/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg12/rom/out_reg[0][7]' (FDE_1) to 'CP0_reg12/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg12/rom/out_reg[15][6]' (FDE_1) to 'CP0_reg12/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg12/rom/out_reg[1][6]' (FDE_1) to 'CP0_reg12/rom/out_reg[1][2]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg12/rom/out_reg[0][6]' (FDE_1) to 'CP0_reg12/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg12/rom/out_reg[15][5]' (FDE_1) to 'CP0_reg12/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg12/rom/out_reg[15][4]' (FDE_1) to 'CP0_reg12/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg12/rom/out_reg[15][3]' (FDE_1) to 'CP0_reg12/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg12/rom/out_reg[15][2]' (FDE_1) to 'CP0_reg12/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg12/rom/out_reg[0][2]' (FDE_1) to 'CP0_reg12/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg12/rom/out_reg[15][1]' (FDE_1) to 'CP0_reg12/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'CP0_reg12/rom/out_reg[0][1]' (FDE_1) to 'CP0_reg12/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'WriteDataText/rom/out_reg[15][7]' (FDE_1) to 'WriteDataText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'WriteDataText/rom/out_reg[0][7]' (FDE_1) to 'WriteDataText/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'WriteDataText/rom/out_reg[15][6]' (FDE_1) to 'WriteDataText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'WriteDataText/rom/out_reg[1][6]' (FDE_1) to 'WriteDataText/rom/out_reg[1][2]'
+INFO: [Synth 8-3886] merging instance 'WriteDataText/rom/out_reg[0][6]' (FDE_1) to 'WriteDataText/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'WriteDataText/rom/out_reg[15][5]' (FDE_1) to 'WriteDataText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'WriteDataText/rom/out_reg[15][4]' (FDE_1) to 'WriteDataText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'WriteDataText/rom/out_reg[15][3]' (FDE_1) to 'WriteDataText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'WriteDataText/rom/out_reg[15][2]' (FDE_1) to 'WriteDataText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'WriteDataText/rom/out_reg[0][2]' (FDE_1) to 'WriteDataText/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'WriteDataText/rom/out_reg[15][1]' (FDE_1) to 'WriteDataText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'WriteDataText/rom/out_reg[0][1]' (FDE_1) to 'WriteDataText/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'ReadDataText/rom/out_reg[15][7]' (FDE_1) to 'ReadDataText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'ReadDataText/rom/out_reg[0][7]' (FDE_1) to 'ReadDataText/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'ReadDataText/rom/out_reg[15][6]' (FDE_1) to 'ReadDataText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'ReadDataText/rom/out_reg[1][6]' (FDE_1) to 'ReadDataText/rom/out_reg[1][2]'
+INFO: [Synth 8-3886] merging instance 'ReadDataText/rom/out_reg[0][6]' (FDE_1) to 'ReadDataText/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'ReadDataText/rom/out_reg[15][5]' (FDE_1) to 'ReadDataText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'ReadDataText/rom/out_reg[15][4]' (FDE_1) to 'ReadDataText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'ReadDataText/rom/out_reg[15][3]' (FDE_1) to 'ReadDataText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'ReadDataText/rom/out_reg[15][2]' (FDE_1) to 'ReadDataText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'ReadDataText/rom/out_reg[0][2]' (FDE_1) to 'ReadDataText/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'ReadDataText/rom/out_reg[15][1]' (FDE_1) to 'ReadDataText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'ReadDataText/rom/out_reg[0][1]' (FDE_1) to 'ReadDataText/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'regout2Text/rom/out_reg[15][7]' (FDE_1) to 'regout2Text/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'regout2Text/rom/out_reg[0][7]' (FDE_1) to 'regout2Text/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'regout2Text/rom/out_reg[15][6]' (FDE_1) to 'regout2Text/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'regout2Text/rom/out_reg[1][6]' (FDE_1) to 'regout2Text/rom/out_reg[1][2]'
+INFO: [Synth 8-3886] merging instance 'regout2Text/rom/out_reg[0][6]' (FDE_1) to 'regout2Text/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'regout2Text/rom/out_reg[15][5]' (FDE_1) to 'regout2Text/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'regout2Text/rom/out_reg[15][4]' (FDE_1) to 'regout2Text/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'regout2Text/rom/out_reg[15][3]' (FDE_1) to 'regout2Text/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'regout2Text/rom/out_reg[15][2]' (FDE_1) to 'regout2Text/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'regout2Text/rom/out_reg[0][2]' (FDE_1) to 'regout2Text/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'regout2Text/rom/out_reg[15][1]' (FDE_1) to 'regout2Text/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'regout2Text/rom/out_reg[0][1]' (FDE_1) to 'regout2Text/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'regout1Text/rom/out_reg[15][7]' (FDE_1) to 'regout1Text/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'regout1Text/rom/out_reg[0][7]' (FDE_1) to 'regout1Text/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'regout1Text/rom/out_reg[15][6]' (FDE_1) to 'regout1Text/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'regout1Text/rom/out_reg[1][6]' (FDE_1) to 'regout1Text/rom/out_reg[1][2]'
+INFO: [Synth 8-3886] merging instance 'regout1Text/rom/out_reg[0][6]' (FDE_1) to 'regout1Text/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'regout1Text/rom/out_reg[15][5]' (FDE_1) to 'regout1Text/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'regout1Text/rom/out_reg[15][4]' (FDE_1) to 'regout1Text/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'regout1Text/rom/out_reg[15][3]' (FDE_1) to 'regout1Text/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'regout1Text/rom/out_reg[15][2]' (FDE_1) to 'regout1Text/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'regout1Text/rom/out_reg[0][2]' (FDE_1) to 'regout1Text/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'regout1Text/rom/out_reg[15][1]' (FDE_1) to 'regout1Text/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'regout1Text/rom/out_reg[0][1]' (FDE_1) to 'regout1Text/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'aluoutText/rom/out_reg[15][7]' (FDE_1) to 'aluoutText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'aluoutText/rom/out_reg[0][7]' (FDE_1) to 'aluoutText/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'aluoutText/rom/out_reg[15][6]' (FDE_1) to 'aluoutText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'aluoutText/rom/out_reg[1][6]' (FDE_1) to 'aluoutText/rom/out_reg[1][2]'
+INFO: [Synth 8-3886] merging instance 'aluoutText/rom/out_reg[0][6]' (FDE_1) to 'aluoutText/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'aluoutText/rom/out_reg[15][5]' (FDE_1) to 'aluoutText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'aluoutText/rom/out_reg[15][4]' (FDE_1) to 'aluoutText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'aluoutText/rom/out_reg[15][3]' (FDE_1) to 'aluoutText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'aluoutText/rom/out_reg[15][2]' (FDE_1) to 'aluoutText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'aluoutText/rom/out_reg[0][2]' (FDE_1) to 'aluoutText/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'aluoutText/rom/out_reg[15][1]' (FDE_1) to 'aluoutText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'aluoutText/rom/out_reg[0][1]' (FDE_1) to 'aluoutText/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'pcText/rom/out_reg[15][7]' (FDE_1) to 'pcText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'pcText/rom/out_reg[0][7]' (FDE_1) to 'pcText/rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'pcText/rom/out_reg[15][6]' (FDE_1) to 'pcText/rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'pcText/rom/out_reg[1][6]' (FDE_1) to 'pcText/rom/out_reg[1][2]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (CP0_reg14/\rom/out_reg[0][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (CP0_reg13/\rom/out_reg[0][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (CP0_reg12/\rom/out_reg[0][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (WriteDataText/\rom/out_reg[0][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ReadDataText/\rom/out_reg[0][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regout2Text/\rom/out_reg[0][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regout1Text/\rom/out_reg[0][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (aluoutText/\rom/out_reg[0][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pcText/\rom/out_reg[14][4] )
+WARNING: [Synth 8-3332] Sequential element (rom/out_reg[14][4]) is unused and will be removed from module TextModule.
+WARNING: [Synth 8-3332] Sequential element (rom/out_reg[0][0]) is unused and will be removed from module TextModule__parameterized0.
+WARNING: [Synth 8-3332] Sequential element (rom/out_reg[0][0]) is unused and will be removed from module TextModule__parameterized1.
+WARNING: [Synth 8-3332] Sequential element (rom/out_reg[0][0]) is unused and will be removed from module TextModule__parameterized2.
+WARNING: [Synth 8-3332] Sequential element (rom/out_reg[0][0]) is unused and will be removed from module TextModule__parameterized3.
+WARNING: [Synth 8-3332] Sequential element (rom/out_reg[0][0]) is unused and will be removed from module TextModule__parameterized4.
+WARNING: [Synth 8-3332] Sequential element (rom/out_reg[0][0]) is unused and will be removed from module TextModule__parameterized5.
+WARNING: [Synth 8-3332] Sequential element (rom/out_reg[0][0]) is unused and will be removed from module TextModule__parameterized6.
+WARNING: [Synth 8-3332] Sequential element (rom/out_reg[0][0]) is unused and will be removed from module TextModule__parameterized7.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:01 ; elapsed = 00:01:19 . Memory (MB): peak = 1628.246 ; gain = 455.121 ; free physical = 1765 ; free virtual = 22096
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+ROM:
++------------+------------+---------------+----------------+
+|Module Name | RTL Object | Depth x Width | Implemented As | 
++------------+------------+---------------+----------------+
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
+|TextModule  | rom/out    | 128x8         | LUT            | 
++------------+------------+---------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:07 ; elapsed = 00:01:28 . Memory (MB): peak = 1653.246 ; gain = 480.121 ; free physical = 1659 ; free virtual = 21975
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:08 ; elapsed = 00:01:29 . Memory (MB): peak = 1664.262 ; gain = 491.137 ; free physical = 1657 ; free virtual = 21973
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:09 ; elapsed = 00:01:30 . Memory (MB): peak = 1684.559 ; gain = 511.434 ; free physical = 1655 ; free virtual = 21971
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:10 ; elapsed = 00:01:31 . Memory (MB): peak = 1684.559 ; gain = 511.434 ; free physical = 1654 ; free virtual = 21970
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:10 ; elapsed = 00:01:31 . Memory (MB): peak = 1684.559 ; gain = 511.434 ; free physical = 1654 ; free virtual = 21970
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:10 ; elapsed = 00:01:31 . Memory (MB): peak = 1684.559 ; gain = 511.434 ; free physical = 1654 ; free virtual = 21970
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:10 ; elapsed = 00:01:32 . Memory (MB): peak = 1684.559 ; gain = 511.434 ; free physical = 1654 ; free virtual = 21970
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:11 ; elapsed = 00:01:32 . Memory (MB): peak = 1684.559 ; gain = 511.434 ; free physical = 1654 ; free virtual = 21970
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:11 ; elapsed = 00:01:32 . Memory (MB): peak = 1684.559 ; gain = 511.434 ; free physical = 1654 ; free virtual = 21970
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     2|
+|2     |CARRY4 |    96|
+|3     |LUT1   |    26|
+|4     |LUT2   |   132|
+|5     |LUT3   |   166|
+|6     |LUT4   |   288|
+|7     |LUT5   |   497|
+|8     |LUT6   |  2212|
+|9     |MUXF7  |    49|
+|10    |FDCE   |    90|
+|11    |FDRE   |  1011|
+|12    |IBUF   |     2|
+|13    |OBUF   |     2|
+|14    |OBUFT  |    12|
++------+-------+------+
+
+Report Instance Areas: 
++------+----------------+---------------------------+------+
+|      |Instance        |Module                     |Cells |
++------+----------------+---------------------------+------+
+|1     |top             |                           |  4585|
+|2     |  CP0_reg12     |TextModule__parameterized5 |   212|
+|3     |    rom         |FontROM_7                  |   212|
+|4     |  CP0_reg13     |TextModule__parameterized6 |   209|
+|5     |    rom         |FontROM_6                  |   209|
+|6     |  CP0_reg14     |TextModule__parameterized7 |   211|
+|7     |    rom         |FontROM_5                  |   211|
+|8     |  ReadDataText  |TextModule__parameterized3 |   204|
+|9     |    rom         |FontROM_4                  |   204|
+|10    |  U0            |PixelClock                 |    48|
+|11    |  U1            |VGA                        |  2291|
+|12    |  WriteDataText |TextModule__parameterized4 |   199|
+|13    |    rom         |FontROM_3                  |   199|
+|14    |  aluoutText    |TextModule__parameterized0 |   204|
+|15    |    rom         |FontROM_2                  |   204|
+|16    |  pcText        |TextModule                 |   205|
+|17    |    rom         |FontROM_1                  |   205|
+|18    |  regout1Text   |TextModule__parameterized1 |   203|
+|19    |    rom         |FontROM_0                  |   203|
+|20    |  regout2Text   |TextModule__parameterized2 |   204|
+|21    |    rom         |FontROM                    |   204|
++------+----------------+---------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:11 ; elapsed = 00:01:32 . Memory (MB): peak = 1684.559 ; gain = 511.434 ; free physical = 1654 ; free virtual = 21970
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 42 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:00 ; elapsed = 00:01:08 . Memory (MB): peak = 1684.559 ; gain = 165.840 ; free physical = 1710 ; free virtual = 22026
+Synthesis Optimization Complete : Time (s): cpu = 00:01:11 ; elapsed = 00:01:32 . Memory (MB): peak = 1684.566 ; gain = 511.434 ; free physical = 1710 ; free virtual = 22026
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 147 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+154 Infos, 80 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:13 ; elapsed = 00:01:34 . Memory (MB): peak = 1684.566 ; gain = 524.816 ; free physical = 1735 ; free virtual = 22052
+INFO: [Common 17-1381] The checkpoint '/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2/VGA_TOP.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file VGA_TOP_utilization_synth.rpt -pb VGA_TOP_utilization_synth.pb
+report_utilization: Time (s): cpu = 00:00:00.13 ; elapsed = 00:00:00.15 . Memory (MB): peak = 1708.570 ; gain = 0.000 ; free physical = 1737 ; free virtual = 22052
+INFO: [Common 17-206] Exiting Vivado at Tue Feb 13 19:12:49 2018...

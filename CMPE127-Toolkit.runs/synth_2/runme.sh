@@ -36,4 +36,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log PWMCaptureTop.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source PWMCaptureTop.tcl
+EAStep vivado -log VGA_TOP.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source VGA_TOP.tcl

@@ -27,7 +27,7 @@ eval( EAInclude(ISEJScriptLib) );
 
 
 ISEStep( "vivado",
-         "-log PWMCaptureTop.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source PWMCaptureTop.tcl" );
+         "-log VGA_TOP.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source VGA_TOP.tcl" );
 
 
 
