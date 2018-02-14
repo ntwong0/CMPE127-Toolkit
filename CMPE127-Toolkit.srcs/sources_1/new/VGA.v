@@ -66,145 +66,154 @@ VGA U1(
 	.vcount(vcount)
 );
 
-wire [7:0] ascii;
-wire [3:0] column;
-wire [7:0] pixels;
+// wire [7:0] ascii;
+// wire [3:0] column;
+// wire [7:0] pixels;
 
-FontROM rom(
-    .pclk(pclk),
-	.ascii(ascii),
-	.column(column),
-	.pixels(pixels)
-);
-
-/* Program Counter Text */
-TextModule #(0,0) pcText(
+TerminalModule term(
 	.pclk(pclk),
 	.hcount(hcount),
 	.vcount(vcount),
-	.string("     PC"),
-	.value(count[0]),
-	.asciiOut(ascii),
-	.columnOut(column),
-	.pixelsIn(pixels),
-	.r(R),
-	.g(G),
-	.b(B)
-);
-/* ALU OUT Text */
-TextModule #(1,0) aluoutText(
-	.pclk(pclk),
-	.hcount(hcount),
-	.vcount(vcount),
-	.string(" ALUOUT"),
-	.value(count[1]),
-	.asciiOut(ascii),
-	.columnOut(column),
-	.pixelsIn(pixels),
-	.r(R),
-	.g(G),
-	.b(B)
-);
-/* Register File Out 1 */
-TextModule #(2,0) regout1Text(
-	.pclk(pclk),
-	.hcount(hcount),
-	.vcount(vcount),
-	.string("REGOUT1"),
-	.value(count[2]),
-	.asciiOut(ascii),
-	.columnOut(column),
-	.pixelsIn(pixels),
-	.r(R),
-	.g(G),
-	.b(B)
-);
-/* Register File Out 2 */
-TextModule #(3,0) regout2Text(
-	.pclk(pclk),
-	.hcount(hcount),
-	.vcount(vcount),
-	.string("REGOUT2"),
-	.value(count[3]),
-	.asciiOut(ascii),
-	.columnOut(column),
-	.pixelsIn(pixels),
 	.r(R),
 	.g(G),
 	.b(B)
 );
 
-/* Read Data */
-TextModule #(4,0) ReadDataText(
-	.pclk(pclk),
-	.hcount(hcount),
-	.vcount(vcount),
-	.string("  RDATA"),
-	.value(count[4]),
-	.asciiOut(ascii),
-	.columnOut(column),
-	.pixelsIn(pixels),
-	.r(R),
-	.g(G),
-	.b(B)
-);
+// FontROM rom(
+//     .pclk(pclk),
+// 	.ascii(ascii),
+// 	.column(column),
+// 	.pixels(pixels)
+// );
 
-/* Write Data */
-TextModule #(5,0) WriteDataText(
-	.pclk(pclk),
-	.hcount(hcount),
-	.vcount(vcount),
-	.string("  WDATA"),
-	.value(count[5]),
-	.asciiOut(ascii),
-	.columnOut(column),
-	.pixelsIn(pixels),
-	.r(R),
-	.g(G),
-	.b(B)
-);
-/* CP0 Register $12 */
-TextModule #(6,0) CP0_reg12(
-	.pclk(pclk),
-	.hcount(hcount),
-	.vcount(vcount),
-	.string(" CP0$12"),
-	.value(count[6]),
-	.asciiOut(ascii),
-	.columnOut(column),
-	.pixelsIn(pixels),
-	.r(R),
-	.g(G),
-	.b(B)
-);
-/* CP0 Register $13 */
-TextModule #(7,0) CP0_reg13(
-	.pclk(pclk),
-	.hcount(hcount),
-	.vcount(vcount),
-	.string(" CP0$13"),
-	.value(count[7]),
-	.asciiOut(ascii),
-	.columnOut(column),
-	.pixelsIn(pixels),
-	.r(R),
-	.g(G),
-	.b(B)
-);
-/* CP0 Register $14 */
-TextModule #(8,0) CP0_reg14(
-	.pclk(pclk),
-	.hcount(hcount),
-	.vcount(vcount),
-	.string(" CP0$14"),
-	.value(count[8]),
-	.asciiOut(ascii),
-	.columnOut(column),
-	.pixelsIn(pixels),
-	.r(R),
-	.g(G),
-	.b(B)
-);
+// /* Program Counter Text */
+// TextModule #(0,0) pcText(
+// 	.pclk(pclk),
+// 	.hcount(hcount),
+// 	.vcount(vcount),
+// 	.string("     PC"),
+// 	.value(count[0]),
+// 	.asciiOut(ascii),
+// 	.columnOut(column),
+// 	.pixelsIn(pixels),
+// 	.r(R),
+// 	.g(G),
+// 	.b(B)
+// );
+// /* ALU OUT Text */
+// TextModule #(1,0) aluoutText(
+// 	.pclk(pclk),
+// 	.hcount(hcount),
+// 	.vcount(vcount),
+// 	.string(" ALUOUT"),
+// 	.value(count[1]),
+// 	.asciiOut(ascii),
+// 	.columnOut(column),
+// 	.pixelsIn(pixels),
+// 	.r(R),
+// 	.g(G),
+// 	.b(B)
+// );
+// /* Register File Out 1 */
+// TextModule #(2,0) regout1Text(
+// 	.pclk(pclk),
+// 	.hcount(hcount),
+// 	.vcount(vcount),
+// 	.string("REGOUT1"),
+// 	.value(count[2]),
+// 	.asciiOut(ascii),
+// 	.columnOut(column),
+// 	.pixelsIn(pixels),
+// 	.r(R),
+// 	.g(G),
+// 	.b(B)
+// );
+// /* Register File Out 2 */
+// TextModule #(3,0) regout2Text(
+// 	.pclk(pclk),
+// 	.hcount(hcount),
+// 	.vcount(vcount),
+// 	.string("REGOUT2"),
+// 	.value(count[3]),
+// 	.asciiOut(ascii),
+// 	.columnOut(column),
+// 	.pixelsIn(pixels),
+// 	.r(R),
+// 	.g(G),
+// 	.b(B)
+// );
+
+// /* Read Data */
+// TextModule #(4,0) ReadDataText(
+// 	.pclk(pclk),
+// 	.hcount(hcount),
+// 	.vcount(vcount),
+// 	.string("  RDATA"),
+// 	.value(count[4]),
+// 	.asciiOut(ascii),
+// 	.columnOut(column),
+// 	.pixelsIn(pixels),
+// 	.r(R),
+// 	.g(G),
+// 	.b(B)
+// );
+
+// /* Write Data */
+// TextModule #(5,0) WriteDataText(
+// 	.pclk(pclk),
+// 	.hcount(hcount),
+// 	.vcount(vcount),
+// 	.string("  WDATA"),
+// 	.value(count[5]),
+// 	.asciiOut(ascii),
+// 	.columnOut(column),
+// 	.pixelsIn(pixels),
+// 	.r(R),
+// 	.g(G),
+// 	.b(B)
+// );
+// /* CP0 Register $12 */
+// TextModule #(6,0) CP0_reg12(
+// 	.pclk(pclk),
+// 	.hcount(hcount),
+// 	.vcount(vcount),
+// 	.string(" CP0$12"),
+// 	.value(count[6]),
+// 	.asciiOut(ascii),
+// 	.columnOut(column),
+// 	.pixelsIn(pixels),
+// 	.r(R),
+// 	.g(G),
+// 	.b(B)
+// );
+// /* CP0 Register $13 */
+// TextModule #(7,0) CP0_reg13(
+// 	.pclk(pclk),
+// 	.hcount(hcount),
+// 	.vcount(vcount),
+// 	.string(" CP0$13"),
+// 	.value(count[7]),
+// 	.asciiOut(ascii),
+// 	.columnOut(column),
+// 	.pixelsIn(pixels),
+// 	.r(R),
+// 	.g(G),
+// 	.b(B)
+// );
+// /* CP0 Register $14 */
+// TextModule #(8,0) CP0_reg14(
+// 	.pclk(pclk),
+// 	.hcount(hcount),
+// 	.vcount(vcount),
+// 	.string(" CP0$14"),
+// 	.value(count[8]),
+// 	.asciiOut(ascii),
+// 	.columnOut(column),
+// 	.pixelsIn(pixels),
+// 	.r(R),
+// 	.g(G),
+// 	.b(B)
+// );
 
 always @(posedge pclk)
 begin
@@ -251,6 +260,77 @@ end
 
 endmodule
 
+
+module TerminalModule(
+	input wire pclk,
+	input wire [31:0] hcount,
+	input wire [31:0] vcount,
+	output wire [3:0] r,
+	output wire [3:0] g,
+	output wire [3:0] b
+);
+
+wire [7:0] character_ram [0:80] [0:30];
+wire [7:0] pixels;
+
+assign character_ram[0][0] = "H";
+assign character_ram[0][1] = "E";
+assign character_ram[0][2] = "L";
+assign character_ram[0][3] = "L";
+assign character_ram[0][4] = "O";
+
+assign character_ram[1][3] = "W";
+assign character_ram[1][4] = "O";
+assign character_ram[1][5] = "R";
+assign character_ram[1][6] = "L";
+assign character_ram[1][7] = "D";
+assign character_ram[1][8] = "!";
+
+assign character_ram[4][5] = "H";
+assign character_ram[4][6] = "E";
+assign character_ram[4][7] = "L";
+assign character_ram[4][8] = "L";
+assign character_ram[4][9] = "O";
+
+assign character_ram[5][5] = "W";
+assign character_ram[5][6] = "O";
+assign character_ram[5][7] = "R";
+assign character_ram[5][8] = "L";
+assign character_ram[5][9] = "D";
+assign character_ram[5][10] = "!";
+
+FontROM rom(
+	.pclk(pclk),
+	.ascii(character_ram[vcount[31:4]][hcount[31:3]]),
+	.column(vcount % 16),
+	.pixels(pixels)
+);
+
+// assign r = (pixels[vcount % 16][7-hcount % 8] && vcount < 480 && hcount < 640) ? 4'hF : 0;
+// assign g = (pixels[vcount % 16][7-hcount % 8] && vcount < 480 && hcount < 640) ? 4'hF : 0;
+// assign b = (pixels[vcount % 16][7-hcount % 8] && vcount < 480 && hcount < 640) ? 4'hF : 0;
+
+assign r = (pixels[8-hcount % 8] && vcount < 480 && hcount < 640) ? 0 : 0;
+assign g = (pixels[8-hcount % 8] && vcount < 480 && hcount < 640) ? 4'hF : 0;
+assign b = (pixels[8-hcount % 8] && vcount < 480 && hcount < 640) ? 0 : 0;
+
+endmodule
+
+module ColorModule(
+	input wire pclk,
+	input wire [31:0] hcount,
+	input wire [31:0] vcount,
+	output wire [3:0] r,
+	output wire [3:0] g,
+	output wire [3:0] b
+);
+
+assign r = (  0 < vcount && vcount <= 200 && hcount < 640) ? 4'hF : 0;
+assign g = (200 < vcount && vcount <= 400 && hcount < 640) ? 4'hF : 0;
+assign b = (400 < vcount && vcount <= 480 && hcount < 640) ? 4'hF : 0;
+
+endmodule
+
 module TextModule #(
 	parameter ROW = 0,
 	parameter COLUMN = 0
@@ -273,8 +353,8 @@ parameter LENGTH = 17;
 
 wire [7:0] character_ram [0:LENGTH];
 
-assign  asciiOut = () ? character_ram[] : 8'hZ;
-assign columnOut = () ? character_ram[] : 8'hZ;
+// assign  asciiOut = () ? character_ram[] : 8'hZ;
+// assign columnOut = () ? character_ram[] : 8'hZ;
 
 assign character_ram[0] = string[55:48];
 assign character_ram[1] = string[47:40];

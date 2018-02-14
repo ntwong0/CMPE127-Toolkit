@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2017.3 (lin64) Build 2018833 Wed Oct  4 19:58:07 MDT 2017
-| Date             : Tue Feb 13 19:14:48 2018
+| Date             : Wed Feb 14 09:11:55 2018
 | Host             : kammce-Lenovo-Y40-80 running 64-bit Ubuntu 16.04.3 LTS
 | Command          : report_power -file VGA_TOP_power_routed.rpt -pb VGA_TOP_power_summary_routed.pb -rpx VGA_TOP_power_routed.rpx
 | Design           : VGA_TOP
@@ -53,14 +53,14 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |     4569 |       --- |             --- |
-|   LUT as Logic |    <0.001 |     3147 |     63400 |            4.96 |
-|   CARRY4       |    <0.001 |       96 |     15850 |            0.61 |
-|   Register     |    <0.001 |     1101 |    126800 |            0.87 |
-|   Others       |     0.000 |       25 |       --- |             --- |
-|   F7/F8 Muxes  |     0.000 |       49 |     63400 |            0.08 |
+| Slice Logic    |    <0.001 |      685 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      330 |     63400 |            0.52 |
+|   CARRY4       |    <0.001 |       24 |     15850 |            0.15 |
+|   Register     |    <0.001 |      195 |    126800 |            0.15 |
+|   Others       |     0.000 |        6 |       --- |             --- |
 |   BUFG         |     0.000 |        1 |        32 |            3.13 |
-| Signals        |    <0.001 |     3636 |       --- |             --- |
+|   F7/F8 Muxes  |     0.000 |       93 |     63400 |            0.15 |
+| Signals        |    <0.001 |      363 |       --- |             --- |
 | I/O            |    <0.001 |       16 |       210 |            7.62 |
 | Static Power   |     0.084 |          |           |                 |
 | Total          |     0.085 |          |           |                 |
@@ -139,30 +139,14 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+-----------------+-----------+
-| Name            | Power (W) |
-+-----------------+-----------+
-| VGA_TOP         |    <0.001 |
-|   CP0_reg12     |     0.000 |
-|     rom         |     0.000 |
-|   CP0_reg13     |     0.000 |
-|     rom         |     0.000 |
-|   CP0_reg14     |     0.000 |
-|     rom         |     0.000 |
-|   ReadDataText  |     0.000 |
-|     rom         |     0.000 |
-|   U0            |    <0.001 |
-|   U1            |     0.000 |
-|   WriteDataText |     0.000 |
-|     rom         |     0.000 |
-|   aluoutText    |     0.000 |
-|     rom         |     0.000 |
-|   pcText        |     0.000 |
-|     rom         |     0.000 |
-|   regout1Text   |     0.000 |
-|     rom         |     0.000 |
-|   regout2Text   |     0.000 |
-|     rom         |     0.000 |
-+-----------------+-----------+
++---------+-----------+
+| Name    | Power (W) |
++---------+-----------+
+| VGA_TOP |    <0.001 |
+|   U0    |    <0.001 |
+|   U1    |     0.000 |
+|   term  |     0.000 |
+|     rom |     0.000 |
++---------+-----------+
 
 
