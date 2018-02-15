@@ -1490,7 +1490,7 @@ always @(negedge pclk) begin
 			out[14] <= 8'b00000000; // e
 			out[15] <= 8'b00000000; // f
 		end
-		8'h510: begin
+		8'h51: begin
 			out[0] <= 8'b00000000; // 0
 			out[1] <= 8'b00000000; // 1
 			out[2] <= 8'b01111100; // 2  *****

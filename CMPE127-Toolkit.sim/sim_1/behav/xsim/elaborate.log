@@ -1,14 +1,20 @@
 Vivado Simulator 2017.3
 Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
-Running: /home/kammce/.local/user-share/Xilinx/Vivado/Vivado/2017.3/bin/unwrapped/lnx64.o/xelab -wto b88e81cc53414897a6cdb318bade6df8 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot TestDemux_behav xil_defaultlib.TestDemux xil_defaultlib.glbl -log elaborate.log 
+Running: /home/kammce/.local/user-share/Xilinx/Vivado/Vivado/2017.3/bin/unwrapped/lnx64.o/xelab -wto b88e81cc53414897a6cdb318bade6df8 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Test_VGA_behav xil_defaultlib.Test_VGA xil_defaultlib.glbl -log elaborate.log 
 Using 8 slave threads.
 Starting static elaboration
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 1 for port cs [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:72]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 12 for port address [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:73]
+WARNING: [VRFC 10-278] actual bit length 8 differs from formal bit length 9 for port data [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:74]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.DEMUX(WIDTH=8)
-Compiling module xil_defaultlib.DECODER(INPUT_WIDTH=3)
-Compiling module xil_defaultlib.TestDemux
+Compiling module xil_defaultlib.PixelClock_default
+Compiling module xil_defaultlib.VGA
+Compiling module xil_defaultlib.FontROM
+Compiling module xil_defaultlib.TerminalModule_default
+Compiling module xil_defaultlib.VGA_TOP
+Compiling module xil_defaultlib.Test_VGA
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot TestDemux_behav
+Built simulation snapshot Test_VGA_behav
