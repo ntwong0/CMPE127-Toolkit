@@ -1,0 +1,865 @@
+#-----------------------------------------------------------
+# Vivado v2017.3 (64-bit)
+# SW Build 2018833 on Wed Oct  4 19:58:07 MDT 2017
+# IP Build 2016188 on Wed Oct  4 21:52:56 MDT 2017
+# Start of session at: Fri Feb 16 09:45:24 2018
+# Process ID: 23078
+# Current directory: /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2
+# Command line: vivado -log VGA_Terminal.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source VGA_Terminal.tcl
+# Log file: /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2/VGA_Terminal.vds
+# Journal file: /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2/vivado.jou
+#-----------------------------------------------------------
+source VGA_Terminal.tcl -notrace
+Command: synth_design -top VGA_Terminal -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 23095 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1236.121 ; gain = 62.996 ; free physical = 2484 ; free virtual = 19314
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'VGA_Terminal' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:24]
+INFO: [Synth 8-638] synthesizing module 'PixelClock' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:428]
+	Parameter FREQ_IN bound to: 100000000 - type: integer 
+	Parameter FREQ_OUT bound to: 25000000 - type: integer 
+	Parameter HOLD_TICK_COUNT bound to: 2 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'PixelClock' (1#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:428]
+INFO: [Synth 8-638] synthesizing module 'VGA' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:456]
+	Parameter DISPLAY_WIDTH bound to: 639 - type: integer 
+	Parameter DISPLAY_HEIGHT bound to: 479 - type: integer 
+	Parameter HORIZONTAL_FRONT_PORCH bound to: 16 - type: integer 
+	Parameter HORIZONTAL_SYNC_PULSE bound to: 96 - type: integer 
+	Parameter HORIZONTAL_BACK_PORCH bound to: 48 - type: integer 
+	Parameter VERTICAL_FRONT_PORCH bound to: 11 - type: integer 
+	Parameter VERTICAL_SYNC_PULSE bound to: 2 - type: integer 
+	Parameter VERTICAL_BACK_PORCH bound to: 31 - type: integer 
+WARNING: [Synth 8-6014] Unused sequential element hblank_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:499]
+WARNING: [Synth 8-6014] Unused sequential element vblank_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:502]
+INFO: [Synth 8-256] done synthesizing module 'VGA' (2#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:456]
+INFO: [Synth 8-638] synthesizing module 'TerminalModule' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:204]
+	Parameter DEBUG_STRING_LENGTH bound to: 9 - type: integer 
+	Parameter ASCII bound to: 8 - type: integer 
+	Parameter DEBUG_MESSAGES bound to: 20 - type: integer 
+	Parameter DEBUG_MESSAGES_LENGTH bound to: 20 - type: integer 
+	Parameter STRING_BITS bound to: 72 - type: integer 
+	Parameter VALUE_BITS bound to: 32 - type: integer 
+	Parameter CHARACTER_SECTION bound to: 160 - type: integer 
+	Parameter INIT_DEBUG_ROW bound to: 0 - type: integer 
+	Parameter INIT_STRINGS bound to: 1 - type: integer 
+	Parameter INIT_COLONS bound to: 2 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'HEXToASCII' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:176]
+INFO: [Synth 8-256] done synthesizing module 'HEXToASCII' (3#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:176]
+INFO: [Synth 8-638] synthesizing module 'FontROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:23]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:34]
+INFO: [Synth 8-256] done synthesizing module 'FontROM' (4#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:23]
+WARNING: [Synth 8-5856] 3D RAM terminal_ram_reg  for this pattern/configuration is not supported. This will most likely be implemented in registers
+WARNING: [Synth 8-6014] Unused sequential element state_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:384]
+WARNING: [Synth 8-6014] Unused sequential element i_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:387]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][0] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][1] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][2] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][3] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][4] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][5] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][6] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][7] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][8] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][9] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][10] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][11] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][12] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][13] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][14] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][15] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][16] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][17] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][18] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][19] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][20] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][21] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][22] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][23] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][24] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][25] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][26] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][27] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][28] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][29] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][30] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][31] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][32] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][33] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][34] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][35] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][36] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][37] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][38] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][39] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][40] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][41] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][42] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][43] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][44] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][45] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][46] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][47] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][48] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][49] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][50] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][51] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][52] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][53] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][54] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][55] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][56] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][57] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][58] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][59] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][60] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][61] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][62] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][63] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][64] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][65] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][66] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][67] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][68] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][69] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][70] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][71] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][72] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][73] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][74] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][75] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][76] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][77] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][78] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[0][79] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][0] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][1] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][2] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][3] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][4] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][5] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][6] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][7] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][8] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][9] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][10] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][11] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][12] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][13] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][14] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][15] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][16] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][17] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][18] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+WARNING: [Synth 8-5788] Register terminal_ram_reg[1][19] in module TerminalModule is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:239]
+INFO: [Common 17-14] Message 'Synth 8-5788' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-256] done synthesizing module 'TerminalModule' (5#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:204]
+WARNING: [Synth 8-689] width (9) of port connection 'address' does not match port width (12) of module 'TerminalModule' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:80]
+WARNING: [Synth 8-689] width (7) of port connection 'data' does not match port width (9) of module 'TerminalModule' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:81]
+WARNING: [Synth 8-689] width (512) of port connection 'values' does not match port width (640) of module 'TerminalModule' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:104]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[10] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+INFO: [Synth 8-256] done synthesizing module 'VGA_Terminal' (6#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:24]
+WARNING: [Synth 8-3331] design TerminalModule has unconnected port data[8]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1648.793 ; gain = 475.668 ; free physical = 2166 ; free virtual = 19002
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:51 ; elapsed = 00:00:53 . Memory (MB): peak = 1648.793 ; gain = 475.668 ; free physical = 2233 ; free virtual = 19069
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/constrs_1/new/Motherboard.xdc]
+Finished Parsing XDC File [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/constrs_1/new/Motherboard.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/constrs_1/new/Motherboard.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/VGA_Terminal_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/VGA_Terminal_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1972.520 ; gain = 0.000 ; free physical = 1780 ; free virtual = 18616
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:01:17 ; elapsed = 00:01:30 . Memory (MB): peak = 1972.520 ; gain = 799.395 ; free physical = 2033 ; free virtual = 18871
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5580] Multithreading enabled for synth_design using a maximum of 4 processes.
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:01:17 ; elapsed = 00:01:31 . Memory (MB): peak = 1976.438 ; gain = 803.312 ; free physical = 2033 ; free virtual = 18871
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:17 ; elapsed = 00:01:31 . Memory (MB): peak = 1976.438 ; gain = 803.312 ; free physical = 2034 ; free virtual = 18872
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:443]
+WARNING: [Synth 8-6014] Unused sequential element hcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:484]
+WARNING: [Synth 8-6014] Unused sequential element vcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:489]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[2] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[3] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[4] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[5] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[6] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[7] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[8] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[9] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[10] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[11] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][0]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][0]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][1]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][1]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][2]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][2]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][3]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][3]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][4]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][4]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][5]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][5]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][6]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][6]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][7]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][7]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][8]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][8]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][9]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][9]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][10]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][10]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][11]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][11]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][12]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][12]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][13]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][13]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][14]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][14]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][15]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][15]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][16]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][16]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][17]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][17]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][18]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][18]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][19]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][19]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][20]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][20]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][21]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][21]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][22]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][22]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][23]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][23]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][24]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][24]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][25]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][25]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][26]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][26]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][27]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][27]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][28]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][28]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][29]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][29]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][30]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][30]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][31]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][31]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][32]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][32]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][33]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][33]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][34]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][34]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][35]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][35]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][36]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][36]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][37]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][37]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][38]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][38]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][39]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][39]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][40]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][40]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][41]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][41]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][42]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][42]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][43]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][43]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][44]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][44]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][45]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][45]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][46]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][46]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][47]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][47]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][48]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][48]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][49]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "terminal_ram_reg[0][49]" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Common 17-14] Message 'Synth 8-5545' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Synth 8-6014] Unused sequential element initalize_address_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:386]
+WARNING: [Synth 8-6014] Unused sequential element i_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:136]
+WARNING: [Synth 8-6014] Unused sequential element j_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:151]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[0] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[1] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[2] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[3] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[4] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[5] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[6] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[7] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[8] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[9] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:02:33 ; elapsed = 00:03:13 . Memory (MB): peak = 1976.438 ; gain = 803.312 ; free physical = 375 ; free virtual = 17214
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+--------------------+------------+----------+
+|      |RTL Partition       |Replication |Instances |
++------+--------------------+------------+----------+
+|1     |TerminalModule__GB0 |           1|     35450|
+|2     |TerminalModule__GB1 |           1|     12352|
+|3     |TerminalModule__GB2 |           1|     16344|
+|4     |TerminalModule__GB3 |           1|     18072|
+|5     |TerminalModule__GB4 |           1|     16275|
+|6     |VGA_Terminal__GC0   |           1|      2574|
++------+--------------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 2     
+	   2 Input     16 Bit       Adders := 1     
++---Registers : 
+	                8 Bit    Registers := 2170  
+	                1 Bit    Registers := 3     
++---ROMs : 
+	                              ROMs := 10    
++---Muxes : 
+	   2 Input      8 Bit        Muxes := 1     
+	 128 Input      8 Bit        Muxes := 6     
+	   5 Input      7 Bit        Muxes := 1     
+	   5 Input      6 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 6643  
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module VGA_Terminal 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 2     
+Module FontROM 
+Detailed RTL Component Info : 
++---Registers : 
+	                8 Bit    Registers := 10    
++---ROMs : 
+	                              ROMs := 10    
++---Muxes : 
+	 128 Input      8 Bit        Muxes := 6     
+	   2 Input      1 Bit        Muxes := 1     
+Module TerminalModule 
+Detailed RTL Component Info : 
++---Registers : 
+	                8 Bit    Registers := 2160  
++---Muxes : 
+	   2 Input      8 Bit        Muxes := 1     
+	   5 Input      7 Bit        Muxes := 1     
+	   5 Input      6 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 6640  
+Module PixelClock 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     16 Bit       Adders := 1     
++---Registers : 
+	                1 Bit    Registers := 1     
+Module VGA 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 2     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-6014] Unused sequential element U0/count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:443]
+WARNING: [Synth 8-6014] Unused sequential element U1/hcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:484]
+WARNING: [Synth 8-6014] Unused sequential element U1/vcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:489]
+WARNING: [Synth 8-6014] Unused sequential element i_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:136]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[0] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[1] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[2] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-6014] Unused sequential element j_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:151]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[3] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[4] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[5] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[6] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[7] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[8] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-6014] Unused sequential element count_reg[9] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:111]
+WARNING: [Synth 8-3917] design VGA_Terminal has port R[3] driven by constant 0
+WARNING: [Synth 8-3917] design VGA_Terminal has port R[2] driven by constant 0
+WARNING: [Synth 8-3917] design VGA_Terminal has port R[1] driven by constant 0
+WARNING: [Synth 8-3917] design VGA_Terminal has port R[0] driven by constant 0
+WARNING: [Synth 8-3917] design VGA_Terminal has port B[3] driven by constant 0
+WARNING: [Synth 8-3917] design VGA_Terminal has port B[2] driven by constant 0
+WARNING: [Synth 8-3917] design VGA_Terminal has port B[1] driven by constant 0
+WARNING: [Synth 8-3917] design VGA_Terminal has port B[0] driven by constant 0
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_5/i_5/\count_reg[1][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_5/i_8/\count_reg[3][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_5/i_8/\count_reg[3][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_5/i_11/\count_reg[6][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_5/i_13/\count_reg[8][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_5/i_13/\count_reg[8][1] )
+WARNING: [Synth 8-6014] Unused sequential element initalize_address_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:386]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[2] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[3] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[4] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[5] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[6] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[7] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[8] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[9] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[10] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+WARNING: [Synth 8-6014] Unused sequential element out_reg[11] was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:31]
+INFO: [Synth 8-3886] merging instance 'rom/out_reg[15][7]' (FDE_1) to 'rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'rom/out_reg[0][7]' (FDE_1) to 'rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'rom/out_reg[15][6]' (FDE_1) to 'rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'rom/out_reg[1][6]' (FDE_1) to 'rom/out_reg[1][2]'
+INFO: [Synth 8-3886] merging instance 'rom/out_reg[0][6]' (FDE_1) to 'rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'rom/out_reg[15][5]' (FDE_1) to 'rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'rom/out_reg[15][4]' (FDE_1) to 'rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'rom/out_reg[15][3]' (FDE_1) to 'rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'rom/out_reg[15][2]' (FDE_1) to 'rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'rom/out_reg[0][2]' (FDE_1) to 'rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'rom/out_reg[15][1]' (FDE_1) to 'rom/out_reg[15][0]'
+INFO: [Synth 8-3886] merging instance 'rom/out_reg[0][1]' (FDE_1) to 'rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'rom/out_reg[15][0]' (FDE_1) to 'rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'rom/out_reg[14][0]' (FDE_1) to 'rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'rom/out_reg[12][0]' (FDE_1) to 'rom/out_reg[0][0]'
+INFO: [Synth 8-3886] merging instance 'rom/out_reg[1][0]' (FDE_1) to 'rom/out_reg[0][0]'
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:03:39 ; elapsed = 00:04:32 . Memory (MB): peak = 1976.441 ; gain = 803.316 ; free physical = 246 ; free virtual = 16744
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+ROM:
++------------+-------------+---------------+----------------+
+|Module Name | RTL Object  | Depth x Width | Implemented As | 
++------------+-------------+---------------+----------------+
+|FontROM     | out_reg[2]  | 256x8         | Block RAM      | 
+|FontROM     | out_reg[3]  | 256x8         | Block RAM      | 
+|FontROM     | out_reg[4]  | 256x8         | Block RAM      | 
+|FontROM     | out_reg[5]  | 256x8         | Block RAM      | 
+|FontROM     | out_reg[6]  | 256x8         | Block RAM      | 
+|FontROM     | out_reg[7]  | 256x8         | Block RAM      | 
+|FontROM     | out_reg[8]  | 256x8         | Block RAM      | 
+|FontROM     | out_reg[9]  | 256x8         | Block RAM      | 
+|FontROM     | out_reg[10] | 256x8         | Block RAM      | 
+|FontROM     | out_reg[11] | 256x8         | Block RAM      | 
++------------+-------------+---------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+--------------------+------------+----------+
+|      |RTL Partition       |Replication |Instances |
++------+--------------------+------------+----------+
+|1     |TerminalModule__GB0 |           1|     18417|
+|2     |TerminalModule__GB1 |           1|      6924|
+|3     |TerminalModule__GB2 |           1|      8760|
+|4     |TerminalModule__GB3 |           1|      9485|
+|5     |TerminalModule__GB4 |           1|      4964|
+|6     |VGA_Terminal__GC0   |           1|      1110|
++------+--------------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:03:46 ; elapsed = 00:04:41 . Memory (MB): peak = 1976.441 ; gain = 803.316 ; free physical = 166 ; free virtual = 16626
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[26][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[25][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[24][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[23][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[22][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[21][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[20][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[19][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[18][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[17][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[16][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[15][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[14][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[13][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[12][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[11][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[10][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[9][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[8][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[7][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[6][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[5][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[4][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[3][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[2][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[1][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[0][0][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[26][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[25][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[24][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[23][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[22][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[21][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[20][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[19][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[18][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[17][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[16][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[15][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[14][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[13][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[12][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[11][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[10][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[9][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[8][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[7][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[6][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[5][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[4][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[3][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[2][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[1][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[0][77][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[26][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[25][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[24][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[23][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[22][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[21][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[20][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[19][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[18][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[17][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[16][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[15][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[14][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[13][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[12][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[11][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[10][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[9][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[8][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[7][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[6][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[5][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[4][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[3][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[2][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[1][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[0][76][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[26][2][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[25][2][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[24][2][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[23][2][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[22][2][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[21][2][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[20][2][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[19][2][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[18][2][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[17][2][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[16][2][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[15][2][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (termi_3/\terminal_ram_reg[14][2][7] )
+INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:03:51 ; elapsed = 00:04:47 . Memory (MB): peak = 2002.535 ; gain = 829.410 ; free physical = 190 ; free virtual = 16606
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+--------------------+------------+----------+
+|      |RTL Partition       |Replication |Instances |
++------+--------------------+------------+----------+
+|1     |TerminalModule__GB0 |           1|     16562|
+|2     |TerminalModule__GB1 |           1|      6258|
+|3     |TerminalModule__GB2 |           1|      7875|
+|4     |TerminalModule__GB3 |           1|      8530|
+|5     |TerminalModule__GB4 |           1|      2640|
+|6     |VGA_Terminal__GC0   |           1|      1083|
++------+--------------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[2] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[3] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[4] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[5] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[6] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[7] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[8] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[9] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[10] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[11] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:04:00 ; elapsed = 00:05:04 . Memory (MB): peak = 2025.945 ; gain = 852.820 ; free physical = 266 ; free virtual = 16653
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+--------------------+------------+----------+
+|      |RTL Partition       |Replication |Instances |
++------+--------------------+------------+----------+
+|1     |TerminalModule__GB0 |           1|     11033|
++------+--------------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[2] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[3] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[4] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[5] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[6] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[7] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[8] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[9] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[10] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance term/rom/out_reg[11] (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:04:04 ; elapsed = 00:05:08 . Memory (MB): peak = 2025.945 ; gain = 852.820 ; free physical = 299 ; free virtual = 16686
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:04:04 ; elapsed = 00:05:08 . Memory (MB): peak = 2025.945 ; gain = 852.820 ; free physical = 299 ; free virtual = 16686
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:04:06 ; elapsed = 00:05:10 . Memory (MB): peak = 2025.945 ; gain = 852.820 ; free physical = 297 ; free virtual = 16684
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:04:06 ; elapsed = 00:05:11 . Memory (MB): peak = 2025.945 ; gain = 852.820 ; free physical = 297 ; free virtual = 16684
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:04:07 ; elapsed = 00:05:11 . Memory (MB): peak = 2025.945 ; gain = 852.820 ; free physical = 295 ; free virtual = 16682
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:04:07 ; elapsed = 00:05:11 . Memory (MB): peak = 2025.945 ; gain = 852.820 ; free physical = 295 ; free virtual = 16682
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----------+------+
+|      |Cell       |Count |
++------+-----------+------+
+|1     |BUFG       |     2|
+|2     |CARRY4     |   173|
+|3     |LUT1       |   180|
+|4     |LUT2       |   867|
+|5     |LUT3       |   553|
+|6     |LUT4       |  1159|
+|7     |LUT5       |  1317|
+|8     |LUT6       |  6073|
+|9     |MUXF7      |  1694|
+|10    |MUXF8      |   101|
+|11    |RAMB18E1   |     1|
+|12    |RAMB18E1_1 |     1|
+|13    |RAMB18E1_2 |     1|
+|14    |RAMB18E1_3 |     1|
+|15    |RAMB18E1_4 |     1|
+|16    |RAMB18E1_5 |     1|
+|17    |RAMB18E1_6 |     1|
+|18    |RAMB18E1_7 |     1|
+|19    |RAMB18E1_8 |     1|
+|20    |RAMB18E1_9 |     1|
+|21    |FDCE       |   468|
+|22    |FDPE       |     1|
+|23    |FDRE       | 15184|
+|24    |IBUF       |    19|
+|25    |OBUF       |    14|
++------+-----------+------+
+
+Report Instance Areas: 
++------+--------------------------------------+---------------+------+
+|      |Instance                              |Module         |Cells |
++------+--------------------------------------+---------------+------+
+|1     |top                                   |               | 27815|
+|2     |  U0                                  |PixelClock     |    47|
+|3     |  U1                                  |VGA            |   807|
+|4     |  term                                |TerminalModule | 26164|
+|5     |    \genblk5[0].genblk1[0].htoa_j_t0  |HEXToASCII     |     5|
+|6     |    \genblk5[0].genblk1[0].htoa_j_t1  |HEXToASCII_0   |     5|
+|7     |    \genblk5[0].genblk1[0].htoa_j_t2  |HEXToASCII_1   |     5|
+|8     |    \genblk5[0].genblk1[0].htoa_j_t3  |HEXToASCII_2   |     5|
+|9     |    \genblk5[0].genblk1[0].htoa_j_t4  |HEXToASCII_3   |     5|
+|10    |    \genblk5[0].genblk1[0].htoa_j_t5  |HEXToASCII_4   |     5|
+|11    |    \genblk5[0].genblk1[0].htoa_j_t6  |HEXToASCII_5   |     5|
+|12    |    \genblk5[0].genblk1[0].htoa_j_t7  |HEXToASCII_6   |     5|
+|13    |    \genblk5[0].genblk1[1].htoa_j_t0  |HEXToASCII_7   |     5|
+|14    |    \genblk5[0].genblk1[1].htoa_j_t1  |HEXToASCII_8   |     5|
+|15    |    \genblk5[0].genblk1[1].htoa_j_t2  |HEXToASCII_9   |     5|
+|16    |    \genblk5[0].genblk1[1].htoa_j_t3  |HEXToASCII_10  |     5|
+|17    |    \genblk5[0].genblk1[1].htoa_j_t4  |HEXToASCII_11  |     5|
+|18    |    \genblk5[0].genblk1[1].htoa_j_t5  |HEXToASCII_12  |     5|
+|19    |    \genblk5[0].genblk1[1].htoa_j_t6  |HEXToASCII_13  |     5|
+|20    |    \genblk5[0].genblk1[1].htoa_j_t7  |HEXToASCII_14  |     4|
+|21    |    \genblk5[0].genblk1[2].htoa_j_t0  |HEXToASCII_15  |     5|
+|22    |    \genblk5[0].genblk1[2].htoa_j_t1  |HEXToASCII_16  |     5|
+|23    |    \genblk5[0].genblk1[2].htoa_j_t2  |HEXToASCII_17  |     5|
+|24    |    \genblk5[0].genblk1[2].htoa_j_t3  |HEXToASCII_18  |     5|
+|25    |    \genblk5[0].genblk1[2].htoa_j_t4  |HEXToASCII_19  |     5|
+|26    |    \genblk5[0].genblk1[2].htoa_j_t5  |HEXToASCII_20  |     5|
+|27    |    \genblk5[0].genblk1[2].htoa_j_t6  |HEXToASCII_21  |     5|
+|28    |    \genblk5[0].genblk1[2].htoa_j_t7  |HEXToASCII_22  |     5|
+|29    |    \genblk5[0].genblk1[3].htoa_j_t0  |HEXToASCII_23  |     4|
+|30    |    \genblk5[0].genblk1[3].htoa_j_t1  |HEXToASCII_24  |     4|
+|31    |    \genblk5[0].genblk1[3].htoa_j_t2  |HEXToASCII_25  |     4|
+|32    |    \genblk5[0].genblk1[3].htoa_j_t3  |HEXToASCII_26  |     4|
+|33    |    \genblk5[0].genblk1[3].htoa_j_t4  |HEXToASCII_27  |     4|
+|34    |    \genblk5[0].genblk1[3].htoa_j_t5  |HEXToASCII_28  |     4|
+|35    |    \genblk5[0].genblk1[3].htoa_j_t6  |HEXToASCII_29  |     4|
+|36    |    \genblk5[0].genblk1[3].htoa_j_t7  |HEXToASCII_30  |     1|
+|37    |    \genblk5[1].genblk1[0].htoa_j_t0  |HEXToASCII_31  |     5|
+|38    |    \genblk5[1].genblk1[0].htoa_j_t1  |HEXToASCII_32  |     5|
+|39    |    \genblk5[1].genblk1[0].htoa_j_t2  |HEXToASCII_33  |     5|
+|40    |    \genblk5[1].genblk1[0].htoa_j_t3  |HEXToASCII_34  |     5|
+|41    |    \genblk5[1].genblk1[0].htoa_j_t4  |HEXToASCII_35  |     5|
+|42    |    \genblk5[1].genblk1[0].htoa_j_t5  |HEXToASCII_36  |     5|
+|43    |    \genblk5[1].genblk1[0].htoa_j_t6  |HEXToASCII_37  |     5|
+|44    |    \genblk5[1].genblk1[0].htoa_j_t7  |HEXToASCII_38  |     5|
+|45    |    \genblk5[1].genblk1[1].htoa_j_t0  |HEXToASCII_39  |     5|
+|46    |    \genblk5[1].genblk1[1].htoa_j_t1  |HEXToASCII_40  |     5|
+|47    |    \genblk5[1].genblk1[1].htoa_j_t2  |HEXToASCII_41  |     5|
+|48    |    \genblk5[1].genblk1[1].htoa_j_t3  |HEXToASCII_42  |     5|
+|49    |    \genblk5[1].genblk1[1].htoa_j_t4  |HEXToASCII_43  |     5|
+|50    |    \genblk5[1].genblk1[1].htoa_j_t5  |HEXToASCII_44  |     5|
+|51    |    \genblk5[1].genblk1[1].htoa_j_t6  |HEXToASCII_45  |     5|
+|52    |    \genblk5[1].genblk1[1].htoa_j_t7  |HEXToASCII_46  |     5|
+|53    |    \genblk5[1].genblk1[2].htoa_j_t0  |HEXToASCII_47  |     4|
+|54    |    \genblk5[1].genblk1[2].htoa_j_t1  |HEXToASCII_48  |     4|
+|55    |    \genblk5[1].genblk1[2].htoa_j_t2  |HEXToASCII_49  |     4|
+|56    |    \genblk5[1].genblk1[2].htoa_j_t3  |HEXToASCII_50  |     4|
+|57    |    \genblk5[1].genblk1[2].htoa_j_t4  |HEXToASCII_51  |     4|
+|58    |    \genblk5[1].genblk1[2].htoa_j_t5  |HEXToASCII_52  |     4|
+|59    |    \genblk5[1].genblk1[2].htoa_j_t6  |HEXToASCII_53  |     4|
+|60    |    \genblk5[1].genblk1[2].htoa_j_t7  |HEXToASCII_54  |     3|
+|61    |    \genblk5[1].genblk1[3].htoa_j_t7  |HEXToASCII_55  |     1|
+|62    |    rom                               |FontROM        |  6612|
++------+--------------------------------------+---------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:04:07 ; elapsed = 00:05:11 . Memory (MB): peak = 2025.945 ; gain = 852.820 ; free physical = 295 ; free virtual = 16682
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 60 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:03:51 ; elapsed = 00:04:48 . Memory (MB): peak = 2025.945 ; gain = 529.094 ; free physical = 2429 ; free virtual = 18823
+Synthesis Optimization Complete : Time (s): cpu = 00:04:08 ; elapsed = 00:05:15 . Memory (MB): peak = 2025.945 ; gain = 852.820 ; free physical = 2436 ; free virtual = 18823
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 1997 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 10 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+265 Infos, 170 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:04:15 ; elapsed = 00:05:22 . Memory (MB): peak = 2038.039 ; gain = 878.289 ; free physical = 2449 ; free virtual = 18837
+INFO: [Common 17-1381] The checkpoint '/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2/VGA_Terminal.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2062.051 ; gain = 24.012 ; free physical = 2447 ; free virtual = 18838
+INFO: [runtcl-4] Executing : report_utilization -file VGA_Terminal_utilization_synth.rpt -pb VGA_Terminal_utilization_synth.pb
+report_utilization: Time (s): cpu = 00:00:00.21 ; elapsed = 00:00:00.38 . Memory (MB): peak = 2062.051 ; gain = 0.000 ; free physical = 2443 ; free virtual = 18836
+INFO: [Common 17-206] Exiting Vivado at Fri Feb 16 09:51:01 2018...

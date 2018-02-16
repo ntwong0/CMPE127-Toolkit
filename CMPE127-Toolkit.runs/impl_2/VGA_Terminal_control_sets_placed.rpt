@@ -1,0 +1,42 @@
+Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2017.3 (lin64) Build 2018833 Wed Oct  4 19:58:07 MDT 2017
+| Date         : Fri Feb 16 09:53:04 2018
+| Host         : kammce-Lenovo-Y40-80 running 64-bit Ubuntu 16.04.3 LTS
+| Command      : report_control_sets -file VGA_Terminal_control_sets_placed.rpt
+| Design       : VGA_Terminal
+| Device       : xc7a100t
+------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Flip-Flop Distribution
+
+1. Summary
+----------
+
++-------------------------------+-------+
+|             Status            | Count |
++-------------------------------+-------+
+| Number of unique control sets |  2171 |
++-------------------------------+-------+
+
+
+2. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              28 |           17 |
+| No           | No                    | Yes                    |              84 |           22 |
+| No           | Yes                   | No                     |               4 |            3 |
+| Yes          | No                    | No                     |           11750 |         3768 |
+| Yes          | No                    | Yes                    |             385 |          103 |
+| Yes          | Yes                   | No                     |            3402 |          885 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+

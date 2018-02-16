@@ -3,13 +3,9 @@ INFO: [VRFC 10-311] analyzing module FontROM
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module VGA_TOP
 INFO: [VRFC 10-311] analyzing module HEXToASCII
-INFO: [VRFC 10-311] analyzing module TextValueMemoryAssign
-WARNING: [VRFC 10-756] identifier DEBUG_STRING_LENGTH is used before its declaration [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:172]
-WARNING: [VRFC 10-756] identifier MESSAGE_LENGTH is used before its declaration [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:174]
 INFO: [VRFC 10-311] analyzing module TerminalModule
-WARNING: [VRFC 10-756] identifier DEBUG_MESSAGES is used before its declaration [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:253]
-WARNING: [VRFC 10-756] identifier DEBUG_MESSAGES is used before its declaration [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:254]
-INFO: [VRFC 10-311] analyzing module TextModule
+WARNING: [VRFC 10-756] identifier DEBUG_MESSAGES is used before its declaration [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:210]
+WARNING: [VRFC 10-756] identifier DEBUG_MESSAGES is used before its declaration [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:211]
 INFO: [VRFC 10-311] analyzing module ColorModule
 INFO: [VRFC 10-311] analyzing module PixelClock
 INFO: [VRFC 10-311] analyzing module VGA

@@ -21,14 +21,17 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module VGA_TOP(
+module VGA_Terminal(
 	input wire clk,
 	input wire rst,
 	output wire hsync,
 	output wire vsync,
 	output wire [3:0] R,
 	output wire [3:0] G,
-	output wire [3:0] B
+	output wire [3:0] B,
+	input wire [8:0] address,
+	input wire [6:0] data,
+	input wire cs
 );
 
 //PULLDOWN i0 (.O(R[0]));
@@ -48,7 +51,6 @@ module VGA_TOP(
 
 wire pclk;
 wire [31:0] hcount, vcount;
-
 reg [31:0] count [0:10];
 
 PixelClock U0(
@@ -66,55 +68,56 @@ VGA U1(
 	.vcount(vcount)
 );
 
+// "       PC" | "  RD DATA" | "   CP0$14" | "   DEBUG3"
+// " REG OUT1" | "  WR DATA" | "   DEBUG0" | "   DEBUG4"
+// " REG OUT2" | "   CP0$12" | "   DEBUG1" | "   DEBUG5"
+// "   ALUOUT" | "   CP0$13" | "   DEBUG2" | "   DEBUG6"
+
 TerminalModule term(
 	.pclk(pclk),
 	.rst(rst),
-	.cs(0),
-	.address(0),
-	.data("A"),
+	.cs(cs),
+	.address(address),
+	.data(data),
 	.strings({
-		"  DEBUG10",
-		"   DEBUG9",
-		"   DEBUG8",
-		"   DEBUG7",
-		"   DEBUG6",
+		//// ROW 4
 		"   DEBUG5",
-		"   DEBUG4",
-		"   DEBUG3",
-		"   DEBUG2",
 		"   DEBUG1",
-		"   DEBUG0",
-		"   CP0$14",
-		"   CP0$13",
 		"   CP0$12",
-		"  WR DATA",
-		"  RD DATA",
-		"  REGOUT2",
-		"  REGOUT1",
 		"   ALUOUT",
+		//// ROW 3
+		"   DEBUG4",
+		"   DEBUG0",
+		"  ADDRESS",
+		"  REGOUT2",
+		//// ROW 2
+		"   DEBUG3",
+		"   CP0$14",
+		"  WR DATA",
+		"  REGOUT1",
+		//// ROW 1
+		"   DEBUG2",
+		"   CP0$13",
+		"  RD DATA",
 		"       PC"
 	}),
 	.values({
-		32'h55ABCDEF,
-		32'h55ABCDEF,
-		32'h55ABCDEF,
-		32'h55ABCDEF,
-		32'h55ABCDEF,
-		32'h55ABCDEF,
-		32'h55ABCDEF,
-		32'h55ABCDEF,
-		32'h55ABCDEF,
-		32'h55ABCDEF,
-		32'h55ABCDEF,
-		32'h55ABCDEF,
-		32'h55ABCDEF,
-		32'h55ABCDEF,
-		32'h55ABCDEF,
-		32'h55ABCDEF,
-		32'h55ABCDEF,
-		32'h55ABCDEF,
-		32'h55ABCDEF,
-		32'h55ABCDEF
+		32'hFFFFFFFF,
+		32'hEEEEEEEE,
+		32'hDDDDDDDD,
+		32'hCCCCCCCC,
+		32'hBBBBBBBB,
+		32'h01234567,
+		count[9],
+		count[8],
+		count[7],
+		count[6],
+		count[5],
+		count[4],
+		count[3],
+		count[2],
+		count[1],
+		count[0]
 	}),
 	.hcount(hcount),
 	.vcount(vcount),
@@ -123,19 +126,49 @@ TerminalModule term(
 	.b(B)
 );
 
-always @(posedge pclk)
+integer i;
+integer j;
+
+always @(posedge pclk or posedge rst)
 begin
-     count[0] <=   count[0] + 1;
-     count[1] <=  (count[1-1][0] == 0) ?  count[1] + 1 : count[1];
-     count[2] <=  (count[2-1][0] == 0) ?  count[2] + 1 : count[2];
-     count[3] <=  (count[3-1][0] == 0) ?  count[3] + 1 : count[3];
-     count[4] <=  (count[4-1][0] == 0) ?  count[4] + 1 : count[4];
-     count[5] <=  (count[5-1][0] == 0) ?  count[5] + 1 : count[5];
-     count[6] <=  (count[6-1][0] == 0) ?  count[6] + 1 : count[6];
-     count[7] <=  (count[7-1][0] == 0) ?  count[7] + 1 : count[7];
-     count[8] <=  (count[8-1][0] == 0) ?  count[8] + 1 : count[8];
-     count[9] <=  (count[9-1][0] == 0) ?  count[9] + 1 : count[9];
-    count[10] <= (count[10-1][0] == 0) ? count[10] + 1 : count[10];
+	if(rst)
+	begin
+	    i = 0;
+		count[0]  = 0;
+		count[1]  = 0;
+		count[2]  = 0;
+		count[3]  = 0;
+		count[4]  = 0;
+		count[5]  = 0;
+		count[6]  = 0;
+		count[7]  = 0;
+		count[8]  = 0;
+		count[9]  = 0;
+	    count[10] = 0;
+	end
+	else begin
+		i = i + 1;
+		j = j + 1;
+		if(i > 32'd500_000)
+		begin
+			i = 0;
+			count[0]  = count[0] + 1;
+			count[1]  = count[1] + 2;
+			count[2]  = count[2] + 3;
+			count[8]  = count[8] - 4;
+			count[9]  = count[9] - 5;
+		    count[10] = count[10] + 7;
+		end
+		if(j > 32'd1_200_000)
+		begin
+		     j = 0;
+             count[3]  = count[3] + 4;
+             count[4]  = count[4] + 5;
+             count[5]  = count[5] - 1;
+             count[6]  = count[6] - 2;
+             count[7]  = count[7] - 3;
+		end
+	end
 end
 
 endmodule
@@ -168,82 +201,6 @@ end
 
 endmodule
 
-module TextValueMemoryAssign(
-	input wire [(DEBUG_STRING_LENGTH*ASCII)-1:0] string,
-	input wire [31:0] value,
-	output wire [(MESSAGE_LENGTH*ASCII)-1:0] character_ram
-);
-
-parameter DEBUG_STRING_LENGTH = 9;
-parameter MESSAGE_LENGTH = 20;
-parameter ASCII = 8;
-
-assign character_ram[(ASCII*1)-1:(ASCII)*0] = string[71:64];
-assign character_ram[(ASCII*2)-1:(ASCII)*1] = string[63:56];
-assign character_ram[(ASCII*3)-1:(ASCII)*2] = string[55:48];
-assign character_ram[(ASCII*4)-1:(ASCII)*3] = string[47:40];
-assign character_ram[(ASCII*5)-1:(ASCII)*4] = string[39:32];
-assign character_ram[(ASCII*6)-1:(ASCII)*5] = string[31:24];
-assign character_ram[(ASCII*7)-1:(ASCII)*6] = string[23:16];
-assign character_ram[(ASCII*8)-1:(ASCII)*7] = string[15:8];
-assign character_ram[(ASCII*9)-1:(ASCII)*8] = string[7:0];
-assign character_ram[(ASCII*10)-1:(ASCII)*9] = ":";
-assign character_ram[(ASCII*11)-1:(ASCII)*10] = "0";
-assign character_ram[(ASCII*12)-1:(ASCII)*11] = "x";
-
-generate
-	genvar i;
-	for (i = 0; i < 8; i = i + 1)
-	begin:htoa
-		HEXToASCII htoa_i(
-			.hex(value[(i*4)-1:i*4]),
-			.ascii(character_ram[19-i])
-		);
-	end
-endgenerate
-
-// HEXToASCII htoa1(
-// 	.hex(value[31:28]),
-// 	.ascii(character_ram[12])
-// );
-
-// HEXToASCII htoa2(
-// 	.hex(value[28:25]),
-// 	.ascii(character_ram[13])
-// );
-
-// HEXToASCII htoa3(
-// 	.hex(value[24:20]),
-// 	.ascii(character_ram[14])
-// );
-
-// HEXToASCII htoa4(
-// 	.hex(value[19:16]),
-// 	.ascii(character_ram[15])
-// );
-
-// HEXToASCII htoa5(
-// 	.hex(value[15:12]),
-// 	.ascii(character_ram[16])
-// );
-
-// HEXToASCII htoa6(
-// 	.hex(value[11:8]),
-// 	.ascii(character_ram[17])
-// );
-
-// HEXToASCII htoa7(
-// 	.hex(value[7:4]),
-// 	.ascii(character_ram[18])
-// );
-
-// HEXToASCII htoa8(
-// 	.hex(value[3:0]),
-// 	.ascii(character_ram[19])
-// );
-
-endmodule
-
 module TerminalModule(
 	input wire  pclk,
 	input wire  rst,
@@ -267,28 +224,139 @@ parameter STRING_BITS 		  = DEBUG_STRING_LENGTH*8;
 parameter VALUE_BITS 		  = 32;
 parameter CHARACTER_SECTION   = DEBUG_MESSAGES_LENGTH*8;
 
-reg  [7:0] character_ram [0:30] [0:79];
+wire [(8*80)-1:0] message = "----------------------------------DEBUG MONITOR---------------------------------";
+wire [(8*3)-1:0] colon_string = ":0x";
+
+wire [7:0] character_ram [0:4] [0:79];
+ reg [7:0] terminal_ram [0:26] [0:79];
 wire [(ASCII*DEBUG_STRING_LENGTH)-1:0] string_array [0:20];
+wire [VALUE_BITS-1:0] value_array [0:20];
+wire [7:0] ascii_character;
+wire [7:0] pixels;
+
+assign ascii_character = (vcount[10:4] < 5) ?
+							character_ram[vcount[10:4]][hcount[9:3]] :
+							terminal_ram[vcount[10:4]-5][hcount[9:3]];
 
 generate
 	genvar t;
-	for (t = 0; t < 20; t = t + 1)
-	begin:string_array_assignments
-		assign string_array[t] = (strings >> (ASCII*DEBUG_STRING_LENGTH)*t);
-	end
-endgenerate
-
-generate
 	genvar j;
-	for (j = 0; j < 20; j = j + 1)
-	begin:htoa
-
+    genvar k;
+    genvar hold;
+	for (t = 0; t < 20; t = t + 1)
+	begin
+		assign string_array[t] = (strings >> (ASCII*DEBUG_STRING_LENGTH)*t);
+		assign  value_array[t] = (values  >> (VALUE_BITS)*t);
 	end
-endgenerate
 
-wire [7:0] pixels;
-wire [7:0] ascii_character;
-assign ascii_character = character_ram[vcount[10:4]][hcount[9:3]];
+	for (j = 0; j < 4; j = j + 1)
+	begin
+		for (t = 0; t < 9; t = t + 1)
+		begin
+			assign character_ram[j][t+00] = ((string_array[(j*4)+0] >> ((8*8)-(8*t))) & 8'hFF);
+			assign character_ram[j][t+20] = ((string_array[(j*4)+1] >> ((8*8)-(8*t))) & 8'hFF);
+			assign character_ram[j][t+40] = ((string_array[(j*4)+2] >> ((8*8)-(8*t))) & 8'hFF);
+			assign character_ram[j][t+60] = ((string_array[(j*4)+3] >> ((8*8)-(8*t))) & 8'hFF);
+		end
+	end
+
+	for (j = 0; j < 4; j = j + 1)
+	begin
+		for (t = 0; t < 3; t = t + 1)
+		begin
+			assign character_ram[j][t+09] = ((colon_string >> ((2*8)-(8*t))) & 8'hFF);
+			assign character_ram[j][t+29] = ((colon_string >> ((2*8)-(8*t))) & 8'hFF);
+			assign character_ram[j][t+49] = ((colon_string >> ((2*8)-(8*t))) & 8'hFF);
+			assign character_ram[j][t+69] = ((colon_string >> ((2*8)-(8*t))) & 8'hFF);
+		end
+	end
+
+	for (t = 0; t < 80; t = t + 1)
+	begin
+		assign character_ram[4][t] = ((message >> (((80-1)*ASCII)-(8*t))) & 8'hFF);
+		// assign character_ram[4][t] = ((message >> (8*t)) & 8'hFF);
+	end
+
+	for (j = 0; j < 4; j = j + 1)
+	begin
+		for (k = 0; k < 4; k = k + 1)
+		begin
+			// assign character_ram[j][12+0+(k*20)] =
+			// 		(value_array[(j*4)+k][31:28] > 9) ?
+			// 			"7"+(value_array[(j*4)+k][31:28]):
+			// 			"0"+(value_array[(j*4)+k][31:28]);
+
+			// assign character_ram[j][12+1+(k*20)] =
+			// 		(value_array[(j*4)+k][27:24] > 9) ?
+			// 			"7"+value_array[(j*4)+k][27:24]:
+			// 			"0"+value_array[(j*4)+k][27:24];
+
+			// assign character_ram[j][12+2+(k*20)] =
+			// 		(value_array[(j*4)+k][23:20] > 9) ?
+			// 			"7"+value_array[(j*4)+k][23:20]:
+			// 			"0"+value_array[(j*4)+k][23:20];
+
+			// assign character_ram[j][12+3+(k*20)] =
+			// 		(value_array[(j*4)+k][19:16] > 9) ?
+			// 			"7"+value_array[(j*4)+k][19:16]:
+			// 			"0"+value_array[(j*4)+k][19:16];
+
+			// assign character_ram[j][12+4+(k*20)] =
+			// 		(value_array[(j*4)+k][15:12] > 9) ?
+			// 			"7"+value_array[(j*4)+k][15:12]:
+			// 			"0"+value_array[(j*4)+k][15:12];
+
+			// assign character_ram[j][12+5+(k*20)] =
+			// 		(value_array[(j*4)+k][11:8] > 9) ?
+			// 			"7"+value_array[(j*4)+k][11:8]:
+			// 			"0"+value_array[(j*4)+k][11:8];
+
+			// assign character_ram[j][12+6+(k*20)] =
+			// 		(value_array[(j*4)+k][7:4] > 9) ?
+			// 			"7"+value_array[(j*4)+k][7:4]:
+			// 			"0"+value_array[(j*4)+k][7:4];
+
+			// assign character_ram[j][12+7+(k*20)] =
+			// 		(value_array[(j*4)+k][3:0] > 9) ?
+			// 			"7"+value_array[(j*4)+k][3:0]:
+			// 			"0"+value_array[(j*4)+k][3:0];
+
+			HEXToASCII htoa_j_t0(
+				.hex(value_array[(j*4)+k][31:28]),
+				.ascii(character_ram[j][12+0+(k*20)])
+			);
+			HEXToASCII htoa_j_t1(
+				.hex(value_array[(j*4)+k][27:24]),
+				.ascii(character_ram[j][12+1+(k*20)])
+			);
+			HEXToASCII htoa_j_t2(
+				.hex(value_array[(j*4)+k][23:20]),
+				.ascii(character_ram[j][12+2+(k*20)])
+			);
+			HEXToASCII htoa_j_t3(
+				.hex(value_array[(j*4)+k][19:16]),
+				.ascii(character_ram[j][12+3+(k*20)])
+			);
+			HEXToASCII htoa_j_t4(
+				.hex(value_array[(j*4)+k][15:12]),
+				.ascii(character_ram[j][12+4+(k*20)])
+			);
+			HEXToASCII htoa_j_t5(
+				.hex(value_array[(j*4)+k][11:8]),
+				.ascii(character_ram[j][12+5+(k*20)])
+			);
+			HEXToASCII htoa_j_t6(
+				.hex(value_array[(j*4)+k][7:4]),
+				.ascii(character_ram[j][12+6+(k*20)])
+			);
+			HEXToASCII htoa_j_t7(
+				.hex(value_array[(j*4)+k][3:0]),
+				.ascii(character_ram[j][12+7+(k*20)])
+			);
+		end
+	end
+
+endgenerate
 
 FontROM rom(
 	.pclk(pclk),
@@ -301,8 +369,6 @@ assign r = (pixels[8-hcount[2:0]] && vcount < 480 && hcount < 640) ? 0 : 0;
 assign g = (pixels[8-hcount[2:0]] && vcount < 480 && hcount < 640) ? 4'hF : 0;
 assign b = (pixels[8-hcount[2:0]] && vcount < 480 && hcount < 640) ? 0 : 0;
 
-wire [(8*80)-1:0] message = "------------------------------------DEBUG MONITOR-------------------------------------";
-wire [(8*3)-1:0] colon_string = ":0x";
 integer i;
 reg [3:0] state;
 
@@ -311,203 +377,36 @@ parameter INIT_STRINGS   = 1;
 parameter INIT_COLONS    = 2;
 
 reg initalize;
+reg [12:0] initalize_address;
 
 always @(posedge pclk or posedge rst) begin
 	if (rst) begin
 		state = INIT_DEBUG_ROW;
 		initalize = 1;
+		initalize_address = 0;
 		i = 0;
+		// terminal_ram = 0;
+
 	end
 	else
 	begin
-		if(cs)
+		if(initalize)
+		begin
+			terminal_ram[initalize_address / 80][initalize_address % 80] = 0;
+			if(initalize_address > 27*80)
+			begin
+				initalize = 0;
+			end
+			initalize_address = initalize_address + 1;
+		end
+		else if(cs)
 		begin
 			//// TODO: This should be latched before changing character ram.
 			////       This will probably cause VGA graphical glitches.
-			// character_ram[address / 80][address % 80] = data;
-		end
-		else if(initalize)
-		begin
-			case(state)
-				INIT_DEBUG_ROW:
-				begin
-					if(i < 80)
-					begin
-						character_ram[5][i] = ((message >> (((80-1)*8)-(8*i))) & 8'hFF);
-						i = i + 1;
-					end
-					else begin
-						i = 0;
-						state = INIT_COLONS;
-					end
-				end
-				INIT_COLONS:
-				begin
-					if(i < 80)
-					begin
-						if(i < 9)
-						begin
-							character_ram[0][i+00] = ((string_array[0] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[0][i+20] = ((string_array[1] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[0][i+40] = ((string_array[2] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[0][i+60] = ((string_array[3] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[1][i+00] = ((string_array[4] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[1][i+20] = ((string_array[5] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[1][i+40] = ((string_array[6] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[1][i+60] = ((string_array[7] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[2][i+00] = ((string_array[8] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[2][i+20] = ((string_array[9] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[2][i+40] = ((string_array[10] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[2][i+60] = ((string_array[11] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[3][i+00] = ((string_array[12] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[3][i+20] = ((string_array[13] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[3][i+40] = ((string_array[14] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[3][i+60] = ((string_array[15] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[4][i+00] = ((string_array[16] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[4][i+20] = ((string_array[17] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[4][i+40] = ((string_array[18] >> ((8*8)-(8*i))) & 8'hFF);
-							character_ram[4][i+60] = ((string_array[19] >> ((8*8)-(8*i))) & 8'hFF);
-						end
-						if(9 <= i && i < 12)
-						begin
-							character_ram[0][i+00] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[0][i+20] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[0][i+40] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[0][i+60] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[1][i+00] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[1][i+20] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[1][i+40] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[1][i+60] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[2][i+00] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[2][i+20] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[2][i+40] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[2][i+60] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[3][i+00] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[3][i+20] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[3][i+40] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[3][i+60] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[4][i+00] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[4][i+20] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[4][i+40] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-							character_ram[4][i+60] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-						end
-						i = i + 1;
-					end
-					else begin
-						initalize = 0;
-						i = 0;
-						state = INIT_STRINGS;
-					end
-				end
-			endcase
-		end
-		else
-		begin
-			character_ram[0][i+00] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[0][i+20] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[0][i+40] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[0][i+60] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[1][i+00] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[1][i+20] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[1][i+40] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[1][i+60] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[2][i+00] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[2][i+20] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[2][i+40] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[2][i+60] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[3][i+00] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[3][i+20] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[3][i+40] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[3][i+60] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[4][i+00] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[4][i+20] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[4][i+40] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
-			character_ram[4][i+60] = (colon_string >> ((2*8)-(8*(i-9))) & 8'hFF);
+			terminal_ram[address / 80][address % 80] = data;
 		end
 	end
 end
-
-endmodule
-
-module TextModule #(
-	parameter ROW = 0,
-	parameter COLUMN = 0
-)
-(
-	input wire  pclk,
-	input wire  [31:0] hcount,
-	input wire  [31:0] vcount,
-	input wire  [(8*7)-1:0] string,
-	input wire  [31:0] value,
-	input wire  [7:0] pixelsIn,
-	output wire [7:0] asciiOut,
-	output wire [3:0] columnOut,
-	output wire [3:0] r,
-	output wire [3:0] g,
-	output wire [3:0] b
-);
-
-parameter LENGTH = 17;
-
-wire [7:0] character_ram [0:LENGTH];
-
-// assign  asciiOut = () ? character_ram[] : 8'hZ;
-// assign columnOut = () ? character_ram[] : 8'hZ;
-
-assign character_ram[0] = string[55:48];
-assign character_ram[1] = string[47:40];
-assign character_ram[2] = string[39:32];
-assign character_ram[3] = string[31:24];
-assign character_ram[4] = string[23:16];
-assign character_ram[5] = string[15:8];
-assign character_ram[6] = string[7:0];
-assign character_ram[7] = ":";
-assign character_ram[8] = "0";
-assign character_ram[9] = "x";
-
-HEXToASCII htoa1(
-	.hex(value[31:28]),
-	.ascii(character_ram[10])
-);
-
-HEXToASCII htoa2(
-	.hex(value[28:25]),
-	.ascii(character_ram[11])
-);
-
-HEXToASCII htoa3(
-	.hex(value[24:20]),
-	.ascii(character_ram[12])
-);
-
-HEXToASCII htoa4(
-	.hex(value[19:16]),
-	.ascii(character_ram[13])
-);
-
-HEXToASCII htoa5(
-	.hex(value[15:12]),
-	.ascii(character_ram[14])
-);
-
-HEXToASCII htoa6(
-	.hex(value[11:8]),
-	.ascii(character_ram[15])
-);
-
-HEXToASCII htoa7(
-	.hex(value[7:4]),
-	.ascii(character_ram[16])
-);
-
-HEXToASCII htoa8(
-	.hex(value[3:0]),
-	.ascii(character_ram[17])
-);
-
-assign r = (columnOut[8-(hcount % 8)] && ((ROW) <= vcount[31:4] && vcount[31:4] < ROW+1) && ((COLUMN) <= hcount[31:3] && hcount[31:3] < (((COLUMN+LENGTH))+1))) ? 4'h0 : 4'hZ;
-assign g = (columnOut[8-(hcount % 8)] && ((ROW) <= vcount[31:4] && vcount[31:4] < ROW+1) && ((COLUMN) <= hcount[31:3] && hcount[31:3] < (((COLUMN+LENGTH))+1))) ? 4'hF : 4'hZ;
-assign b = (columnOut[8-(hcount % 8)] && ((ROW) <= vcount[31:4] && vcount[31:4] < ROW+1) && ((COLUMN) <= hcount[31:3] && hcount[31:3] < (((COLUMN+LENGTH))+1))) ? 4'h0 : 4'hZ;
 
 endmodule
 
@@ -594,23 +493,23 @@ assign vreset   = (hreset & (vcount == DISPLAY_HEIGHT+VERTICAL_FRONT_PORCH+VERTI
 
 always @(posedge pclk or posedge rst) begin
 	if (rst) begin
-		hcount <= 0;
-		vcount <= 0;
-		hcount <= 0;
-		hblank <= 0;
-		hsync  <= 0;
-		vcount <= 0;
-		vblank <= 0;
-		vsync  <= 0;
+		hcount = 0;
+		vcount = 0;
+		hcount = 0;
+		hblank = 0;
+		hsync  = 0;
+		vcount = 0;
+		vblank = 0;
+		vsync  = 0;
 	end
 	else begin
-		hcount <= hreset  ? 0 :  hcount   + 1;
-		hblank <= hreset  ? 0 : (hblankon ? 1 : hblank);
-		hsync  <= hsyncon ? 0 : (hsyncoff ? 1 : hsync);
+		hcount = hreset  ? 0 :  hcount   + 1;
+		hblank = hreset  ? 0 : (hblankon ? 1 : hblank);
+		hsync  = hsyncon ? 0 : (hsyncoff ? 1 : hsync);
 
-		vcount <= hreset  ? (vreset ? 0 : vcount + 1) : vcount;
-		vblank <= vreset  ? 0 : (vblankon ? 1 : vblank);
-		vsync  <= vsyncon ? 0 : (vsyncoff ? 1 : vsync);
+		vcount = hreset  ? (vreset ? 0 : vcount + 1) : vcount;
+		vblank = vreset  ? 0 : (vblankon ? 1 : vblank);
+		vsync  = vsyncon ? 0 : (vsyncoff ? 1 : vsync);
 	end
 end
 
