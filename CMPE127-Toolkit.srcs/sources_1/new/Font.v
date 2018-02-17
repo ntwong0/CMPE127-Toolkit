@@ -21,7 +21,6 @@
 
 
 module FontROM(
-    input wire pclk,
 	input wire [7:0] ascii,
 	input wire [3:0] column,
 	output wire [7:0] pixels
@@ -30,7 +29,7 @@ module FontROM(
 reg [7:0] out [0:16];
 assign pixels = out[column];
 
-always @(negedge pclk) begin
+always @(ascii or column) begin
 	case(ascii)
 		8'h00: begin
 			out[0] <= 8'b00000000; // 0

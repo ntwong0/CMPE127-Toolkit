@@ -26,18 +26,28 @@ reg clk;
 reg rst;
 wire hsync;
 wire vsync;
-wire [3:0] R;
-wire [3:0] G;
-wire [3:0] B;
+wire [3:0] r;
+wire [3:0] g;
+wire [3:0] b;
+wire [11:0] address;
+wire [8:0] data;
+wire cs;
 
-VGA_TOP test(
+assign address = 0;
+assign data = 0;
+assign cs = 0;
+
+VGA_Terminal test(
 	.clk(clk),
 	.rst(rst),
 	.hsync(hsync),
 	.vsync(vsync),
-	.R(R),
-	.G(G),
-	.B(B)
+	.r(r),
+	.g(g),
+	.b(b),
+	.address(address),
+	.data(data),
+	.cs(cs)
 );
 
 task RESET;
