@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.3 (lin64) Build 2018833 Wed Oct  4 19:58:07 MDT 2017
-| Date         : Sat Feb 17 02:26:06 2018
+| Date         : Tue Feb 20 13:43:53 2018
 | Host         : kammce-Lenovo-Y40-80 running 64-bit Ubuntu 16.04.3 LTS
 | Command      : report_timing_summary -file VGA_Terminal_timing_summary_routed.rpt -warn_on_violation -rpx VGA_Terminal_timing_summary_routed.rpx
 | Design       : VGA_Terminal
@@ -52,15 +52,7 @@ Table of Contents
 
 1. checking no_clock
 --------------------
- There are 119 register/latch pins with no clock driven by root clock pin: pixel_clock_generator/pclk_reg/Q (HIGH)
-
- There are 112 register/latch pins with no clock driven by root clock pin: terminal_ram/ram_reg/DOBDO[7] (HIGH)
-
- There are 112 register/latch pins with no clock driven by root clock pin: terminal_ram_chip_select_reg/Q (HIGH)
-
- There are 112 register/latch pins with no clock driven by root clock pin: terminal_ram_write_reg/Q (HIGH)
-
- There are 112 register/latch pins with no clock driven by root clock pin: xy_select_reg/Q (HIGH)
+ There are 68 register/latch pins with no clock driven by root clock pin: pixel_clock_generator/pclk_reg/Q (HIGH)
 
 
 2. checking constant_clock
@@ -75,21 +67,21 @@ Table of Contents
 
 4. checking unconstrained_internal_endpoints
 --------------------------------------------
- There are 461 pins that are not constrained for maximum delay. (HIGH)
+ There are 170 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
 5. checking no_input_delay
 --------------------------
- There is 1 input port with no input delay specified. (HIGH)
+ There are 18 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
 
 6. checking no_output_delay
 ---------------------------
- There are 6 ports with no output delay specified. (HIGH)
+ There are 7 ports with no output delay specified. (HIGH)
 
  There are 0 ports with no output delay but user has a false path constraint
 
@@ -134,7 +126,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-      3.450        0.000                      0                   17        0.263        0.000                      0                   17        4.500        0.000                       0                    18  
+      1.073        0.000                      0                 1064        0.264        0.000                      0                 1064        4.500        0.000                       0                   545  
 
 
 All user specified timing constraints are met.
@@ -157,7 +149,7 @@ sys_clk_pin  {0.000 5.000}      10.000          100.000
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-sys_clk_pin         3.450        0.000                      0                   17        0.263        0.000                      0                   17        4.500        0.000                       0                    18  
+sys_clk_pin         1.073        0.000                      0                 1064        0.264        0.000                      0                 1064        4.500        0.000                       0                   545  
 
 
 ------------------------------------------------------------------------------------------------
@@ -188,28 +180,28 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 From Clock:  sys_clk_pin
   To Clock:  sys_clk_pin
 
-Setup :            0  Failing Endpoints,  Worst Slack        3.450ns,  Total Violation        0.000ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.263ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        1.073ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.264ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        4.500ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             3.450ns  (required time - arrival time)
-  Source:                 pixel_clock_generator/count_reg[0]/C
+Slack (MET) :             1.073ns  (required time - arrival time)
+  Source:                 cu/v_reg[3]/C
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            pixel_clock_generator/count_reg[13]/D
+  Destination:            cu/buffer_data_out_reg[1]/D
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        6.605ns  (logic 3.291ns (49.825%)  route 3.314ns (50.175%))
-  Logic Levels:           11  (CARRY4=7 LUT2=1 LUT4=1 LUT5=1 LUT6=1)
-  Clock Path Skew:        -0.019ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.923ns = ( 14.923 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.218ns
-    Clock Pessimism Removal (CPR):    0.276ns
+  Data Path Delay:        8.886ns  (logic 3.917ns (44.079%)  route 4.969ns (55.921%))
+  Logic Levels:           11  (CARRY4=4 LUT5=1 LUT6=3 MUXF7=2 MUXF8=1)
+  Clock Path Skew:        -0.034ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.021ns = ( 15.021 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.314ns
+    Clock Pessimism Removal (CPR):    0.259ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -225,41 +217,38 @@ Slack (MET) :             3.450ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  clk_IBUF_inst/O
                          net (fo=1, routed)           2.025     3.506    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  clk_IBUF_BUFG_inst/O
-                         net (fo=17, routed)          1.615     5.218    pixel_clock_generator/clk_IBUF_BUFG
-    SLICE_X50Y77         FDCE                                         r  pixel_clock_generator/count_reg[0]/C
+                         net (fo=544, routed)         1.711     5.314    cu/clk_IBUF_BUFG
+    SLICE_X6Y79          FDCE                                         r  cu/v_reg[3]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X50Y77         FDCE (Prop_fdce_C_Q)         0.518     5.736 r  pixel_clock_generator/count_reg[0]/Q
-                         net (fo=4, routed)           0.643     6.379    pixel_clock_generator/count_reg[0]
-    SLICE_X51Y77         CARRY4 (Prop_carry4_CYINIT_CO[3])
-                                                      0.580     6.959 r  pixel_clock_generator/count2_carry/CO[3]
-                         net (fo=1, routed)           0.000     6.959    pixel_clock_generator/count2_carry_n_0
-    SLICE_X51Y78         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     7.073 r  pixel_clock_generator/count2_carry__0/CO[3]
-                         net (fo=1, routed)           0.000     7.073    pixel_clock_generator/count2_carry__0_n_0
-    SLICE_X51Y79         CARRY4 (Prop_carry4_CI_O[1])
-                                                      0.334     7.407 r  pixel_clock_generator/count2_carry__1/O[1]
-                         net (fo=1, routed)           0.817     8.224    pixel_clock_generator/count2[10]
-    SLICE_X50Y81         LUT4 (Prop_lut4_I2_O)        0.303     8.527 f  pixel_clock_generator/pclk_i_5/O
-                         net (fo=1, routed)           0.452     8.979    pixel_clock_generator/pclk_i_5_n_0
-    SLICE_X50Y81         LUT5 (Prop_lut5_I4_O)        0.124     9.103 f  pixel_clock_generator/pclk_i_4/O
-                         net (fo=1, routed)           0.747     9.850    pixel_clock_generator/pclk_i_4_n_0
-    SLICE_X49Y77         LUT6 (Prop_lut6_I5_O)        0.124     9.974 f  pixel_clock_generator/pclk_i_2/O
-                         net (fo=18, routed)          0.654    10.629    pixel_clock_generator/pclk_i_2_n_0
-    SLICE_X50Y77         LUT2 (Prop_lut2_I1_O)        0.124    10.753 r  pixel_clock_generator/count[0]_i_6/O
-                         net (fo=1, routed)           0.000    10.753    pixel_clock_generator/count[0]_i_6_n_0
-    SLICE_X50Y77         CARRY4 (Prop_carry4_S[0]_CO[3])
-                                                      0.513    11.266 r  pixel_clock_generator/count_reg[0]_i_1/CO[3]
-                         net (fo=1, routed)           0.000    11.266    pixel_clock_generator/count_reg[0]_i_1_n_0
-    SLICE_X50Y78         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    11.383 r  pixel_clock_generator/count_reg[4]_i_1/CO[3]
-                         net (fo=1, routed)           0.000    11.383    pixel_clock_generator/count_reg[4]_i_1_n_0
-    SLICE_X50Y79         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    11.500 r  pixel_clock_generator/count_reg[8]_i_1/CO[3]
-                         net (fo=1, routed)           0.000    11.500    pixel_clock_generator/count_reg[8]_i_1_n_0
-    SLICE_X50Y80         CARRY4 (Prop_carry4_CI_O[1])
-                                                      0.323    11.823 r  pixel_clock_generator/count_reg[12]_i_1/O[1]
-                         net (fo=1, routed)           0.000    11.823    pixel_clock_generator/count_reg[12]_i_1_n_6
-    SLICE_X50Y80         FDCE                                         r  pixel_clock_generator/count_reg[13]/D
+    SLICE_X6Y79          FDCE (Prop_fdce_C_Q)         0.478     5.792 r  cu/v_reg[3]/Q
+                         net (fo=1, routed)           0.720     6.511    cu/v[3]
+    SLICE_X4Y73          CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.699     7.210 r  cu/v_reg[4]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     7.210    cu/v_reg[4]_i_2_n_0
+    SLICE_X4Y74          CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     7.432 r  cu/v_reg[8]_i_2/O[0]
+                         net (fo=3, routed)           0.593     8.026    cu/v0[4]
+    SLICE_X5Y73          CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.697     8.723 r  cu/buffer_data_out_reg[6]_i_51/CO[3]
+                         net (fo=1, routed)           0.000     8.723    cu/buffer_data_out_reg[6]_i_51_n_0
+    SLICE_X5Y74          CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     8.945 f  cu/buffer_data_out_reg[6]_i_49/O[0]
+                         net (fo=128, routed)         0.766     9.711    demo/v_reg[8]_0[7]
+    SLICE_X4Y71          LUT5 (Prop_lut5_I2_O)        0.299    10.010 r  demo/buffer_data_out[6]_i_128/O
+                         net (fo=1, routed)           0.000    10.010    demo/buffer_data_out[6]_i_128_n_0
+    SLICE_X4Y71          MUXF7 (Prop_muxf7_I1_O)      0.245    10.255 r  demo/buffer_data_out_reg[6]_i_52/O
+                         net (fo=1, routed)           0.000    10.255    demo/buffer_data_out_reg[6]_i_52_n_0
+    SLICE_X4Y71          MUXF8 (Prop_muxf8_I0_O)      0.104    10.359 r  demo/buffer_data_out_reg[6]_i_18/O
+                         net (fo=1, routed)           1.151    11.509    demo/buffer_data_out_reg[6]_i_18_n_0
+    SLICE_X5Y67          LUT6 (Prop_lut6_I0_O)        0.316    11.825 r  demo/buffer_data_out[6]_i_6/O
+                         net (fo=2, routed)           0.000    11.825    demo/buffer_data_out[6]_i_6_n_0
+    SLICE_X5Y67          MUXF7 (Prop_muxf7_I0_O)      0.212    12.037 r  demo/buffer_data_out_reg[1]_i_3/O
+                         net (fo=2, routed)           0.869    12.906    demo/buffer_data_out_reg[1]_i_3_n_0
+    SLICE_X9Y67          LUT6 (Prop_lut6_I1_O)        0.299    13.205 r  demo/buffer_data_out[1]_i_2/O
+                         net (fo=1, routed)           0.871    14.076    cu/v_reg[0]_1
+    SLICE_X4Y64          LUT6 (Prop_lut6_I4_O)        0.124    14.200 r  cu/buffer_data_out[1]_i_1/O
+                         net (fo=1, routed)           0.000    14.200    cu/buffer_data_out[1]_i_1_n_0
+    SLICE_X4Y64          FDCE                                         r  cu/buffer_data_out_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -269,16 +258,16 @@ Slack (MET) :             3.450ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.920    13.331    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  clk_IBUF_BUFG_inst/O
-                         net (fo=17, routed)          1.500    14.923    pixel_clock_generator/clk_IBUF_BUFG
-    SLICE_X50Y80         FDCE                                         r  pixel_clock_generator/count_reg[13]/C
-                         clock pessimism              0.276    15.199    
-                         clock uncertainty           -0.035    15.163    
-    SLICE_X50Y80         FDCE (Setup_fdce_C_D)        0.109    15.272    pixel_clock_generator/count_reg[13]
+                         net (fo=544, routed)         1.598    15.021    cu/clk_IBUF_BUFG
+    SLICE_X4Y64          FDCE                                         r  cu/buffer_data_out_reg[1]/C
+                         clock pessimism              0.259    15.280    
+                         clock uncertainty           -0.035    15.244    
+    SLICE_X4Y64          FDCE (Setup_fdce_C_D)        0.029    15.273    cu/buffer_data_out_reg[1]
   -------------------------------------------------------------------
-                         required time                         15.272    
-                         arrival time                         -11.823    
+                         required time                         15.273    
+                         arrival time                         -14.200    
   -------------------------------------------------------------------
-                         slack                                  3.450    
+                         slack                                  1.073    
 
 
 
@@ -286,20 +275,20 @@ Slack (MET) :             3.450ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.263ns  (arrival time - required time)
-  Source:                 pixel_clock_generator/pclk_reg/C
+Slack (MET) :             0.264ns  (arrival time - required time)
+  Source:                 demo/debug_value_4_reg[3]/C
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            pixel_clock_generator/pclk_reg/D
+  Destination:            demo/debug_value_4_reg[3]/D
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.354ns  (logic 0.186ns (52.498%)  route 0.168ns (47.502%))
-  Logic Levels:           1  (LUT2=1)
+  Data Path Delay:        0.369ns  (logic 0.249ns (67.424%)  route 0.120ns (32.576%))
+  Logic Levels:           1  (CARRY4=1)
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.992ns
-    Source Clock Delay      (SCD):    1.478ns
-    Clock Pessimism Removal (CPR):    0.513ns
+    Destination Clock Delay (DCD):    2.033ns
+    Source Clock Delay      (SCD):    1.518ns
+    Clock Pessimism Removal (CPR):    0.514ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -310,14 +299,15 @@ Slack (MET) :             0.263ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.644     0.894    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  clk_IBUF_BUFG_inst/O
-                         net (fo=17, routed)          0.559     1.478    pixel_clock_generator/clk_IBUF_BUFG
-    SLICE_X51Y82         FDCE                                         r  pixel_clock_generator/pclk_reg/C
+                         net (fo=544, routed)         0.599     1.518    demo/clk_IBUF_BUFG
+    SLICE_X7Y65          FDCE                                         r  demo/debug_value_4_reg[3]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X51Y82         FDCE (Prop_fdce_C_Q)         0.141     1.619 r  pixel_clock_generator/pclk_reg/Q
-                         net (fo=2, routed)           0.168     1.788    pixel_clock_generator/pclk
-    SLICE_X51Y82         LUT2 (Prop_lut2_I1_O)        0.045     1.833 r  pixel_clock_generator/pclk_i_1/O
-                         net (fo=1, routed)           0.000     1.833    pixel_clock_generator/pclk_i_1_n_0
-    SLICE_X51Y82         FDCE                                         r  pixel_clock_generator/pclk_reg/D
+    SLICE_X7Y65          FDCE (Prop_fdce_C_Q)         0.141     1.659 r  demo/debug_value_4_reg[3]/Q
+                         net (fo=2, routed)           0.120     1.780    demo/debug_value_4[3]
+    SLICE_X7Y65          CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.108     1.888 r  demo/debug_value_4_reg[0]_i_1/O[3]
+                         net (fo=1, routed)           0.000     1.888    demo/debug_value_4_reg[0]_i_1_n_4
+    SLICE_X7Y65          FDCE                                         r  demo/debug_value_4_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -327,15 +317,15 @@ Slack (MET) :             0.263ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.699     1.136    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  clk_IBUF_BUFG_inst/O
-                         net (fo=17, routed)          0.827     1.992    pixel_clock_generator/clk_IBUF_BUFG
-    SLICE_X51Y82         FDCE                                         r  pixel_clock_generator/pclk_reg/C
-                         clock pessimism             -0.513     1.478    
-    SLICE_X51Y82         FDCE (Hold_fdce_C_D)         0.091     1.569    pixel_clock_generator/pclk_reg
+                         net (fo=544, routed)         0.868     2.033    demo/clk_IBUF_BUFG
+    SLICE_X7Y65          FDCE                                         r  demo/debug_value_4_reg[3]/C
+                         clock pessimism             -0.514     1.518    
+    SLICE_X7Y65          FDCE (Hold_fdce_C_D)         0.105     1.623    demo/debug_value_4_reg[3]
   -------------------------------------------------------------------
-                         required time                         -1.569    
-                         arrival time                           1.833    
+                         required time                         -1.623    
+                         arrival time                           1.888    
   -------------------------------------------------------------------
-                         slack                                  0.263    
+                         slack                                  0.264    
 
 
 
@@ -348,10 +338,10 @@ Waveform(ns):       { 0.000 5.000 }
 Period(ns):         10.000
 Sources:            { clk }
 
-Check Type        Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location        Pin
-Min Period        n/a     BUFG/I   n/a            2.155         10.000      7.845      BUFGCTRL_X0Y16  clk_IBUF_BUFG_inst/I
-Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X50Y80    pixel_clock_generator/count_reg[12]/C
-High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X50Y78    pixel_clock_generator/count_reg[4]/C
+Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
+Min Period        n/a     RAMB36E1/CLKARDCLK  n/a            2.944         10.000      7.056      RAMB36_X0Y12  buffer_ram/ram_reg/CLKARDCLK
+Low Pulse Width   Slow    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X7Y76   cu/v_reg[10]/C
+High Pulse Width  Slow    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X6Y65   demo/debug_value_1_reg[16]/C
 
 
 

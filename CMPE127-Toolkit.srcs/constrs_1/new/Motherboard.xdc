@@ -154,6 +154,8 @@ set_property -dict { PACKAGE_PIN P18   IOSTANDARD LVCMOS33 } [get_ports { cs }];
 
 ##VGA Connector
 
+set_property -dict { PACKAGE_PIN H17   IOSTANDARD LVCMOS33 } [get_ports { busy }]; #IO_L18P_T2_A24_15 Sch=led[0]
+
 set_property -dict { PACKAGE_PIN A3    IOSTANDARD LVCMOS33 } [get_ports { r[0] }]; #IO_L8N_T1_AD14N_35 Sch=r[0]
 set_property -dict { PACKAGE_PIN B4    IOSTANDARD LVCMOS33 } [get_ports { r[1] }]; #IO_L7N_T1_AD6N_35 Sch=r[1]
 set_property -dict { PACKAGE_PIN C5    IOSTANDARD LVCMOS33 } [get_ports { r[2] }]; #IO_L1N_T0_AD4N_35 Sch=r[2]

@@ -1,5 +1,21 @@
 `timescale 1ns / 1ps
 `default_nettype none
+ 
+`define VGA_RAM_ADDRESS_WIDTH 	 12
+`define PIXEL_WIDTH 			 8
+`define ASCII_WIDTH 			 8
+`define SCREEN_WIDTH 			 640
+`define SCREEN_HEIGHT			 480
+`define TERMINAL_ROWS 			 30
+`define TERMINAL_COLUMNS         80
+`define VALUE_BIT_WIDTH  		 32
+`define HORIZONTAL_SEGMENTS 	 4
+`define HARDWARE_CONTROLLED_ROWS 6
+`define TOTAL_SEGMENTS 		     (`HORIZONTAL_SEGMENTS*(`HARDWARE_CONTROLLED_ROWS-1))
+`define FREQ_IN  				 100_000_000
+`define FREQ_OUT 				 25_000_000
+`define RGB_RESOLUTION  		 4
+
 //////////////////////////////////////////////////////////////////////////////////
 // Company:
 // Engineer:
@@ -20,568 +36,706 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 
-
-// module VGA_Terminal_Control_Unit(
-// 	input wire pclk,
-// 	input wire rst,
-// 	input wire vblank,
-// 	input wire hblank,
-// 	output wire [11:0] video_address,
-// 	output wire [11:0] terminal_address,
-// 	output wire [11:0] debug_address,
-// 	output wire xy_count_select,
-// 	output wire video_ram_rd,
-// 	output wire video_ram_cs,
-// 	output wire video_ram_oe,
-// 	output wire terminal_ram_rd,
-// 	output wire terminal_ram_cs,
-// 	output wire terminal_ram_oe,
-// 	output wire debug_ram_rd,
-// 	output wire debug_ram_cs,
-// 	output wire debug_ram_oe,
-// 	output wire
-// 	output wire
-// 	output wire
-// );
-
-
 module VGA_Terminal(
-	input wire clk,
-	input wire rst,
-	output wire hsync,
-	output wire vsync,
-	output wire [3:0] r,
-	output wire [3:0] g,
-	output wire [3:0] b,
-	input wire [8:0] address,
-	input wire [6:0] data,
-	input wire cs
+    //// input 100 MHz clock
+    input wire clk,
+    input wire rst,
+    //// Horizontal sync pulse for VGA controller
+    output wire hsync,
+    //// Vertical sync pulse for VGA controller
+    output wire vsync,
+    //// RGB 4-bit singal that go to a DAC (range 0V <-> 0.7V) to generate a color intensity
+    output wire [3:0] r,
+    output wire [3:0] g,
+    output wire [3:0] b,
+    //// 12-bit address bus to address which location in video ram to write ascii characters to
+    //// The address is linear
+    input wire [8:0] address,
+    //// 7-bit data input bus 
+    input wire [6:0] data,
+    //// chip select for this VGA Terminal module
+    input wire cs,
+    //// busy signal to tell CPU or other hardware that the VGA controller cannot be writen to.
+    output wire busy
 );
-
-//PULLDOWN i0 (.O(R[0]));
-//PULLDOWN i1 (.O(R[1]));
-//PULLDOWN i2 (.O(R[2]));
-//PULLDOWN i3 (.O(R[3]));
-
-//PULLDOWN i4 (.O(G[0]));
-//PULLDOWN i5 (.O(G[1]));
-//PULLDOWN i6 (.O(G[2]));
-//PULLDOWN i7 (.O(G[3]));
-
-//PULLDOWN i8 (.O(B[0]));
-//PULLDOWN i9 (.O(B[1]));
-//PULLDOWN iA (.O(B[2]));
-//PULLDOWN iB (.O(B[3]));
-
-parameter VGA_RAM_ADDRESS_WIDTH = 12;
-parameter PIXEL_WIDTH = 8;
-parameter ASCII_WIDTH = 8;
-
+// ==================================
+//// Internal Parameter Field
+// ==================================
+// ==================================
+//// Registers
+// ==================================
+// ==================================
+//// Wires
+// ==================================
+/** 
+ * VGA Terminal Signals
+ */
+//// Pixel clock (for 640x480 screen this will be set to 25MHz)
 wire pclk;
-
-wire [31:0] hcount;
-wire [31:0] vcount;
-
-wire hblank;
-wire vblank;
-
-wire [VGA_RAM_ADDRESS_WIDTH-1:0] xyaddress;
- reg [VGA_RAM_ADDRESS_WIDTH-1:0] controlled_address;
- reg xy_select;
-
-wire [PIXEL_WIDTH-1:0] pixels;
-wire [ASCII_WIDTH-1:0] ascii_character;
-
+//// Converts the top level address to an address beyond the hardware controlled area
+wire [`VGA_RAM_ADDRESS_WIDTH-1:0] external_address;
+//// Signal from control unit that will 
 wire enable_rgb;
-
-reg terminal_ram_write;
-reg terminal_ram_chip_select;
-reg terminal_ram_output_enable;
-
-reg [ASCII_WIDTH-1:0] data_in;
-
-reg [31:0] count [0:10];
+//// xyadress will convert the hcount and vcount into the appropriate address of video ram
+wire [`VGA_RAM_ADDRESS_WIDTH-1:0] xyaddress;
+//// Will hold the row of pixels corrisponding to an ascii glyph to print to screen.
+wire [`PIXEL_WIDTH-1:0] pixels;
+/** 
+ * VGA Controller Signals
+ */
+//// hcount indicates the horizontal pixel location or x coordinate
+wire [31:0] hcount;
+//// vcount indicates the vertical pixel location or y coordinate
+wire [31:0] vcount;
+//// hblank indicates when the VGA controller is in the horizontal blanking (reseting) stage
+wire hblank;
+//// vblank indicates when the VGA controller is in the vertical blanking (reseting) stage
+wire vblank;
+/** 
+ * CONTROL UNIT WIRES 
+ */
+//// Control unit's video address output. 
+//// Control unit will assert an address when it wants to write or read from video ram
+wire [`VGA_RAM_ADDRESS_WIDTH-1:0] video_ctrl_address;
+//// Control unit's buffer address output.
+//// Control unit will assert an address when it wants to write or read from buffer ram
+wire [`VGA_RAM_ADDRESS_WIDTH-1:0] buffer_ctrl_address;
+//// Video Address Bus 
+//// 	(TODO: MAY REMOVE IN PLACE OF VIDEO_ADDR_BUS)
+wire [`VGA_RAM_ADDRESS_WIDTH-1:0] video_address;
+//// Buffer Address Bus
+//// 	(TODO: MAY REMOVE IN PLACE OF BUFFER_ADDR_BUS)
+wire [`VGA_RAM_ADDRESS_WIDTH-1:0] buffer_address;
+//// Video Data Bus
+wire [`ASCII_WIDTH-1:0] video_data;
+//// Buffer Data Bus
+wire [`ASCII_WIDTH-1:0] buffer_data;
+//// Control unit signal to select xy_address or video_ctrl_address
+//// 	(TODO: MAY OPTIMIZE OUT)
+wire xy_count_select;
+//// Control unit buffer data bus output control
+////	(TODO: MAY OPTIMIZE OUT)
+wire buffer_out_control;
+//// switches between control unit cs and external cs
+wire buffer_ctrl_cs;
+//// Video ram control signals
+wire video_wr;
+wire video_cs;
+wire video_oe;
+//// Buffer ram control signals
+wire buffer_wr;
+wire buffer_cs;
+wire buffer_oe;
+//// These wires are used to demonstrate values changing on screen
+wire [31:0] debug_value_0;
+wire [31:0] debug_value_1;
+wire [31:0] debug_value_2;
+wire [31:0] debug_value_3;
+wire [31:0] debug_value_4;
+wire [31:0] debug_value_5;
+wire [31:0] debug_value_6;
+wire [31:0] debug_value_7;
+wire [31:0] debug_value_8;
+wire [31:0] debug_value_9;
+// ==================================
+//// Wire Assignments
+// ==================================
+assign busy = buffer_ctrl_cs;
+//// RGB should be disabled zero when hlank or vblank asserted.
+assign enable_rgb = !(hblank | vblank);
+//// Adds 80*5 to the top level address to move the memory boundary away from hardware controlled memory.
+assign external_address = address+(`TERMINAL_COLUMNS*`HARDWARE_CONTROLLED_ROWS);
+// ==================================
+//// Modules
+// ==================================
 
 PixelClock pixel_clock_generator(
-	.clk100Mhz(clk),
-	.rst(rst),
-	.pclk(pclk)
+    .clk100Mhz(clk),
+    .rst(rst),
+    .pclk(pclk)
+);
+
+DEMO_DEBUG_VALUE_GENERATOR demo(
+    .clk(clk),
+    .rst(rst),
+    .debug_value_0(debug_value_0),
+    .debug_value_1(debug_value_1),
+    .debug_value_2(debug_value_2),
+    .debug_value_3(debug_value_3),
+    .debug_value_4(debug_value_4),
+    .debug_value_5(debug_value_5),
+    .debug_value_6(debug_value_6),
+    .debug_value_7(debug_value_7),
+    .debug_value_8(debug_value_8),
+    .debug_value_9(debug_value_9)
 );
 
 VGA vga_controller(
-	.pclk(pclk),
-	.rst(rst),
-	.hsync(hsync),
-	.vsync(vsync),
-	.hcount(hcount),
-	.vcount(vcount),
-	.hblank(hblank),
-	.vblank(vblank)
+    .pclk(pclk),
+    .rst(rst),
+    .hsync(hsync),
+    .vsync(vsync),
+    .hcount(hcount),
+    .vcount(vcount),
+    .hblank(hblank),
+    .vblank(vblank)
+);
+
+VGA_Terminal_Control_Unit cu(
+    .pclk(clk),
+    .rst(rst),
+    .vblank(vblank),
+    .hblank(hblank),
+    .values({
+        debug_value_0,
+        debug_value_1,
+        debug_value_2,
+        debug_value_3,
+        32'h12345678,
+        debug_value_4,
+        debug_value_5,
+        debug_value_6,
+        debug_value_7,
+        32'h9ABCDEF0,
+        debug_value_8,
+        debug_value_9,
+        32'h22222222,
+        32'h33333333,
+        32'h44444444,
+        32'h55555555,
+        32'h66666666,
+        32'h77777777,
+        32'h88888888,
+        32'hDEADBEEF
+    }),
+    .video_address(video_ctrl_address),
+    .buffer_address(buffer_ctrl_address),
+    .video_data(video_data),
+    .buffer_data(buffer_data),
+    .xy_count_select(xy_count_select),
+    .buffer_out_control(buffer_out_control),
+    .video_wr(video_wr),
+    .video_cs(video_cs),
+    .video_oe(video_oe),
+    .buffer_wr(buffer_wr),
+    .buffer_cs(buffer_ctrl_cs),
+    .buffer_oe(buffer_oe)
 );
 
 ConvertXYToAddress linearize(
-	.hcount(hcount),
-	.vcount(vcount),
-	.address(xyaddress)
+    .hcount(hcount),
+    .vcount(vcount),
+    .address(xyaddress)
 );
 
-wire [11:0] terminal_ram_address;
-
-VGA_MUX #(12,1,2) ram_address_mux (
-	.select(xy_select),
-	// INPUTS x WIDTH bit array
-	.in({xyaddress, controlled_address}),
-	.out(terminal_ram_address)
+VGA_MUX #(
+    .WIDTH(12),
+    .INPUTS(2)
+) ram_address_mux (
+    .select(xy_count_select),
+    // INPUTS x WIDTH bit array
+    .in({xyaddress, video_ctrl_address}),
+    .out(video_address)
 );
 
-assign ascii_character = (terminal_ram_write) ? data_in : 8'bz;
-
-wire ready;
-
-VGA_RAM terminal_ram(
-	.clk(pclk),
-	.we(terminal_ram_write),
-	.cs(terminal_ram_chip_select),
-	.oe(terminal_ram_output_enable),
-	.address(terminal_ram_address),
-	.data(ascii_character)
+VGA_RAM video_ram (
+    .clk(clk),
+    .we(video_wr),
+    .cs(video_cs),
+    .oe(video_oe),
+    .address(video_address),
+    .data(video_data)
 );
 
-// assign terminal_ram_write = 0;
-// assign terminal_ram_chip_select = 1;
-// assign terminal_ram_output_enable = 0;
+VGA_MUX #(
+    .WIDTH(12),
+    .INPUTS(2)
+) buffer_address_mux (
+    .select(buffer_ctrl_cs),
+    // INPUTS x WIDTH bit array
+    .in({buffer_ctrl_address, external_address }),
+    .out(buffer_address)
+);
+
+VGA_MUX #(
+    .WIDTH(1),
+    .INPUTS(2)
+) buffer_cs_mux (
+    .select(buffer_ctrl_cs),
+    // INPUTS x WIDTH bit array
+    .in({buffer_ctrl_cs, cs}),
+    .out(buffer_cs)
+);
+
+VGA_BUS_CREATOR tristate_switch_data_bus (
+    .control_signal(!buffer_ctrl_cs),
+    .in(data),
+    .out(buffer_data)
+);
+
+// VGA_MUX #(12,1,2) buffer_data_mux (
+// 	.select(control_unit_select),
+// 	// INPUTS x WIDTH bit array
+// 	.in({buffer_ctrl_data, data}),
+// 	.out(buffer_data)
+// );
+
+VGA_RAM buffer_ram(
+    .clk(clk),
+    .we(buffer_wr),
+    .cs(buffer_cs),
+    .oe(buffer_oe),
+    .address(buffer_address),
+    .data(buffer_data)
+);
 
 FontROM rom(
-	.ascii(ascii_character),
-	.column(vcount[3:0]),
-	.pixels(pixels)
+    .ascii(video_data),
+    .column(vcount[3:0]),
+    .pixels(pixels)
 );
-
-assign enable_rgb = !(hblank | vblank);
 
 PixelRender pixel_renderer (
-	.pclk(pclk),
-	.rst(rst),
-	.enable(enable_rgb),
-	.hcount(hcount),
-	.pixels(pixels),
-	.r(r),
-	.g(g),
-	.b(b)
+    .enable(enable_rgb),
+    .hcount(hcount),
+    .pixels(pixels),
+    .r(r),
+    .g(g),
+    .b(b)
 );
+// ==================================
+//// Behavioral Block
+// ==================================
+endmodule
 
+module VGA_Terminal_Control_Unit(
+    input wire pclk,
+    input wire rst,
+    input wire vblank,
+    input wire hblank,
+    input wire [(`TOTAL_SEGMENTS*`VALUE_BIT_WIDTH)-1:0] values,
+    output reg [11:0] video_address,
+    output reg [11:0] buffer_address,
+    inout wire [7:0] video_data,
+    inout wire [7:0] buffer_data,
+    output reg xy_count_select,
+    output reg buffer_out_control,
+    output reg video_wr,
+    output reg video_cs,
+    output reg video_oe,
+    output reg buffer_wr,
+    output reg buffer_cs,
+    output reg buffer_oe
+);
+// ==================================
+//// Internal Parameter Field
+// ==================================
+//// State parameters
+parameter LOAD_RAMS 			= 0;
+parameter WAIT_FOR_VBLANK 		= 1;
+parameter WRITE_HEX_TO_BUFFER 	= 2;
+parameter COPY_BUFFER_TO_VIDEO 	= 3;
+parameter WAIT_OUT_VBLANK  		= 4;
+parameter STATE_WIDTH           = $clog2(WAIT_FOR_VBLANK);
+// ==================================
+//// Registers
+// ==================================
+reg [STATE_WIDTH-1:0] state;
+reg [`ASCII_WIDTH-1:0] video_data_out;
+reg [`ASCII_WIDTH-1:0] buffer_data_out;
+reg [3:0] temp_value;
+reg video_out_control;
+reg buffer_out_control;
+integer previous_position;
 integer i;
-integer j;
-reg init;
+integer v;
+// ==================================
+//// Wires
+// ==================================
+wire [(`HARDWARE_CONTROLLED_ROWS*`TERMINAL_COLUMNS*`ASCII_WIDTH)-1:0] strings = {
+    // "       PC:0x","FFFFFFFF","  RD DATA:0x","FFFFFFFF","   CP0$14:0x","FFFFFFFF","   DEBUG3:0x","FFFFFFFF",
+    // "   ALUOUT:0x","FFFFFFFF","  WR DATA:0x","FFFFFFFF","   DEBUG0:0x","FFFFFFFF","   DEBUG4:0x","FFFFFFFF",
+    // "  REGOUT1:0x","FFFFFFFF","   CP0$12:0x","FFFFFFFF","   DEBUG1:0x","FFFFFFFF","   DEBUG5:0x","FFFFFFFF",
+    // "  REGOUT2:0x","FFFFFFFF","   CP0$13:0x","FFFFFFFF","   DEBUG2:0x","FFFFFFFF","   DEBUG6:0x","FFFFFFFF",
+    // "------------","--------","------------","--DEBUG ","MONITOR-----","--------","------------","--------"
+    "       PC:0x","FFFFFFFF","  RD DATA:0x","FFFFFFFF","   DEBUG0:0x","FFFFFFFF","   DEBUG5:0x","FFFFFFFF",
+    "   ALUOUT:0x","FFFFFFFF","  WR DATA:0x","FFFFFFFF","   DEBUG1:0x","FFFFFFFF","   DEBUG6:0x","FFFFFFFF",
+    "  REGOUT1:0x","FFFFFFFF","   CP0$12:0x","FFFFFFFF","   DEBUG2:0x","FFFFFFFF","   DEBUG7:0x","FFFFFFFF",
+    "  REGOUT2:0x","FFFFFFFF","   CP0$13:0x","FFFFFFFF","   DEBUG3:0x","FFFFFFFF","   DEBUG8:0x","FFFFFFFF",
+    "  REGOUT3:0x","FFFFFFFF","   CP0$14:0x","FFFFFFFF","   DEBUG4:0x","FFFFFFFF","   DEBUG9:0x","FFFFFFFF",
+    "------------","--------","------------","--DEBUG ","MONITOR-----","--------","------------","--------"
+};
+// ==================================
+//// Wire Assignments
+// ==================================
+assign video_data  = (video_out_control)  ? video_data_out  : 8'hZ;
+assign buffer_data = (buffer_out_control) ? buffer_data_out : 8'hZ;
+// ==================================
+//// Modules
+// ==================================
+// ==================================
+//// Behavioral Block
+// ==================================
+always @(posedge pclk or posedge rst) begin
+    if (rst) begin
+        // set state
+        state = 0;
+        // set internal variables
+        i = 0;
+        v = 0;
+        previous_position = 0;
+        temp_value = 0;
+        // Set out going signals
+        video_out_control = 0;
+        buffer_out_control = 0;
+        video_data_out = 0;
+        
+        buffer_data_out = 0;
+        video_address = 0;
+        buffer_address = 0;
+        xy_count_select = 0;
+        video_wr = 0;
+        video_cs = 0;
+        video_oe = 0;
+        buffer_wr = 0;
+        buffer_cs = 0;
+        buffer_oe = 0;
+    end
+    else begin
+        case(state)
+            LOAD_RAMS: begin
+                if(i < `TERMINAL_COLUMNS*`TERMINAL_ROWS) begin
+                    xy_count_select 	= 0;
+                    video_wr 		= 1;
+                    video_cs 		= 1;
+                    video_oe 		= 0;
+                    buffer_wr 			= 1;
+                    buffer_cs 			= 1;
+                    buffer_oe 			= 0;
+                    video_out_control   = 1;
+                    buffer_out_control 	= 1;
 
-always @(posedge pclk or posedge rst)
-begin
-	if(rst)
-	begin
-		init = 1;
-		xy_select = 0;
-		controlled_address = 0;
-		terminal_ram_write = 0;
-        terminal_ram_chip_select = 0;
-        terminal_ram_output_enable = 0;
-		j = 0;
-	    i = 0;
-		count[0]  = 0;
-		count[1]  = 0;
-		count[2]  = 0;
-		count[3]  = 0;
-		count[4]  = 0;
-		count[5]  = 0;
-		count[6]  = 0;
-		count[7]  = 0;
-		count[8]  = 0;
-		count[9]  = 0;
-	    count[10] = 0;
-	end
-	else begin
-		if(init)
-		begin
-			if(i < 80)
-			begin
-				terminal_ram_write = 1;
-				terminal_ram_chip_select = 1;
-				terminal_ram_output_enable = 0;
-				data_in = "K";
-				xy_select = 0;
-				controlled_address = i;
-				i = i + 1;
-			end
-			else begin
-				init = 0;
-				xy_select = 0;
-				terminal_ram_write = 0;
-				terminal_ram_chip_select = 1;
-				terminal_ram_output_enable = 1;
-				data_in = "A";
-				xy_select = 1;
-				controlled_address = 0;
-			end
-		end
-		else begin
-			i = i + 1;
-			j = j + 1;
-			if(i > 32'd500_000)
-			begin
-				i = 0;
-				count[0]  = count[0] + 1;
-				count[1]  = count[1] + 2;
-				count[2]  = count[2] + 3;
-				count[8]  = count[8] - 4;
-				count[9]  = count[9] - 5;
-			    count[10] = count[10] + 7;
-			end
-			if(j > 32'd1_200_000)
-			begin
-			     j = 0;
-	             count[3]  = count[3] + 4;
-	             count[4]  = count[4] + 5;
-	             count[5]  = count[5] - 1;
-	             count[6]  = count[6] - 2;
-	             count[7]  = count[7] - 3;
-			end
-		end
-	end
+                    video_address 		= i;
+                    buffer_address 		= i;
+
+                    buffer_data_out 	= (strings >> ((`TERMINAL_COLUMNS*`HARDWARE_CONTROLLED_ROWS)-(i+1))*`ASCII_WIDTH);
+                    video_data_out 		= (strings >> ((`TERMINAL_COLUMNS*`HARDWARE_CONTROLLED_ROWS)-(i+1))*`ASCII_WIDTH);
+
+                    i = i + 1;
+                end
+                else begin
+                    i = 0;
+                    state = WAIT_FOR_VBLANK;
+                end
+            end
+            WAIT_FOR_VBLANK: begin
+                xy_count_select 	= 1;
+                video_wr 			= 0;
+                video_cs 			= 1;
+                video_oe 			= 1;
+                buffer_wr 			= 1; // to allow user to write to ram
+                buffer_cs 			= 0;
+                buffer_oe 			= 0;
+
+                video_out_control 	= 0;
+                buffer_out_control 	= 0;
+                buffer_data_out 	= 0;
+                
+                video_data_out 		= 0;
+
+                if(vblank)
+                begin
+                    state = WRITE_HEX_TO_BUFFER;
+                    i = 12;
+                    v = 0;
+                    previous_position = i;
+                end
+            end
+            WRITE_HEX_TO_BUFFER: begin
+                xy_count_select 	= 0;
+
+                video_wr 		= 0;
+                video_cs 		= 0;
+                video_oe 		= 0;
+
+                buffer_wr 			= 1;
+                buffer_cs 			= 1;
+                buffer_oe 			= 0;
+
+                buffer_out_control 	= 1;
+                buffer_address 		= i;
+
+                temp_value = (values >> (`TOTAL_SEGMENTS*`VALUE_BIT_WIDTH)-(4*(v+1)));
+
+                case(temp_value)
+                    4'h0: buffer_data_out = "0";
+                    4'h1: buffer_data_out = "1";
+                    4'h2: buffer_data_out = "2";
+                    4'h3: buffer_data_out = "3";
+                    4'h4: buffer_data_out = "4";
+                    4'h5: buffer_data_out = "5";
+                    4'h6: buffer_data_out = "6";
+                    4'h7: buffer_data_out = "7";
+                    4'h8: buffer_data_out = "8";
+                    4'h9: buffer_data_out = "9";
+                    4'hA: buffer_data_out = "A";
+                    4'hB: buffer_data_out = "B";
+                    4'hC: buffer_data_out = "C";
+                    4'hD: buffer_data_out = "D";
+                    4'hE: buffer_data_out = "E";
+                    4'hF: buffer_data_out = "F";
+                endcase
+                
+                if(i > (`TERMINAL_COLUMNS*(`HARDWARE_CONTROLLED_ROWS-1))-2)
+                begin
+                    state = COPY_BUFFER_TO_VIDEO;
+                    i = 0;
+                end
+                else if(i == previous_position+7)
+                begin
+                    previous_position = previous_position + 20;
+                    i = previous_position;
+                    v = v + 1;
+                end
+                else begin
+                    i = i + 1;
+                    v = v + 1;
+                end
+
+            end
+            COPY_BUFFER_TO_VIDEO: begin
+                xy_count_select 	= 0;
+
+                video_wr 		= 1;
+                video_cs 		= 1;
+                video_oe 		= 0;
+
+                buffer_wr 			= 0;
+                buffer_cs 			= 1;
+                buffer_oe 			= 1;
+
+                video_out_control   = 1;
+                buffer_out_control  = 0;
+
+                buffer_address 		= i;
+                video_address 		= (i > 1) ? i-2 : 0;
+
+                video_data_out = buffer_data;
+
+                if(i < (`TERMINAL_COLUMNS*`TERMINAL_ROWS)-1) begin
+                    i = i + 1;
+                end
+                else
+                begin
+                    state = WAIT_OUT_VBLANK;
+                end
+            end
+            WAIT_OUT_VBLANK: begin
+                buffer_wr 			= 0;
+                buffer_cs 			= 0;
+                buffer_oe 			= 0;
+                video_out_control   = 0;
+                buffer_out_control  = 0;
+                if(!vblank)
+                begin
+                    state = WAIT_FOR_VBLANK;
+                end
+            end
+            default: begin
+                state = 0;
+            end
+        endcase
+    end
 end
 
 endmodule
 
+module VGA_BUS_CREATOR(
+    input wire control_signal,
+    input wire [6:0] in,
+    output wire [`ASCII_WIDTH-1:0] out
+);
+
+assign out = (control_signal) ? { 1'b0, in } : 7'hZ;
+
+endmodule
+
+module DEMO_DEBUG_VALUE_GENERATOR(
+    input wire clk,
+    input wire rst,
+    output reg [`VALUE_BIT_WIDTH-1:0] debug_value_0,
+    output reg [`VALUE_BIT_WIDTH-1:0] debug_value_1,
+    output reg [`VALUE_BIT_WIDTH-1:0] debug_value_2,
+    output reg [`VALUE_BIT_WIDTH-1:0] debug_value_3,
+    output reg [`VALUE_BIT_WIDTH-1:0] debug_value_4,
+    output reg [`VALUE_BIT_WIDTH-1:0] debug_value_5,
+    output reg [`VALUE_BIT_WIDTH-1:0] debug_value_6,
+    output reg [`VALUE_BIT_WIDTH-1:0] debug_value_7,
+    output reg [`VALUE_BIT_WIDTH-1:0] debug_value_8,
+    output reg [`VALUE_BIT_WIDTH-1:0] debug_value_9
+);
+// ==================================
+//// Internal Parameter Field
+// ==================================
+// ==================================
+//// Registers
+// ==================================
+reg [31:0] counter0 = 0;
+reg [31:0] counter1 = 0;
+// ==================================
+//// Wires
+// ==================================
+// ==================================
+//// Wire Assignments
+// ==================================
+// ==================================
+//// Modules
+// ==================================
+// ==================================
+//// Behavioral Block
+// ==================================
+always @(posedge clk or posedge rst) begin
+    if (rst) begin
+        // reset
+        counter0 = 0;
+        counter1 = 0;
+        debug_value_0 = 0;
+        debug_value_1 = 0;
+        debug_value_2 = 0;
+        debug_value_3 = 0;
+        debug_value_4 = 0;
+        debug_value_5 = 0;
+        debug_value_6 = 0;
+        debug_value_7 = 0;
+        debug_value_8 = 0;
+        debug_value_9 = 0;
+    end
+    else begin
+        counter0 = counter0 + 1;
+        counter1 = counter1 + 1;
+        if(counter0 == 32'd10_000_000)
+        begin
+            debug_value_0 = debug_value_0 - 1;
+            debug_value_1 = debug_value_1 - 5;
+            debug_value_2 = debug_value_2 - 10;
+            debug_value_3 = debug_value_3 - 2;
+            debug_value_4 = debug_value_4 - 13;
+            debug_value_5 = debug_value_5 - 7;
+            debug_value_6 = debug_value_6 - 3;
+            counter0 = 0;
+        end
+        if(counter1 == 32'd50_000_000)
+        begin
+            debug_value_7 = debug_value_7 + 1;
+            debug_value_8 = debug_value_8 + 5;
+            debug_value_9 = debug_value_9 + 10;
+            counter1 = 0;
+        end
+    end
+end
+
+
+endmodule
 
 module VGA_MUX #(
-	parameter WIDTH  = 1,
-	parameter SELECT = 1,
-	parameter INPUTS = 2
+    parameter WIDTH  = 1,
+    parameter INPUTS = 2
 )(
-	input wire [SELECT-1:0] select,
-	// INPUTS x WIDTH bit array
-	input wire [(WIDTH*INPUTS)-1:0] in,
-	output wire [WIDTH-1:0] out
+    input wire [SELECT-1:0] select,
+    input wire [(WIDTH*INPUTS)-1:0] in,
+    output wire [WIDTH-1:0] out
 );
+parameter SELECT = $clog2(INPUTS);
 
 assign out = (in >> (select*WIDTH));
 
 endmodule
 
 module VGA_RAM #(
-	parameter LENGTH = 2400,
-	parameter WIDTH = 8
+    parameter LENGTH = 2400,
+    parameter WIDTH = 8
 )
 (
-	input wire clk,
-	input wire we,
-	input wire cs,
-	input wire oe,
-	input wire [11:0] address,
-	inout wire [WIDTH-1:0] data
+    input wire clk,
+    input wire we,
+    input wire cs,
+    input wire oe,
+    input wire [ADDRESS_WIDTH-1:0] address,
+    inout wire [WIDTH-1:0] data
 );
 
+// ==================================
+//// Internal Parameter Field
+// ==================================
+parameter ADDRESS_WIDTH = $clog2(LENGTH);
+// ==================================
+//// Registers
+// ==================================
 reg [WIDTH-1:0] ram [0:LENGTH];
 reg [WIDTH-1:0] data_out;
-
-reg oe_r;
+// ==================================
+//// Wires
+// ==================================
+// ==================================
+//// Wire Assignments
+// ==================================
 assign data = (cs && oe && !we) ? data_out : 8'bz;
-
+// ==================================
+//// Modules
+// ==================================
+// ==================================
+//// Behavioral Block
+// ==================================
 always @(posedge clk)
 begin
     if (cs && we)
-	begin
+    begin
        ram[address] = data;
-	end
-	else if (cs && !we && oe)
-	begin
-		data_out = ram[address];
-		oe_r = 1;
-	end
-	else
-	begin
-		oe_r = 0;
-	end
+    end
+    else if (cs && oe && !we)
+    begin
+        data_out = ram[address];
+    end
 end
 
 endmodule
 
-module HEXToASCII(
-	input wire [3:0] hex,
-	output reg [7:0] ascii
-);
-
-always @(*) begin
-	case(hex)
-		4'h0: ascii = "0";
-		4'h1: ascii = "1";
-		4'h2: ascii = "2";
-		4'h3: ascii = "3";
-		4'h4: ascii = "4";
-		4'h5: ascii = "5";
-		4'h6: ascii = "6";
-		4'h7: ascii = "7";
-		4'h8: ascii = "8";
-		4'h9: ascii = "9";
-		4'hA: ascii = "A";
-		4'hB: ascii = "B";
-		4'hC: ascii = "C";
-		4'hD: ascii = "D";
-		4'hE: ascii = "E";
-		4'hF: ascii = "F";
-	endcase
-end
-
-endmodule
-
-module ConvertXYToAddress #(
-	parameter COLUMNS = 80
-)
-(
-	input wire [31:0] hcount,
-	input wire [31:0] vcount,
-	output wire [11:0] address
+module ConvertXYToAddress (
+    input wire [31:0] hcount,
+    input wire [31:0] vcount,
+    output wire [11:0] address
 );
 
 // (y*COLUMNS) + x
-assign address = (vcount[31:4] * COLUMNS) + hcount[31:3];
+assign address = (vcount[31:4] * `TERMINAL_COLUMNS) + hcount[31:3];
 
 endmodule
 
-module PixelRender#(
-	parameter PIXEL_WIDTH = 8,
-	parameter RGB_RESOLUTION = 4
-)
+module PixelRender
 (
-	input wire  pclk,
-	input wire  rst,
-	input wire  enable,
-	input wire  [31:0] hcount,
-	input wire  [PIXEL_WIDTH-1:0] pixels,
-	output wire [RGB_RESOLUTION-1:0] r,
-	output wire [RGB_RESOLUTION-1:0] g,
-	output wire [RGB_RESOLUTION-1:0] b
+    input wire  enable,
+    input wire  [31:0] hcount,
+    input wire  [`PIXEL_WIDTH-1:0] pixels,
+    output wire [`RGB_RESOLUTION-1:0] r,
+    output wire [`RGB_RESOLUTION-1:0] g,
+    output wire [`RGB_RESOLUTION-1:0] b
 );
 
-assign r = (pixels[8-hcount[2:0]] && enable) ? 0 : 0;
+assign r = 0;
+// assign r = (pixels[8-hcount[2:0]] && enable) ? 0 : 0;
 assign g = (pixels[8-hcount[2:0]] && enable) ? 4'hF : 0;
-assign b = (pixels[8-hcount[2:0]] && enable) ? 0 : 0;
+// assign b = (pixels[8-hcount[2:0]] && enable) ? 0 : 0;
+assign b = 0;
 
 endmodule
 
-// module TerminalModule(
-// 	input wire  pclk,
-// 	input wire  rst,
-// 	input wire  cs,
-// 	input wire  [11:0] address,
-// 	input wire  [ 8:0] data,
-// 	input wire  [(DEBUG_MESSAGES*STRING_BITS)-1:0] strings,
-// 	input wire  [(DEBUG_MESSAGES*VALUE_BITS)-1:0] values,
-// 	input wire  [31:0] hcount,
-// 	input wire  [31:0] vcount,
-// 	output wire [3:0] r,
-// 	output wire [3:0] g,
-// 	output wire [3:0] b
-// );
-
-// parameter DEBUG_STRING_LENGTH = 9;
-// parameter ASCII 			  = 8;
-// parameter DEBUG_MESSAGES 	  = 20;
-// parameter DEBUG_MESSAGES_LENGTH = 20;
-// parameter STRING_BITS 		  = DEBUG_STRING_LENGTH*8;
-// parameter VALUE_BITS 		  = 32;
-// parameter CHARACTER_SECTION   = DEBUG_MESSAGES_LENGTH*8;
-
-// wire [(8*80)-1:0] message = "----------------------------------DEBUG MONITOR---------------------------------";
-// wire [(8*3)-1:0] colon_string = ":0x";
-
-// wire [7:0] character_ram [0:4] [0:79];
-//  reg [7:0] terminal_ram [0:26] [0:79];
-// wire [(ASCII*DEBUG_STRING_LENGTH)-1:0] string_array [0:20];
-// wire [VALUE_BITS-1:0] value_array [0:20];
-// wire [7:0] ascii_character;
-// wire [7:0] pixels;
-
-// assign ascii_character = (vcount[10:4] < 5) ?
-// 							character_ram[vcount[10:4]][hcount[9:3]] :
-// 							terminal_ram[vcount[10:4]-5][hcount[9:3]];
-
-// generate
-// 	genvar t;
-// 	genvar j;
-//     genvar k;
-//     genvar hold;
-// 	for (t = 0; t < 20; t = t + 1)
-// 	begin
-// 		assign string_array[t] = (strings >> (ASCII*DEBUG_STRING_LENGTH)*t);
-// 		assign  value_array[t] = (values  >> (VALUE_BITS)*t);
-// 	end
-
-// 	for (j = 0; j < 4; j = j + 1)
-// 	begin
-// 		for (t = 0; t < 9; t = t + 1)
-// 		begin
-// 			assign character_ram[j][t+00] = ((string_array[(j*4)+0] >> ((8*8)-(8*t))) & 8'hFF);
-// 			assign character_ram[j][t+20] = ((string_array[(j*4)+1] >> ((8*8)-(8*t))) & 8'hFF);
-// 			assign character_ram[j][t+40] = ((string_array[(j*4)+2] >> ((8*8)-(8*t))) & 8'hFF);
-// 			assign character_ram[j][t+60] = ((string_array[(j*4)+3] >> ((8*8)-(8*t))) & 8'hFF);
-// 		end
-// 	end
-
-// 	for (j = 0; j < 4; j = j + 1)
-// 	begin
-// 		for (t = 0; t < 3; t = t + 1)
-// 		begin
-// 			assign character_ram[j][t+09] = ((colon_string >> ((2*8)-(8*t))) & 8'hFF);
-// 			assign character_ram[j][t+29] = ((colon_string >> ((2*8)-(8*t))) & 8'hFF);
-// 			assign character_ram[j][t+49] = ((colon_string >> ((2*8)-(8*t))) & 8'hFF);
-// 			assign character_ram[j][t+69] = ((colon_string >> ((2*8)-(8*t))) & 8'hFF);
-// 		end
-// 	end
-
-// 	for (t = 0; t < 80; t = t + 1)
-// 	begin
-// 		assign character_ram[4][t] = ((message >> (((80-1)*ASCII)-(8*t))) & 8'hFF);
-// 		// assign character_ram[4][t] = ((message >> (8*t)) & 8'hFF);
-// 	end
-
-// 	for (j = 0; j < 4; j = j + 1)
-// 	begin
-// 		for (k = 0; k < 4; k = k + 1)
-// 		begin
-// 			// assign character_ram[j][12+0+(k*20)] =
-// 			// 		(value_array[(j*4)+k][31:28] > 9) ?
-// 			// 			"7"+(value_array[(j*4)+k][31:28]):
-// 			// 			"0"+(value_array[(j*4)+k][31:28]);
-
-// 			// assign character_ram[j][12+1+(k*20)] =
-// 			// 		(value_array[(j*4)+k][27:24] > 9) ?
-// 			// 			"7"+value_array[(j*4)+k][27:24]:
-// 			// 			"0"+value_array[(j*4)+k][27:24];
-
-// 			// assign character_ram[j][12+2+(k*20)] =
-// 			// 		(value_array[(j*4)+k][23:20] > 9) ?
-// 			// 			"7"+value_array[(j*4)+k][23:20]:
-// 			// 			"0"+value_array[(j*4)+k][23:20];
-
-// 			// assign character_ram[j][12+3+(k*20)] =
-// 			// 		(value_array[(j*4)+k][19:16] > 9) ?
-// 			// 			"7"+value_array[(j*4)+k][19:16]:
-// 			// 			"0"+value_array[(j*4)+k][19:16];
-
-// 			// assign character_ram[j][12+4+(k*20)] =
-// 			// 		(value_array[(j*4)+k][15:12] > 9) ?
-// 			// 			"7"+value_array[(j*4)+k][15:12]:
-// 			// 			"0"+value_array[(j*4)+k][15:12];
-
-// 			// assign character_ram[j][12+5+(k*20)] =
-// 			// 		(value_array[(j*4)+k][11:8] > 9) ?
-// 			// 			"7"+value_array[(j*4)+k][11:8]:
-// 			// 			"0"+value_array[(j*4)+k][11:8];
-
-// 			// assign character_ram[j][12+6+(k*20)] =
-// 			// 		(value_array[(j*4)+k][7:4] > 9) ?
-// 			// 			"7"+value_array[(j*4)+k][7:4]:
-// 			// 			"0"+value_array[(j*4)+k][7:4];
-
-// 			// assign character_ram[j][12+7+(k*20)] =
-// 			// 		(value_array[(j*4)+k][3:0] > 9) ?
-// 			// 			"7"+value_array[(j*4)+k][3:0]:
-// 			// 			"0"+value_array[(j*4)+k][3:0];
-
-// 			HEXToASCII htoa_j_t0(
-// 				.hex(value_array[(j*4)+k][31:28]),
-// 				.ascii(character_ram[j][12+0+(k*20)])
-// 			);
-// 			HEXToASCII htoa_j_t1(
-// 				.hex(value_array[(j*4)+k][27:24]),
-// 				.ascii(character_ram[j][12+1+(k*20)])
-// 			);
-// 			HEXToASCII htoa_j_t2(
-// 				.hex(value_array[(j*4)+k][23:20]),
-// 				.ascii(character_ram[j][12+2+(k*20)])
-// 			);
-// 			HEXToASCII htoa_j_t3(
-// 				.hex(value_array[(j*4)+k][19:16]),
-// 				.ascii(character_ram[j][12+3+(k*20)])
-// 			);
-// 			HEXToASCII htoa_j_t4(
-// 				.hex(value_array[(j*4)+k][15:12]),
-// 				.ascii(character_ram[j][12+4+(k*20)])
-// 			);
-// 			HEXToASCII htoa_j_t5(
-// 				.hex(value_array[(j*4)+k][11:8]),
-// 				.ascii(character_ram[j][12+5+(k*20)])
-// 			);
-// 			HEXToASCII htoa_j_t6(
-// 				.hex(value_array[(j*4)+k][7:4]),
-// 				.ascii(character_ram[j][12+6+(k*20)])
-// 			);
-// 			HEXToASCII htoa_j_t7(
-// 				.hex(value_array[(j*4)+k][3:0]),
-// 				.ascii(character_ram[j][12+7+(k*20)])
-// 			);
-// 		end
-// 	end
-
-// endgenerate
-
-// FontROM rom(
-// 	.ascii(ascii_character),
-// 	.column(vcount[3:0]),
-// 	.pixels(pixels)
-// );
-
-// assign r = (pixels[8-hcount[2:0]] && vcount < 480 && hcount < 640) ? 0 : 0;
-// assign g = (pixels[8-hcount[2:0]] && vcount < 480 && hcount < 640) ? 4'hF : 0;
-// assign b = (pixels[8-hcount[2:0]] && vcount < 480 && hcount < 640) ? 0 : 0;
-
-// integer i;
-// reg [3:0] state;
-
-// parameter INIT_DEBUG_ROW = 0;
-// parameter INIT_STRINGS   = 1;
-// parameter INIT_COLONS    = 2;
-
-// reg initalize;
-// reg [12:0] initalize_address;
-
-// always @(posedge pclk or posedge rst) begin
-// 	if (rst) begin
-// 		state = INIT_DEBUG_ROW;
-// 		initalize = 1;
-// 		initalize_address = 0;
-// 		i = 0;
-// 		// terminal_ram = 0;
-
-// 	end
-// 	else
-// 	begin
-// 		if(initalize)
-// 		begin
-// 			terminal_ram[initalize_address / 80][initalize_address % 80] = 0;
-// 			if(initalize_address > 27*80)
-// 			begin
-// 				initalize = 0;
-// 			end
-// 			initalize_address = initalize_address + 1;
-// 		end
-// 		else if(cs)
-// 		begin
-// 			//// TODO: This should be latched before changing character ram.
-// 			////       This will probably cause VGA graphical glitches.
-// 			terminal_ram[address / 80][address % 80] = data;
-// 		end
-// 	end
-// end
-
-// endmodule
-
 module ColorModule(
-	input wire pclk,
-	input wire [31:0] hcount,
-	input wire [31:0] vcount,
-	output wire [3:0] r,
-	output wire [3:0] g,
-	output wire [3:0] b
+    input wire pclk,
+    input wire [31:0] hcount,
+    input wire [31:0] vcount,
+    output wire [3:0] r,
+    output wire [3:0] g,
+    output wire [3:0] b
 );
 
 assign r = (  0 < vcount && vcount <= 200 && hcount < 640) ? 4'hF : 0;
@@ -591,63 +745,82 @@ assign b = (400 < vcount && vcount <= 480 && hcount < 640) ? 4'hF : 0;
 endmodule
 
 module PixelClock(
-	input wire clk100Mhz,
-	input wire rst,
-	output reg pclk
+    input wire clk100Mhz,
+    input wire rst,
+    output reg pclk
 );
-
-parameter FREQ_IN  = 32'd100_000_000;
-parameter FREQ_OUT = 32'd25_000_000;
-
-parameter HOLD_TICK_COUNT = (FREQ_IN/FREQ_OUT)/2;
-
+// ==================================
+//// Internal Parameter Field
+// ==================================
+parameter HOLD_TICK_COUNT = (`FREQ_IN/`FREQ_OUT)/2;
+// ==================================
+//// Registers
+// ==================================
 reg [15:0] count;
-
+// ==================================
+//// Wires
+// ==================================
+// ==================================
+//// Wire Assignments
+// ==================================
+// ==================================
+//// Modules
+// ==================================
+// ==================================
+//// Behavioral Block
+// ==================================
 always @(posedge clk100Mhz or posedge rst)
 begin
-	if(rst)
-	begin
-		count = 0;
-		pclk  = 0;
-	end
-	else
-	begin
-	   count = count + 1;
-	   if(count == HOLD_TICK_COUNT)
-	   begin
-	      count = 0;
-	      pclk = !pclk;
-	   end
-	end
+    if(rst)
+    begin
+        count = 0;
+        pclk  = 0;
+    end
+    else
+    begin
+       count = count + 1;
+       if(count == HOLD_TICK_COUNT)
+       begin
+          count = 0;
+          pclk = !pclk;
+       end
+    end
 end
 endmodule
 
 module VGA(
-	input wire pclk,
-	input wire rst,
-	output reg hsync,
-	output reg vsync,
-	output reg [31:0] hcount,
-	output reg [31:0] vcount,
-	output reg hblank,
-	output reg vblank
+    input wire pclk,
+    input wire rst,
+    output reg hsync,
+    output reg vsync,
+    output reg [31:0] hcount,
+    output reg [31:0] vcount,
+    output reg hblank,
+    output reg vblank
 );
 
-parameter DISPLAY_WIDTH  = 640-1;
-parameter DISPLAY_HEIGHT = 480-1;
-
-
-wire hsyncon, hsyncoff, hreset, hblankon;
-wire vsyncon, vsyncoff, vreset, vblankon;
-
+// ==================================
+//// Internal Parameter Field
+// ==================================
+parameter DISPLAY_WIDTH  = `SCREEN_WIDTH-1;
+parameter DISPLAY_HEIGHT = `SCREEN_HEIGHT-1;
 parameter HORIZONTAL_FRONT_PORCH = 16;
 parameter HORIZONTAL_SYNC_PULSE = 96;
 parameter HORIZONTAL_BACK_PORCH = 48;
-
 parameter VERTICAL_FRONT_PORCH = 11;
 parameter VERTICAL_SYNC_PULSE = 2;
 parameter VERTICAL_BACK_PORCH = 31;
-
+// ==================================
+//// Registers
+// ==================================
+// ==================================
+//// Wires
+// ==================================
+wire hsyncon, hsyncoff, hreset, hblankon;
+wire vsyncon, vsyncoff, vreset, vblankon;
+// ==================================
+//// Wire Assignments
+// ==================================
 assign hblankon = (hcount == DISPLAY_WIDTH);
 assign hsyncon  = (hcount == DISPLAY_WIDTH+HORIZONTAL_FRONT_PORCH);
 assign hsyncoff = (hcount == DISPLAY_WIDTH+HORIZONTAL_FRONT_PORCH+HORIZONTAL_SYNC_PULSE);
@@ -657,30 +830,33 @@ assign vblankon = (hreset & (vcount == DISPLAY_HEIGHT));
 assign vsyncon  = (hreset & (vcount == DISPLAY_HEIGHT+VERTICAL_FRONT_PORCH));
 assign vsyncoff = (hreset & (vcount == DISPLAY_HEIGHT+VERTICAL_FRONT_PORCH+VERTICAL_SYNC_PULSE));
 assign vreset   = (hreset & (vcount == DISPLAY_HEIGHT+VERTICAL_FRONT_PORCH+VERTICAL_SYNC_PULSE+VERTICAL_BACK_PORCH));
-
+// ==================================
+//// Modules
+// ==================================
+// ==================================
+//// Behavioral Block
+// ==================================
 always @(posedge pclk or posedge rst)
 begin
-	if (rst)
-	begin
-		hcount = 0;
-		vcount = 0;
-		hcount = 0;
-		hblank = 0;
-		hsync  = 0;
-		vcount = 0;
-		vblank = 0;
-		vsync  = 0;
-	end
-	else
-	begin
-		hcount = hreset  ? 0 :  hcount   + 1;
-		hblank = hreset  ? 0 : (hblankon ? 1 : hblank);
-		hsync  = hsyncon ? 0 : (hsyncoff ? 1 : hsync);
+    if (rst)
+    begin
+        hcount = 0;
+        vcount = 0;
+        hblank = 0;
+        hsync  = 0;
+        vblank = 0;
+        vsync  = 0;
+    end
+    else
+    begin
+        hcount = hreset  ? 0 :  hcount   + 1;
+        hblank = hreset  ? 0 : (hblankon ? 1 : hblank);
+        hsync  = hsyncon ? 0 : (hsyncoff ? 1 : hsync);
 
-		vcount = hreset  ? (vreset ? 0 : vcount + 1) : vcount;
-		vblank = vreset  ? 0 : (vblankon ? 1 : vblank);
-		vsync  = vsyncon ? 0 : (vsyncoff ? 1 : vsync);
-	end
+        vcount = hreset  ? (vreset ? 0 : vcount + 1) : vcount;
+        vblank = vreset  ? 0 : (vblankon ? 1 : vblank);
+        vsync  = vsyncon ? 0 : (vsyncoff ? 1 : vsync);
+    end
 end
 
 endmodule

@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.3 (lin64) Build 2018833 Wed Oct  4 19:58:07 MDT 2017
-| Date         : Sat Feb 17 02:26:05 2018
+| Date         : Tue Feb 20 13:43:51 2018
 | Host         : kammce-Lenovo-Y40-80 running 64-bit Ubuntu 16.04.3 LTS
 | Command      : report_methodology -file VGA_Terminal_methodology_drc_routed.rpt -pb VGA_Terminal_methodology_drc_routed.pb -rpx VGA_Terminal_methodology_drc_routed.rpx
 | Design       : VGA_Terminal
@@ -23,16 +23,15 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 258
+             Violations found: 118
 +-----------+----------+--------------------------------------------+------------+
 | Rule      | Severity | Description                                | Violations |
 +-----------+----------+--------------------------------------------+------------+
 | DPIR-1    | Warning  | Asynchronous driver check                  | 24         |
-| SYNTH-6   | Warning  | Timing of a block RAM might be sub-optimal | 1          |
+| SYNTH-6   | Warning  | Timing of a block RAM might be sub-optimal | 2          |
 | SYNTH-13  | Warning  | combinational multiplier                   | 1          |
-| TIMING-17 | Warning  | Non-clocked sequential cell                | 119        |
-| TIMING-18 | Warning  | Missing input or output delay              | 1          |
-| TIMING-20 | Warning  | Non-clocked latch                          | 112        |
+| TIMING-17 | Warning  | Non-clocked sequential cell                | 68         |
+| TIMING-18 | Warning  | Missing input or output delay              | 23         |
 +-----------+----------+--------------------------------------------+------------+
 
 2. REPORT DETAILS
@@ -159,7 +158,12 @@ Related violations: <none>
 
 SYNTH-6#1 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance terminal_ram/ram_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance buffer_ram/ram_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#2 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance video_ram/ram_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-13#1 Warning
@@ -169,1162 +173,457 @@ Related violations: <none>
 
 TIMING-17#1 Warning
 Non-clocked sequential cell  
-The clock pin controlled_address_reg[0]/C is not reached by a timing clock
+The clock pin vga_controller/hblank_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#2 Warning
 Non-clocked sequential cell  
-The clock pin controlled_address_reg[10]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#3 Warning
 Non-clocked sequential cell  
-The clock pin controlled_address_reg[11]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[10]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#4 Warning
 Non-clocked sequential cell  
-The clock pin controlled_address_reg[1]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[11]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#5 Warning
 Non-clocked sequential cell  
-The clock pin controlled_address_reg[2]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[12]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#6 Warning
 Non-clocked sequential cell  
-The clock pin controlled_address_reg[3]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[13]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#7 Warning
 Non-clocked sequential cell  
-The clock pin controlled_address_reg[4]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[14]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#8 Warning
 Non-clocked sequential cell  
-The clock pin controlled_address_reg[5]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[15]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#9 Warning
 Non-clocked sequential cell  
-The clock pin controlled_address_reg[6]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[16]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#10 Warning
 Non-clocked sequential cell  
-The clock pin controlled_address_reg[7]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[17]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#11 Warning
 Non-clocked sequential cell  
-The clock pin controlled_address_reg[8]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[18]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#12 Warning
 Non-clocked sequential cell  
-The clock pin controlled_address_reg[9]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[19]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#13 Warning
 Non-clocked sequential cell  
-The clock pin data_in_reg[3]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#14 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[0]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[20]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#15 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[10]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[21]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#16 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[11]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[22]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#17 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[12]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[23]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#18 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[13]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[24]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#19 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[14]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[25]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#20 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[15]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[26]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#21 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[16]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[27]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#22 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[17]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[28]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#23 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[18]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[29]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#24 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[19]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#25 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[1]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[30]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#26 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[20]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[31]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#27 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[21]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#28 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[22]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[4]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#29 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[23]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[5]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#30 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[24]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[6]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#31 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[25]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[7]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#32 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[26]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[8]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#33 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[27]/C is not reached by a timing clock
+The clock pin vga_controller/hcount_reg[9]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#34 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[28]/C is not reached by a timing clock
+The clock pin vga_controller/hsync_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#35 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[29]/C is not reached by a timing clock
+The clock pin vga_controller/vblank_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#36 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[2]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#37 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[30]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[10]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#38 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[31]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[11]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#39 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[3]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[12]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#40 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[4]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[13]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#41 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[5]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[14]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#42 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[6]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[15]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#43 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[7]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[16]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#44 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[8]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[17]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#45 Warning
 Non-clocked sequential cell  
-The clock pin i_reg[9]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[18]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#46 Warning
 Non-clocked sequential cell  
-The clock pin init_reg/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[19]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#47 Warning
 Non-clocked sequential cell  
-The clock pin terminal_ram/ram_reg/CLKARDCLK is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#48 Warning
 Non-clocked sequential cell  
-The clock pin terminal_ram/ram_reg/CLKBWRCLK is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[20]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#49 Warning
 Non-clocked sequential cell  
-The clock pin terminal_ram_chip_select_reg/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[21]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#50 Warning
 Non-clocked sequential cell  
-The clock pin terminal_ram_write_reg/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[22]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#51 Warning
 Non-clocked sequential cell  
-The clock pin vga_controller/hblank_reg/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[23]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#52 Warning
 Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[0]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[24]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#53 Warning
 Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[10]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[25]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#54 Warning
 Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[11]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[26]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#55 Warning
 Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[12]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[27]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#56 Warning
 Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[13]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[28]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#57 Warning
 Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[14]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[29]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#58 Warning
 Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[15]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#59 Warning
 Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[16]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[30]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#60 Warning
 Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[17]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[31]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#61 Warning
 Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[18]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#62 Warning
 Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[19]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[4]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#63 Warning
 Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[1]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[5]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#64 Warning
 Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[20]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[6]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#65 Warning
 Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[21]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[7]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#66 Warning
 Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[22]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[8]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#67 Warning
 Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[23]/C is not reached by a timing clock
+The clock pin vga_controller/vcount_reg[9]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#68 Warning
 Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[24]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#69 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[25]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#70 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[26]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#71 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[27]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#72 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[28]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#73 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[29]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#74 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[2]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#75 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[30]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#76 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[31]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#77 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[3]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#78 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[4]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#79 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[5]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#80 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[6]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#81 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[7]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#82 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[8]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#83 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/hcount_reg[9]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#84 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/hsync_reg/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#85 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vblank_reg/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#86 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[0]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#87 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[10]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#88 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[11]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#89 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[12]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#90 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[13]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#91 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[14]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#92 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[15]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#93 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[16]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#94 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[17]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#95 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[18]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#96 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[19]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#97 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[1]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#98 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[20]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#99 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[21]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#100 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[22]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#101 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[23]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#102 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[24]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#103 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[25]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#104 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[26]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#105 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[27]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#106 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[28]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#107 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[29]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#108 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[2]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#109 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[30]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#110 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[31]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#111 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[3]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#112 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[4]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#113 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[5]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#114 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[6]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#115 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[7]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#116 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[8]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#117 Warning
-Non-clocked sequential cell  
-The clock pin vga_controller/vcount_reg[9]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#118 Warning
-Non-clocked sequential cell  
 The clock pin vga_controller/vsync_reg/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#119 Warning
-Non-clocked sequential cell  
-The clock pin xy_select_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-18#1 Warning
 Missing input or output delay  
+An input delay is missing on address[0] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#2 Warning
+Missing input or output delay  
+An input delay is missing on address[1] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#3 Warning
+Missing input or output delay  
+An input delay is missing on address[2] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#4 Warning
+Missing input or output delay  
+An input delay is missing on address[3] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#5 Warning
+Missing input or output delay  
+An input delay is missing on address[4] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#6 Warning
+Missing input or output delay  
+An input delay is missing on address[5] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#7 Warning
+Missing input or output delay  
+An input delay is missing on address[6] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#8 Warning
+Missing input or output delay  
+An input delay is missing on address[7] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#9 Warning
+Missing input or output delay  
+An input delay is missing on address[8] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#10 Warning
+Missing input or output delay  
+An input delay is missing on cs relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#11 Warning
+Missing input or output delay  
+An input delay is missing on data[0] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#12 Warning
+Missing input or output delay  
+An input delay is missing on data[1] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#13 Warning
+Missing input or output delay  
+An input delay is missing on data[2] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#14 Warning
+Missing input or output delay  
+An input delay is missing on data[3] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#15 Warning
+Missing input or output delay  
+An input delay is missing on data[4] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#16 Warning
+Missing input or output delay  
+An input delay is missing on data[5] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#17 Warning
+Missing input or output delay  
+An input delay is missing on data[6] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#18 Warning
+Missing input or output delay  
 An input delay is missing on rst relative to clock(s) sys_clk_pin
 Related violations: <none>
 
-TIMING-20#1 Warning
-Non-clocked latch  
-The latch rom/out_reg[0][0] cannot be properly analyzed as its control pin rom/out_reg[0][0]/G is not reached by a timing clock
+TIMING-18#19 Warning
+Missing input or output delay  
+An output delay is missing on busy relative to clock(s) sys_clk_pin
 Related violations: <none>
 
-TIMING-20#2 Warning
-Non-clocked latch  
-The latch rom/out_reg[0][3] cannot be properly analyzed as its control pin rom/out_reg[0][3]/G is not reached by a timing clock
+TIMING-18#20 Warning
+Missing input or output delay  
+An output delay is missing on g[0] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
-TIMING-20#3 Warning
-Non-clocked latch  
-The latch rom/out_reg[0][4] cannot be properly analyzed as its control pin rom/out_reg[0][4]/G is not reached by a timing clock
+TIMING-18#21 Warning
+Missing input or output delay  
+An output delay is missing on g[1] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
-TIMING-20#4 Warning
-Non-clocked latch  
-The latch rom/out_reg[0][5] cannot be properly analyzed as its control pin rom/out_reg[0][5]/G is not reached by a timing clock
+TIMING-18#22 Warning
+Missing input or output delay  
+An output delay is missing on g[2] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
-TIMING-20#5 Warning
-Non-clocked latch  
-The latch rom/out_reg[10][0] cannot be properly analyzed as its control pin rom/out_reg[10][0]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#6 Warning
-Non-clocked latch  
-The latch rom/out_reg[10][1] cannot be properly analyzed as its control pin rom/out_reg[10][1]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#7 Warning
-Non-clocked latch  
-The latch rom/out_reg[10][2] cannot be properly analyzed as its control pin rom/out_reg[10][2]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#8 Warning
-Non-clocked latch  
-The latch rom/out_reg[10][3] cannot be properly analyzed as its control pin rom/out_reg[10][3]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#9 Warning
-Non-clocked latch  
-The latch rom/out_reg[10][4] cannot be properly analyzed as its control pin rom/out_reg[10][4]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#10 Warning
-Non-clocked latch  
-The latch rom/out_reg[10][5] cannot be properly analyzed as its control pin rom/out_reg[10][5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#11 Warning
-Non-clocked latch  
-The latch rom/out_reg[10][6] cannot be properly analyzed as its control pin rom/out_reg[10][6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#12 Warning
-Non-clocked latch  
-The latch rom/out_reg[10][7] cannot be properly analyzed as its control pin rom/out_reg[10][7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#13 Warning
-Non-clocked latch  
-The latch rom/out_reg[11][0] cannot be properly analyzed as its control pin rom/out_reg[11][0]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#14 Warning
-Non-clocked latch  
-The latch rom/out_reg[11][1] cannot be properly analyzed as its control pin rom/out_reg[11][1]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#15 Warning
-Non-clocked latch  
-The latch rom/out_reg[11][2] cannot be properly analyzed as its control pin rom/out_reg[11][2]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#16 Warning
-Non-clocked latch  
-The latch rom/out_reg[11][3] cannot be properly analyzed as its control pin rom/out_reg[11][3]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#17 Warning
-Non-clocked latch  
-The latch rom/out_reg[11][4] cannot be properly analyzed as its control pin rom/out_reg[11][4]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#18 Warning
-Non-clocked latch  
-The latch rom/out_reg[11][5] cannot be properly analyzed as its control pin rom/out_reg[11][5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#19 Warning
-Non-clocked latch  
-The latch rom/out_reg[11][6] cannot be properly analyzed as its control pin rom/out_reg[11][6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#20 Warning
-Non-clocked latch  
-The latch rom/out_reg[11][7] cannot be properly analyzed as its control pin rom/out_reg[11][7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#21 Warning
-Non-clocked latch  
-The latch rom/out_reg[12][1] cannot be properly analyzed as its control pin rom/out_reg[12][1]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#22 Warning
-Non-clocked latch  
-The latch rom/out_reg[12][2] cannot be properly analyzed as its control pin rom/out_reg[12][2]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#23 Warning
-Non-clocked latch  
-The latch rom/out_reg[12][3] cannot be properly analyzed as its control pin rom/out_reg[12][3]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#24 Warning
-Non-clocked latch  
-The latch rom/out_reg[12][4] cannot be properly analyzed as its control pin rom/out_reg[12][4]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#25 Warning
-Non-clocked latch  
-The latch rom/out_reg[12][5] cannot be properly analyzed as its control pin rom/out_reg[12][5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#26 Warning
-Non-clocked latch  
-The latch rom/out_reg[12][6] cannot be properly analyzed as its control pin rom/out_reg[12][6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#27 Warning
-Non-clocked latch  
-The latch rom/out_reg[12][7] cannot be properly analyzed as its control pin rom/out_reg[12][7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#28 Warning
-Non-clocked latch  
-The latch rom/out_reg[13][0] cannot be properly analyzed as its control pin rom/out_reg[13][0]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#29 Warning
-Non-clocked latch  
-The latch rom/out_reg[13][1] cannot be properly analyzed as its control pin rom/out_reg[13][1]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#30 Warning
-Non-clocked latch  
-The latch rom/out_reg[13][2] cannot be properly analyzed as its control pin rom/out_reg[13][2]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#31 Warning
-Non-clocked latch  
-The latch rom/out_reg[13][3] cannot be properly analyzed as its control pin rom/out_reg[13][3]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#32 Warning
-Non-clocked latch  
-The latch rom/out_reg[13][4] cannot be properly analyzed as its control pin rom/out_reg[13][4]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#33 Warning
-Non-clocked latch  
-The latch rom/out_reg[13][5] cannot be properly analyzed as its control pin rom/out_reg[13][5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#34 Warning
-Non-clocked latch  
-The latch rom/out_reg[13][6] cannot be properly analyzed as its control pin rom/out_reg[13][6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#35 Warning
-Non-clocked latch  
-The latch rom/out_reg[13][7] cannot be properly analyzed as its control pin rom/out_reg[13][7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#36 Warning
-Non-clocked latch  
-The latch rom/out_reg[14][1] cannot be properly analyzed as its control pin rom/out_reg[14][1]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#37 Warning
-Non-clocked latch  
-The latch rom/out_reg[14][2] cannot be properly analyzed as its control pin rom/out_reg[14][2]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#38 Warning
-Non-clocked latch  
-The latch rom/out_reg[14][3] cannot be properly analyzed as its control pin rom/out_reg[14][3]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#39 Warning
-Non-clocked latch  
-The latch rom/out_reg[14][4] cannot be properly analyzed as its control pin rom/out_reg[14][4]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#40 Warning
-Non-clocked latch  
-The latch rom/out_reg[14][5] cannot be properly analyzed as its control pin rom/out_reg[14][5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#41 Warning
-Non-clocked latch  
-The latch rom/out_reg[14][6] cannot be properly analyzed as its control pin rom/out_reg[14][6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#42 Warning
-Non-clocked latch  
-The latch rom/out_reg[14][7] cannot be properly analyzed as its control pin rom/out_reg[14][7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#43 Warning
-Non-clocked latch  
-The latch rom/out_reg[1][1] cannot be properly analyzed as its control pin rom/out_reg[1][1]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#44 Warning
-Non-clocked latch  
-The latch rom/out_reg[1][2] cannot be properly analyzed as its control pin rom/out_reg[1][2]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#45 Warning
-Non-clocked latch  
-The latch rom/out_reg[1][3] cannot be properly analyzed as its control pin rom/out_reg[1][3]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#46 Warning
-Non-clocked latch  
-The latch rom/out_reg[1][4] cannot be properly analyzed as its control pin rom/out_reg[1][4]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#47 Warning
-Non-clocked latch  
-The latch rom/out_reg[1][5] cannot be properly analyzed as its control pin rom/out_reg[1][5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#48 Warning
-Non-clocked latch  
-The latch rom/out_reg[1][7] cannot be properly analyzed as its control pin rom/out_reg[1][7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#49 Warning
-Non-clocked latch  
-The latch rom/out_reg[2][0] cannot be properly analyzed as its control pin rom/out_reg[2][0]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#50 Warning
-Non-clocked latch  
-The latch rom/out_reg[2][1] cannot be properly analyzed as its control pin rom/out_reg[2][1]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#51 Warning
-Non-clocked latch  
-The latch rom/out_reg[2][2] cannot be properly analyzed as its control pin rom/out_reg[2][2]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#52 Warning
-Non-clocked latch  
-The latch rom/out_reg[2][3] cannot be properly analyzed as its control pin rom/out_reg[2][3]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#53 Warning
-Non-clocked latch  
-The latch rom/out_reg[2][4] cannot be properly analyzed as its control pin rom/out_reg[2][4]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#54 Warning
-Non-clocked latch  
-The latch rom/out_reg[2][5] cannot be properly analyzed as its control pin rom/out_reg[2][5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#55 Warning
-Non-clocked latch  
-The latch rom/out_reg[2][6] cannot be properly analyzed as its control pin rom/out_reg[2][6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#56 Warning
-Non-clocked latch  
-The latch rom/out_reg[2][7] cannot be properly analyzed as its control pin rom/out_reg[2][7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#57 Warning
-Non-clocked latch  
-The latch rom/out_reg[3][0] cannot be properly analyzed as its control pin rom/out_reg[3][0]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#58 Warning
-Non-clocked latch  
-The latch rom/out_reg[3][1] cannot be properly analyzed as its control pin rom/out_reg[3][1]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#59 Warning
-Non-clocked latch  
-The latch rom/out_reg[3][2] cannot be properly analyzed as its control pin rom/out_reg[3][2]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#60 Warning
-Non-clocked latch  
-The latch rom/out_reg[3][3] cannot be properly analyzed as its control pin rom/out_reg[3][3]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#61 Warning
-Non-clocked latch  
-The latch rom/out_reg[3][4] cannot be properly analyzed as its control pin rom/out_reg[3][4]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#62 Warning
-Non-clocked latch  
-The latch rom/out_reg[3][5] cannot be properly analyzed as its control pin rom/out_reg[3][5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#63 Warning
-Non-clocked latch  
-The latch rom/out_reg[3][6] cannot be properly analyzed as its control pin rom/out_reg[3][6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#64 Warning
-Non-clocked latch  
-The latch rom/out_reg[3][7] cannot be properly analyzed as its control pin rom/out_reg[3][7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#65 Warning
-Non-clocked latch  
-The latch rom/out_reg[4][0] cannot be properly analyzed as its control pin rom/out_reg[4][0]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#66 Warning
-Non-clocked latch  
-The latch rom/out_reg[4][1] cannot be properly analyzed as its control pin rom/out_reg[4][1]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#67 Warning
-Non-clocked latch  
-The latch rom/out_reg[4][2] cannot be properly analyzed as its control pin rom/out_reg[4][2]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#68 Warning
-Non-clocked latch  
-The latch rom/out_reg[4][3] cannot be properly analyzed as its control pin rom/out_reg[4][3]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#69 Warning
-Non-clocked latch  
-The latch rom/out_reg[4][4] cannot be properly analyzed as its control pin rom/out_reg[4][4]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#70 Warning
-Non-clocked latch  
-The latch rom/out_reg[4][5] cannot be properly analyzed as its control pin rom/out_reg[4][5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#71 Warning
-Non-clocked latch  
-The latch rom/out_reg[4][6] cannot be properly analyzed as its control pin rom/out_reg[4][6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#72 Warning
-Non-clocked latch  
-The latch rom/out_reg[4][7] cannot be properly analyzed as its control pin rom/out_reg[4][7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#73 Warning
-Non-clocked latch  
-The latch rom/out_reg[5][0] cannot be properly analyzed as its control pin rom/out_reg[5][0]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#74 Warning
-Non-clocked latch  
-The latch rom/out_reg[5][1] cannot be properly analyzed as its control pin rom/out_reg[5][1]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#75 Warning
-Non-clocked latch  
-The latch rom/out_reg[5][2] cannot be properly analyzed as its control pin rom/out_reg[5][2]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#76 Warning
-Non-clocked latch  
-The latch rom/out_reg[5][3] cannot be properly analyzed as its control pin rom/out_reg[5][3]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#77 Warning
-Non-clocked latch  
-The latch rom/out_reg[5][4] cannot be properly analyzed as its control pin rom/out_reg[5][4]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#78 Warning
-Non-clocked latch  
-The latch rom/out_reg[5][5] cannot be properly analyzed as its control pin rom/out_reg[5][5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#79 Warning
-Non-clocked latch  
-The latch rom/out_reg[5][6] cannot be properly analyzed as its control pin rom/out_reg[5][6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#80 Warning
-Non-clocked latch  
-The latch rom/out_reg[5][7] cannot be properly analyzed as its control pin rom/out_reg[5][7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#81 Warning
-Non-clocked latch  
-The latch rom/out_reg[6][0] cannot be properly analyzed as its control pin rom/out_reg[6][0]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#82 Warning
-Non-clocked latch  
-The latch rom/out_reg[6][1] cannot be properly analyzed as its control pin rom/out_reg[6][1]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#83 Warning
-Non-clocked latch  
-The latch rom/out_reg[6][2] cannot be properly analyzed as its control pin rom/out_reg[6][2]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#84 Warning
-Non-clocked latch  
-The latch rom/out_reg[6][3] cannot be properly analyzed as its control pin rom/out_reg[6][3]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#85 Warning
-Non-clocked latch  
-The latch rom/out_reg[6][4] cannot be properly analyzed as its control pin rom/out_reg[6][4]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#86 Warning
-Non-clocked latch  
-The latch rom/out_reg[6][5] cannot be properly analyzed as its control pin rom/out_reg[6][5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#87 Warning
-Non-clocked latch  
-The latch rom/out_reg[6][6] cannot be properly analyzed as its control pin rom/out_reg[6][6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#88 Warning
-Non-clocked latch  
-The latch rom/out_reg[6][7] cannot be properly analyzed as its control pin rom/out_reg[6][7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#89 Warning
-Non-clocked latch  
-The latch rom/out_reg[7][0] cannot be properly analyzed as its control pin rom/out_reg[7][0]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#90 Warning
-Non-clocked latch  
-The latch rom/out_reg[7][1] cannot be properly analyzed as its control pin rom/out_reg[7][1]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#91 Warning
-Non-clocked latch  
-The latch rom/out_reg[7][2] cannot be properly analyzed as its control pin rom/out_reg[7][2]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#92 Warning
-Non-clocked latch  
-The latch rom/out_reg[7][3] cannot be properly analyzed as its control pin rom/out_reg[7][3]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#93 Warning
-Non-clocked latch  
-The latch rom/out_reg[7][4] cannot be properly analyzed as its control pin rom/out_reg[7][4]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#94 Warning
-Non-clocked latch  
-The latch rom/out_reg[7][5] cannot be properly analyzed as its control pin rom/out_reg[7][5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#95 Warning
-Non-clocked latch  
-The latch rom/out_reg[7][6] cannot be properly analyzed as its control pin rom/out_reg[7][6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#96 Warning
-Non-clocked latch  
-The latch rom/out_reg[7][7] cannot be properly analyzed as its control pin rom/out_reg[7][7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#97 Warning
-Non-clocked latch  
-The latch rom/out_reg[8][0] cannot be properly analyzed as its control pin rom/out_reg[8][0]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#98 Warning
-Non-clocked latch  
-The latch rom/out_reg[8][1] cannot be properly analyzed as its control pin rom/out_reg[8][1]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#99 Warning
-Non-clocked latch  
-The latch rom/out_reg[8][2] cannot be properly analyzed as its control pin rom/out_reg[8][2]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#100 Warning
-Non-clocked latch  
-The latch rom/out_reg[8][3] cannot be properly analyzed as its control pin rom/out_reg[8][3]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#101 Warning
-Non-clocked latch  
-The latch rom/out_reg[8][4] cannot be properly analyzed as its control pin rom/out_reg[8][4]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#102 Warning
-Non-clocked latch  
-The latch rom/out_reg[8][5] cannot be properly analyzed as its control pin rom/out_reg[8][5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#103 Warning
-Non-clocked latch  
-The latch rom/out_reg[8][6] cannot be properly analyzed as its control pin rom/out_reg[8][6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#104 Warning
-Non-clocked latch  
-The latch rom/out_reg[8][7] cannot be properly analyzed as its control pin rom/out_reg[8][7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#105 Warning
-Non-clocked latch  
-The latch rom/out_reg[9][0] cannot be properly analyzed as its control pin rom/out_reg[9][0]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#106 Warning
-Non-clocked latch  
-The latch rom/out_reg[9][1] cannot be properly analyzed as its control pin rom/out_reg[9][1]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#107 Warning
-Non-clocked latch  
-The latch rom/out_reg[9][2] cannot be properly analyzed as its control pin rom/out_reg[9][2]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#108 Warning
-Non-clocked latch  
-The latch rom/out_reg[9][3] cannot be properly analyzed as its control pin rom/out_reg[9][3]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#109 Warning
-Non-clocked latch  
-The latch rom/out_reg[9][4] cannot be properly analyzed as its control pin rom/out_reg[9][4]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#110 Warning
-Non-clocked latch  
-The latch rom/out_reg[9][5] cannot be properly analyzed as its control pin rom/out_reg[9][5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#111 Warning
-Non-clocked latch  
-The latch rom/out_reg[9][6] cannot be properly analyzed as its control pin rom/out_reg[9][6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#112 Warning
-Non-clocked latch  
-The latch rom/out_reg[9][7] cannot be properly analyzed as its control pin rom/out_reg[9][7]/G is not reached by a timing clock
+TIMING-18#23 Warning
+Missing input or output delay  
+An output delay is missing on g[3] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 
