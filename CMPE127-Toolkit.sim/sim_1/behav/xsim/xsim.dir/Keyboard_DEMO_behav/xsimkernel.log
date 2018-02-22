@@ -1,0 +1,7 @@
+Running: xsim.dir/Keyboard_DEMO_behav/xsimk -simmode gui -wdb Keyboard_DEMO_behav.wdb -simrunnum 0 -socket 40130
+Design successfully loaded
+Design Loading Memory Usage: 47252 KB (Peak: 47372 KB)
+Design Loading CPU Usage: 50 ms
+Simulation completed
+Simulation Memory Usage: 128988 KB (Peak: 194524 KB)
+Simulation CPU Usage: 50 ms

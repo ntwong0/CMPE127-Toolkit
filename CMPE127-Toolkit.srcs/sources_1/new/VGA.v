@@ -36,6 +36,100 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 
+module VGA_Terminal_DEMO(
+    //// input 100 MHz clock
+    input wire clk,
+    input wire rst,
+    //// Horizontal sync pulse for VGA controller
+    output wire hsync,
+    //// Vertical sync pulse for VGA controller
+    output wire vsync,
+    //// RGB 4-bit singal that go to a DAC (range 0V <-> 0.7V) to generate a color intensity
+    output wire [`RGB_RESOLUTION-1:0] r,
+    output wire [`RGB_RESOLUTION-1:0] g,
+    output wire [`RGB_RESOLUTION-1:0] b,
+    //// 12-bit address bus to address which location in video ram to write ascii characters to
+    //// The address is linear
+    input wire [8:0] address,
+    //// 7-bit data input bus 
+    input wire [6:0] data,
+    //// chip select for this VGA Terminal module
+    input wire cs,
+    //// busy signal to tell CPU or other hardware that the VGA controller cannot be writen to.
+    output wire busy
+);
+
+//// These wires are used to demonstrate values changing on screen
+wire [`VALUE_BIT_WIDTH-1:0] debug_value_0;
+wire [`VALUE_BIT_WIDTH-1:0] debug_value_1;
+wire [`VALUE_BIT_WIDTH-1:0] debug_value_2;
+wire [`VALUE_BIT_WIDTH-1:0] debug_value_3;
+wire [`VALUE_BIT_WIDTH-1:0] debug_value_4;
+wire [`VALUE_BIT_WIDTH-1:0] debug_value_5;
+wire [`VALUE_BIT_WIDTH-1:0] debug_value_6;
+wire [`VALUE_BIT_WIDTH-1:0] debug_value_7;
+wire [`VALUE_BIT_WIDTH-1:0] debug_value_8;
+wire [`VALUE_BIT_WIDTH-1:0] debug_value_9;
+
+wire [`ASCII_WIDTH-1:0] sign_extend_data;
+wire [`VGA_RAM_ADDRESS_WIDTH-1:0] sign_extend_address;
+
+assign sign_extend_data = { 1'b0, data };
+assign sign_extend_address = { 4'b0, address };
+
+DEMO_DEBUG_VALUE_GENERATOR demo(
+    .clk(clk),
+    .rst(rst),
+    .debug_value_0(debug_value_0),
+    .debug_value_1(debug_value_1),
+    .debug_value_2(debug_value_2),
+    .debug_value_3(debug_value_3),
+    .debug_value_4(debug_value_4),
+    .debug_value_5(debug_value_5),
+    .debug_value_6(debug_value_6),
+    .debug_value_7(debug_value_7),
+    .debug_value_8(debug_value_8),
+    .debug_value_9(debug_value_9)
+);
+
+VGA_Terminal(
+    .clk(clk),
+    .rst(rst),
+    .hsync(hsync),
+    .vsync(vsync),
+    .r(r),
+    .g(g),
+    .b(b),
+    .values({
+        debug_value_0,
+        debug_value_1,
+        debug_value_2,
+        debug_value_3,
+        32'h12345678,
+        debug_value_4,
+        debug_value_5,
+        debug_value_6,
+        debug_value_7,
+        32'h9ABCDEF0,
+        debug_value_8,
+        debug_value_9,
+        32'h22222222,
+        32'h33333333,
+        32'h44444444,
+        32'h55555555,
+        32'h66666666,
+        32'h77777777,
+        32'h88888888,
+        32'hDEADBEEF
+    }),
+    .address(sign_extend_address),
+    .data(sign_extend_data),
+    .cs(cs),
+    .busy(busy)
+);
+
+endmodule
+
 module VGA_Terminal(
     //// input 100 MHz clock
     input wire clk,
@@ -45,14 +139,15 @@ module VGA_Terminal(
     //// Vertical sync pulse for VGA controller
     output wire vsync,
     //// RGB 4-bit singal that go to a DAC (range 0V <-> 0.7V) to generate a color intensity
-    output wire [3:0] r,
-    output wire [3:0] g,
-    output wire [3:0] b,
+    output wire [`RGB_RESOLUTION-1:0] r,
+    output wire [`RGB_RESOLUTION-1:0] g,
+    output wire [`RGB_RESOLUTION-1:0] b,
+    input wire [(`TOTAL_SEGMENTS*`VALUE_BIT_WIDTH)-1:0] values,
     //// 12-bit address bus to address which location in video ram to write ascii characters to
     //// The address is linear
-    input wire [8:0] address,
-    //// 7-bit data input bus 
-    input wire [6:0] data,
+    input wire [`VGA_RAM_ADDRESS_WIDTH-1:0] address,
+    //// 8-bit data input bus 
+    input wire [`ASCII_WIDTH-1:0] data,
     //// chip select for this VGA Terminal module
     input wire cs,
     //// busy signal to tell CPU or other hardware that the VGA controller cannot be writen to.
@@ -126,17 +221,6 @@ wire video_oe;
 wire buffer_wr;
 wire buffer_cs;
 wire buffer_oe;
-//// These wires are used to demonstrate values changing on screen
-wire [31:0] debug_value_0;
-wire [31:0] debug_value_1;
-wire [31:0] debug_value_2;
-wire [31:0] debug_value_3;
-wire [31:0] debug_value_4;
-wire [31:0] debug_value_5;
-wire [31:0] debug_value_6;
-wire [31:0] debug_value_7;
-wire [31:0] debug_value_8;
-wire [31:0] debug_value_9;
 // ==================================
 //// Wire Assignments
 // ==================================
@@ -148,26 +232,10 @@ assign external_address = address+(`TERMINAL_COLUMNS*`HARDWARE_CONTROLLED_ROWS);
 // ==================================
 //// Modules
 // ==================================
-
 PixelClock pixel_clock_generator(
     .clk100Mhz(clk),
     .rst(rst),
     .pclk(pclk)
-);
-
-DEMO_DEBUG_VALUE_GENERATOR demo(
-    .clk(clk),
-    .rst(rst),
-    .debug_value_0(debug_value_0),
-    .debug_value_1(debug_value_1),
-    .debug_value_2(debug_value_2),
-    .debug_value_3(debug_value_3),
-    .debug_value_4(debug_value_4),
-    .debug_value_5(debug_value_5),
-    .debug_value_6(debug_value_6),
-    .debug_value_7(debug_value_7),
-    .debug_value_8(debug_value_8),
-    .debug_value_9(debug_value_9)
 );
 
 VGA vga_controller(
@@ -186,28 +254,7 @@ VGA_Terminal_Control_Unit cu(
     .rst(rst),
     .vblank(vblank),
     .hblank(hblank),
-    .values({
-        debug_value_0,
-        debug_value_1,
-        debug_value_2,
-        debug_value_3,
-        32'h12345678,
-        debug_value_4,
-        debug_value_5,
-        debug_value_6,
-        debug_value_7,
-        32'h9ABCDEF0,
-        debug_value_8,
-        debug_value_9,
-        32'h22222222,
-        32'h33333333,
-        32'h44444444,
-        32'h55555555,
-        32'h66666666,
-        32'h77777777,
-        32'h88888888,
-        32'hDEADBEEF
-    }),
+    .values(values),
     .video_address(video_ctrl_address),
     .buffer_address(buffer_ctrl_address),
     .video_data(video_data),
@@ -228,17 +275,19 @@ ConvertXYToAddress linearize(
     .address(xyaddress)
 );
 
-VGA_MUX #(
+MUX #(
     .WIDTH(12),
     .INPUTS(2)
 ) ram_address_mux (
     .select(xy_count_select),
-    // INPUTS x WIDTH bit array
     .in({xyaddress, video_ctrl_address}),
     .out(video_address)
 );
 
-VGA_RAM video_ram (
+RAM #(
+.WIDTH(8), 
+.LENGTH(2400)
+) video_ram (
     .clk(clk),
     .we(video_wr),
     .cs(video_cs),
@@ -247,40 +296,34 @@ VGA_RAM video_ram (
     .data(video_data)
 );
 
-VGA_MUX #(
+MUX #(
     .WIDTH(12),
     .INPUTS(2)
 ) buffer_address_mux (
     .select(buffer_ctrl_cs),
-    // INPUTS x WIDTH bit array
     .in({buffer_ctrl_address, external_address }),
     .out(buffer_address)
 );
 
-VGA_MUX #(
+MUX #(
     .WIDTH(1),
     .INPUTS(2)
 ) buffer_cs_mux (
     .select(buffer_ctrl_cs),
-    // INPUTS x WIDTH bit array
     .in({buffer_ctrl_cs, cs}),
     .out(buffer_cs)
 );
 
-VGA_BUS_CREATOR tristate_switch_data_bus (
-    .control_signal(!buffer_ctrl_cs),
+TRIBUFFER#(.WIDTH(`ASCII_WIDTH)) tristate_switch_data_bus (
+    .oe(!buffer_ctrl_cs),
     .in(data),
     .out(buffer_data)
 );
 
-// VGA_MUX #(12,1,2) buffer_data_mux (
-// 	.select(control_unit_select),
-// 	// INPUTS x WIDTH bit array
-// 	.in({buffer_ctrl_data, data}),
-// 	.out(buffer_data)
-// );
-
-VGA_RAM buffer_ram(
+RAM #(
+.WIDTH(8), 
+.LENGTH(2400)
+) buffer_ram(
     .clk(clk),
     .we(buffer_wr),
     .cs(buffer_cs),
@@ -336,7 +379,7 @@ parameter WAIT_FOR_VBLANK 		= 1;
 parameter WRITE_HEX_TO_BUFFER 	= 2;
 parameter COPY_BUFFER_TO_VIDEO 	= 3;
 parameter WAIT_OUT_VBLANK  		= 4;
-parameter STATE_WIDTH           = $clog2(WAIT_FOR_VBLANK);
+parameter STATE_WIDTH           = $clog2(WAIT_OUT_VBLANK);
 // ==================================
 //// Registers
 // ==================================
@@ -353,11 +396,6 @@ integer v;
 //// Wires
 // ==================================
 wire [(`HARDWARE_CONTROLLED_ROWS*`TERMINAL_COLUMNS*`ASCII_WIDTH)-1:0] strings = {
-    // "       PC:0x","FFFFFFFF","  RD DATA:0x","FFFFFFFF","   CP0$14:0x","FFFFFFFF","   DEBUG3:0x","FFFFFFFF",
-    // "   ALUOUT:0x","FFFFFFFF","  WR DATA:0x","FFFFFFFF","   DEBUG0:0x","FFFFFFFF","   DEBUG4:0x","FFFFFFFF",
-    // "  REGOUT1:0x","FFFFFFFF","   CP0$12:0x","FFFFFFFF","   DEBUG1:0x","FFFFFFFF","   DEBUG5:0x","FFFFFFFF",
-    // "  REGOUT2:0x","FFFFFFFF","   CP0$13:0x","FFFFFFFF","   DEBUG2:0x","FFFFFFFF","   DEBUG6:0x","FFFFFFFF",
-    // "------------","--------","------------","--DEBUG ","MONITOR-----","--------","------------","--------"
     "       PC:0x","FFFFFFFF","  RD DATA:0x","FFFFFFFF","   DEBUG0:0x","FFFFFFFF","   DEBUG5:0x","FFFFFFFF",
     "   ALUOUT:0x","FFFFFFFF","  WR DATA:0x","FFFFFFFF","   DEBUG1:0x","FFFFFFFF","   DEBUG6:0x","FFFFFFFF",
     "  REGOUT1:0x","FFFFFFFF","   CP0$12:0x","FFFFFFFF","   DEBUG2:0x","FFFFFFFF","   DEBUG7:0x","FFFFFFFF",
@@ -462,6 +500,7 @@ always @(posedge pclk or posedge rst) begin
                 buffer_cs 			= 1;
                 buffer_oe 			= 0;
 
+                video_out_control 	= 0;
                 buffer_out_control 	= 1;
                 buffer_address 		= i;
 
@@ -550,16 +589,6 @@ end
 
 endmodule
 
-module VGA_BUS_CREATOR(
-    input wire control_signal,
-    input wire [6:0] in,
-    output wire [`ASCII_WIDTH-1:0] out
-);
-
-assign out = (control_signal) ? { 1'b0, in } : 7'hZ;
-
-endmodule
-
 module DEMO_DEBUG_VALUE_GENERATOR(
     input wire clk,
     input wire rst,
@@ -634,70 +663,6 @@ always @(posedge clk or posedge rst) begin
     end
 end
 
-
-endmodule
-
-module VGA_MUX #(
-    parameter WIDTH  = 1,
-    parameter INPUTS = 2
-)(
-    input wire [SELECT-1:0] select,
-    input wire [(WIDTH*INPUTS)-1:0] in,
-    output wire [WIDTH-1:0] out
-);
-parameter SELECT = $clog2(INPUTS);
-
-assign out = (in >> (select*WIDTH));
-
-endmodule
-
-module VGA_RAM #(
-    parameter LENGTH = 2400,
-    parameter WIDTH = 8
-)
-(
-    input wire clk,
-    input wire we,
-    input wire cs,
-    input wire oe,
-    input wire [ADDRESS_WIDTH-1:0] address,
-    inout wire [WIDTH-1:0] data
-);
-
-// ==================================
-//// Internal Parameter Field
-// ==================================
-parameter ADDRESS_WIDTH = $clog2(LENGTH);
-// ==================================
-//// Registers
-// ==================================
-reg [WIDTH-1:0] ram [0:LENGTH];
-reg [WIDTH-1:0] data_out;
-// ==================================
-//// Wires
-// ==================================
-// ==================================
-//// Wire Assignments
-// ==================================
-assign data = (cs && oe && !we) ? data_out : 8'bz;
-// ==================================
-//// Modules
-// ==================================
-// ==================================
-//// Behavioral Block
-// ==================================
-always @(posedge clk)
-begin
-    if (cs && we)
-    begin
-       ram[address] = data;
-    end
-    else if (cs && oe && !we)
-    begin
-        data_out = ram[address];
-    end
-end
-
 endmodule
 
 module ConvertXYToAddress (
@@ -722,9 +687,9 @@ module PixelRender
 );
 
 assign r = 0;
-// assign r = (pixels[8-hcount[2:0]] && enable) ? 0 : 0;
-assign g = (pixels[8-hcount[2:0]] && enable) ? 4'hF : 0;
-// assign b = (pixels[8-hcount[2:0]] && enable) ? 0 : 0;
+// assign r = (pixels[7-hcount[2:0]] && enable) ? 0 : 0;
+assign g = (pixels[7-hcount[2:0]] && enable) ? 4'hF : 0;
+// assign b = (pixels[7-hcount[2:0]] && enable) ? 0 : 0;
 assign b = 0;
 
 endmodule

@@ -29,7 +29,7 @@ eval( EAInclude(ISEJScriptLib) );
 // pre-commands:
 ISETouchFile( "init_design", "begin" );
 ISEStep( "vivado",
-         "-log VGA_Terminal.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source VGA_Terminal.tcl -notrace" );
+         "-log Keyboard_DEMO.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source Keyboard_DEMO.tcl -notrace" );
 
 
 

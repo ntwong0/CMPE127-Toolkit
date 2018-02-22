@@ -1,27 +1,36 @@
 Vivado Simulator 2017.3
 Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
-Running: /home/kammce/.local/user-share/Xilinx/Vivado/Vivado/2017.3/bin/unwrapped/lnx64.o/xelab -wto b88e81cc53414897a6cdb318bade6df8 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Test_VGA_behav xil_defaultlib.Test_VGA xil_defaultlib.glbl -log elaborate.log 
+Running: /home/kammce/.local/user-share/Xilinx/Vivado/Vivado/2017.3/bin/unwrapped/lnx64.o/xelab -wto b88e81cc53414897a6cdb318bade6df8 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Test_VGA_Keyboard_behav xil_defaultlib.Test_VGA_Keyboard xil_defaultlib.glbl -log elaborate.log 
 Using 8 slave threads.
 Starting static elaboration
-WARNING: [VRFC 10-278] actual bit length 12 differs from formal bit length 9 for port address [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_VGA.v:48]
-WARNING: [VRFC 10-278] actual bit length 9 differs from formal bit length 7 for port data [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_VGA.v:49]
-WARNING: [VRFC 10-278] actual bit length 640 differs from formal bit length 512 for port values [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:189]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 1 for port cs [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:220]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 1 for port load [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:95]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 1 for port increment [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:96]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 4 for port D [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:98]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.Syncronizer
+Compiling module xil_defaultlib.SHIFTREGISTER(WIDTH=10)
+Compiling module xil_defaultlib.COUNTER
+Compiling module xil_defaultlib.XNOR(WIDTH=8)
+Compiling module xil_defaultlib.XNOR
+Compiling module xil_defaultlib.AND
+Compiling module xil_defaultlib.TRIBUFFER(WIDTH=8)
+Compiling module xil_defaultlib.Keyboard
+Compiling module xil_defaultlib.KeyboardToASCIIROM
 Compiling module xil_defaultlib.PixelClock
-Compiling module xil_defaultlib.DEMO_DEBUG_VALUE_GENERATOR
 Compiling module xil_defaultlib.VGA
 Compiling module xil_defaultlib.VGA_Terminal_Control_Unit_defaul...
 Compiling module xil_defaultlib.ConvertXYToAddress
-Compiling module xil_defaultlib.VGA_MUX(WIDTH=12)
-Compiling module xil_defaultlib.VGA_RAM_default
-Compiling module xil_defaultlib.VGA_MUX_default
-Compiling module xil_defaultlib.VGA_BUS_CREATOR
+Compiling module xil_defaultlib.MUX(WIDTH=12)
+Compiling module xil_defaultlib.RAM_default
+Compiling module xil_defaultlib.MUX_default
 Compiling module xil_defaultlib.FontROM
 Compiling module xil_defaultlib.PixelRender
 Compiling module xil_defaultlib.VGA_Terminal
-Compiling module xil_defaultlib.Test_VGA
+Compiling module xil_defaultlib.Keyboard_DEMO_default
+Compiling module xil_defaultlib.Test_VGA_Keyboard
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot Test_VGA_behav
+Built simulation snapshot Test_VGA_Keyboard_behav

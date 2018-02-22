@@ -1,4 +1,6 @@
 `timescale 1ns / 1ps
+`default_nettype none
+ 
 //////////////////////////////////////////////////////////////////////////////////
 // Company:
 // Engineer:
@@ -38,7 +40,7 @@ module TRIBUFFER #(parameter WIDTH = 1)(
 	output wire [WIDTH-1:0] out
 );
 
-assign out = (oe) ? in : 'bZ;
+assign out = (oe) ? in : {(WIDTH){1'bZ}};
 
 endmodule
 
@@ -109,30 +111,16 @@ endmodule
 //////////////////////////////////
 
 module MUX #(
-	parameter WIDTH  = 1,
-	parameter INPUTS = 2
+    parameter WIDTH  = 1,
+    parameter INPUTS = 2
 )(
-	input wire [7:0] select,
-	// INPUTS x WIDTH bit array
-	input wire [(WIDTH*INPUTS)-1:0] in,
-	output wire [WIDTH-1:0] out
+    input wire [SELECT-1:0] select,
+    input wire [(WIDTH*INPUTS)-1:0] in,
+    output wire [WIDTH-1:0] out
 );
+parameter SELECT = $clog2(INPUTS);
 
-assign out = in[select];
-
-endmodule
-
-module DEMUX #(
-	parameter WIDTH  = 1,
-	parameter OUTPUTS = 2
-)(
-	input wire [7:0] select,
-	// INPUTS x WIDTH bit array
-	input wire [WIDTH-1:0] in,
-	output wire [(WIDTH*OUTPUTS)-1:0] out
-);
-
-assign out = (in << select*WIDTH);
+assign out = (in >> (select*WIDTH));
 
 endmodule
 
@@ -279,7 +267,7 @@ endmodule
 module SHIFTREGISTER #(parameter WIDTH = 8)(
 	input wire rst,
 	input wire clk,
-	input wire clr,
+	input wire en,
 	input wire in,
 	output reg [WIDTH-1:0] Q
 );
@@ -292,7 +280,7 @@ begin
     end
     else
     begin
-        Q <= { Q[7:1], in };
+        Q <= { Q[WIDTH-2:0], in };
     end
 end
 
@@ -306,7 +294,7 @@ module COUNTER #(parameter WIDTH = 4)(
 	input wire rst,
 	input wire clk,
 	input wire load,
-	input wire dec,
+	input wire increment,
 	input wire enable,
 	input wire [WIDTH-1:0] D,
 	output reg [WIDTH-1:0] Q
@@ -324,7 +312,7 @@ begin
     end
     else if(enable)
     begin
-    	if(dec)
+    	if(increment)
     	begin
 	        Q <= Q + 1;
     	end
@@ -332,6 +320,36 @@ begin
     		Q <= Q - 1;
     	end
     end
+end
+
+endmodule
+
+//////////////////////////////////
+// External Signal Syncronizer
+//////////////////////////////////
+
+module Syncronizer #(
+	parameter WIDTH = 1,
+	parameter DEFAULT_DISABLED = 0
+)
+(
+	input wire clk,
+	input wire rst,
+	input wire en,
+	input wire [WIDTH-1:0] in,
+	output reg [WIDTH-1:0] sync_out
+);
+
+always@(posedge clk)
+begin
+	if(en)
+	begin
+		sync_out = in;
+	end
+	else
+	begin
+		sync_out = DEFAULT_DISABLED;
+	end
 end
 
 endmodule
