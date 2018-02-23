@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.3 (lin64) Build 2018833 Wed Oct  4 19:58:07 MDT 2017
-| Date         : Thu Feb 22 11:45:57 2018
+| Date         : Fri Feb 23 13:33:26 2018
 | Host         : kammce-Lenovo-Y40-80 running 64-bit Ubuntu 16.04.3 LTS
 | Command      : report_utilization -file Keyboard_DEMO_utilization_synth.rpt -pb VGA_Terminal_utilization_synth.pb
 | Design       : Keyboard_DEMO
@@ -30,14 +30,14 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             |  895 |     0 |     63400 |  1.41 |
-|   LUT as Logic          |  895 |     0 |     63400 |  1.41 |
+| Slice LUTs*             |  852 |     0 |     63400 |  1.34 |
+|   LUT as Logic          |  852 |     0 |     63400 |  1.34 |
 |   LUT as Memory         |    0 |     0 |     19000 |  0.00 |
 | Slice Registers         |  275 |     0 |    126800 |  0.22 |
 |   Register as Flip Flop |  275 |     0 |    126800 |  0.22 |
 |   Register as Latch     |    0 |     0 |    126800 |  0.00 |
-| F7 Muxes                |  104 |     0 |     31700 |  0.33 |
-| F8 Muxes                |   12 |     0 |     15850 |  0.08 |
+| F7 Muxes                |   90 |     0 |     31700 |  0.28 |
+| F8 Muxes                |    7 |     0 |     15850 |  0.04 |
 +-------------------------+------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 
@@ -148,18 +148,18 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| LUT6     |  426 |                 LUT |
+| LUT6     |  438 |                 LUT |
 | FDCE     |  265 |        Flop & Latch |
-| LUT2     |  257 |                 LUT |
-| LUT4     |  145 |                 LUT |
-| MUXF7    |  104 |               MuxFx |
+| LUT2     |  240 |                 LUT |
+| LUT4     |  119 |                 LUT |
 | CARRY4   |   98 |          CarryLogic |
+| MUXF7    |   90 |               MuxFx |
 | LUT1     |   83 |                 LUT |
-| LUT3     |   50 |                 LUT |
-| LUT5     |   45 |                 LUT |
+| LUT3     |   51 |                 LUT |
+| LUT5     |   39 |                 LUT |
 | OBUF     |   15 |                  IO |
-| MUXF8    |   12 |               MuxFx |
 | FDRE     |   10 |        Flop & Latch |
+| MUXF8    |    7 |               MuxFx |
 | IBUF     |    4 |                  IO |
 | RAMB36E1 |    2 |        Block Memory |
 | BUFG     |    2 |               Clock |

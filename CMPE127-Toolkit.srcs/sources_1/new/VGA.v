@@ -388,7 +388,6 @@ reg [`ASCII_WIDTH-1:0] video_data_out;
 reg [`ASCII_WIDTH-1:0] buffer_data_out;
 reg [3:0] temp_value;
 reg video_out_control;
-reg buffer_out_control;
 integer previous_position;
 integer i;
 integer v;

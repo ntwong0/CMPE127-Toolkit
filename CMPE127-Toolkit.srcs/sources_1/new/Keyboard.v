@@ -4,6 +4,7 @@
 `define SCAN_CODE_LENGTH 11
 `define SCAN_CODE_DATA_LENGTH 8
 `define RGB_RESOLUTION  		 4
+`define FREQ_IN 32'd100_000_000
 
 //////////////////////////////////////////////////////////////////////////////////
 // Company:
@@ -24,7 +25,6 @@
 // Additional Comments:
 //
 //////////////////////////////////////////////////////////////////////////////////
-
 module Keyboard(
     //// input 100 MHz clock
     input wire clk,
@@ -42,6 +42,7 @@ module Keyboard(
     output wire ready
 );
 
+wire new_code;
 wire ps2_clk_sync;
 wire ps2_data_sync;
 wire count_finished;
@@ -50,9 +51,14 @@ wire [3:0] count_output;
 wire [`SCAN_CODE_LENGTH-1:0] scan_code;
 wire calculated_parity;
 wire is_valid_scan_code;
+wire scancode_based_clear;
+wire ready;
 
-assign internal_clear = (rst | clr);
-assign count_finished = (count_output == `SCAN_CODE_LENGTH-1);
+assign internal_clear = (rst | clr  | scancode_based_clear);
+// assign scancode_based_clear = (new_code && (scan_code[9:2] == 8'hF0 || scan_code[9:2] == 8'hE0));
+assign count_finished = (count_output == `SCAN_CODE_LENGTH);
+// assign ready = (new_code && scan_code[9:2] != 8'hF0 && scan_code[9:2] != 8'hE0);
+assign ready = new_code;
 
 Syncronizer #(.WIDTH(1)) sync_clk (
 	.clk(clk),
@@ -110,9 +116,9 @@ XNOR #(.WIDTH(2)) parity_matcher (
 	.out(is_valid_scan_code)
 );
 
-AND #(.WIDTH(2)) ready_signal (
+AND #(.WIDTH(2)) new_signal (
     .in({ is_valid_scan_code, count_finished }),
-    .out(ready)
+    .out(new_code)
 );
 
 TRIBUFFER #(.WIDTH(8)) scan_code_buffer (
@@ -169,8 +175,7 @@ always @(scan_code) begin
         8'h0E: ascii = "`";	
         8'h4E: ascii = "-";	
         8'h55: ascii = "=";	
-        8'h5D: ascii = "\\";	
-        8'h66: ascii = " ";
+        8'h5D: ascii = "\\";
         8'h29: ascii = " ";
         8'h76: ascii = 8'h03; //// escape
         8'h5B: ascii = "]";
@@ -192,7 +197,7 @@ module Keyboard_DEMO(
     input wire rst,
     input wire ps2_clk,
     input wire ps2_data,
-    //input wire clr,
+    // input wire clr,
     output wire ready,
     //// Horizontal sync pulse for VGA controller
     output wire hsync,
@@ -256,7 +261,7 @@ VGA_Terminal vga_term(
         32'h0,
         32'h0,
         {31'h0, clr},
-        32'h0,
+        {20'h0, address},
         
         32'h0,
         32'h0,
@@ -264,8 +269,8 @@ VGA_Terminal vga_term(
         { {(32-STATE_WIDTH){1'b0}}, state }
     }),
     .address(address),
-    .data(ascii_reg),
-    .cs(vga_cs),
+    .data(ascii),
+    .cs(ready),
     .busy()
 );
 
@@ -276,18 +281,19 @@ reg [11:0] address;
 reg [STATE_WIDTH-1:0] state;
 reg [7:0] ascii_reg;
 reg [7:0] scan_code_reg;
+reg [31:0] counter;
 reg clr;
 reg vga_cs;
 
 parameter IDLE = 0;
-parameter CHECK_FOR_RELEASE_CODE = 1;
-parameter CLEAR_RELEASE_CODE = 2;
-parameter WAITING_FOR_KEY_CODE = 3;
-parameter WRITING_KEY_CODE_TO_MEMORY = 4;
-parameter WAIT_EXTRA_STATE = 5;
-parameter INCREMENT_ADDRESS = 6;
-parameter CLEAR_KEYBOARD = 7;
-parameter STATE_WIDTH = $clog2(CLEAR_KEYBOARD);
+parameter KEY_PRESS_SCANCODE_DETECTED = 1;
+parameter CLEAR_SCANCODE = 2;
+parameter WAIT_FOR_KEY_RELEASE_SIGNAL = 3;
+parameter CLEAR_RELEASE_SCANCODE = 4;
+parameter WAIT_FOR_FINAL_SCANCODE = 5;
+parameter CLEAR_FINAL_SCANCODE = 6;
+parameter INCREMENT_ADDRESS = 7;
+parameter STATE_WIDTH = $clog2(INCREMENT_ADDRESS);
 
 always@(posedge clk or posedge rst)
 begin
@@ -297,72 +303,76 @@ begin
         address = 0;
         ascii_reg = 0;
         clr = 0;
+        counter = 0;
         vga_cs = 0;
     end
     else
     begin
         case(state)
             IDLE: begin
-                 clr    = 0;
-                 vga_cs = 0;
+                clr     = 0;
+                vga_cs  = 0;
                 if(ready)
-                begin
-                    state = CHECK_FOR_RELEASE_CODE;
-                end
-            end
-            CHECK_FOR_RELEASE_CODE: begin
-                 clr    = 0;
-                 vga_cs = 0;
-                if(scan_code == 8'hF0)
                 begin
                     scan_code_reg = scan_code;
-                    state = CLEAR_RELEASE_CODE;
-                end
-                else
-                begin
-                    state = CLEAR_KEYBOARD;
-                end
-            end
-            CLEAR_RELEASE_CODE: begin
-                 clr    = 1;
-                 vga_cs = 0;
-                state = WAITING_FOR_KEY_CODE;
-            end
-            WAITING_FOR_KEY_CODE: begin
-                 clr    = 0;
-                 vga_cs = 0;
-                if(ready)
-                begin
                     vga_cs = 1;
                     ascii_reg = ascii;
-                    state = WRITING_KEY_CODE_TO_MEMORY;
+                    state  = KEY_PRESS_SCANCODE_DETECTED;
                 end
             end
-            WRITING_KEY_CODE_TO_MEMORY: begin
-                clr    = 1;
+            KEY_PRESS_SCANCODE_DETECTED: begin
+                clr    = 0;
                 vga_cs = 1;
-                scan_code_reg = scan_code;
-                state = WAIT_EXTRA_STATE;
+                state = CLEAR_SCANCODE;
             end
-            WAIT_EXTRA_STATE: begin
-                 clr    = 0;
-                 vga_cs = 1;
-                state = INCREMENT_ADDRESS;
+            CLEAR_SCANCODE: begin
+                clr    = 1;
+                vga_cs = 0;
+                state = WAIT_FOR_KEY_RELEASE_SIGNAL;
             end
-            INCREMENT_ADDRESS: begin
-                 clr    = 0;
-                 vga_cs = 0;
-                address = address + 1;
-                state = CLEAR_KEYBOARD;
+            WAIT_FOR_KEY_RELEASE_SIGNAL: begin
+                clr    = 0;
+                vga_cs = 0;
+                if(ready)
+                begin
+                    scan_code_reg = scan_code;
+                    if(scan_code == 8'hF0)
+                    begin
+                        state = WAIT_FOR_FINAL_SCANCODE;
+                    end
+                    vga_cs = 0;
+                    clr    = 1;
+                end
             end
-            CLEAR_KEYBOARD: begin
-                 clr    = 1;
-                 vga_cs = 0;
-                state = IDLE;
+            // CLEAR_RELEASE_SCANCODE: begin
+            //     clr    = 1;
+            //     vga_cs = 0;
+            //     state = WAIT_FOR_FINAL_SCANCODE;
+            // end
+            WAIT_FOR_FINAL_SCANCODE: begin
+                clr    = 0;
+                vga_cs = 0;
+                if(ready)
+                begin
+                    clr    = 1;
+                    address = address + 1;
+                    state = IDLE;
+                end
             end
+            // CLEAR_FINAL_SCANCODE: begin
+            //     clr    = 1;
+            //     vga_cs = 0;
+            //     state = INCREMENT_ADDRESS;
+            // end
+            // INCREMENT_ADDRESS: begin
+            //     clr    = 0;
+            //     vga_cs = 0;
+            //     address = address + 1;
+            //     state = IDLE;
+            // end
             default: begin
-                 clr    = 1;
-                 vga_cs = 0;
+                clr    = 1;
+                vga_cs = 0;
                 state = IDLE;  
             end
         endcase

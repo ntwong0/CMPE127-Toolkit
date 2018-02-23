@@ -80,13 +80,13 @@ task PS2_TRANSMIT;
 	integer k;
 begin
     
-    payload = {11{1'b1, ~^send, send, 1'b0}};
-    $display("payload = %d",payload);
-    
+    payload = {1'b1, ~^send, send[7], send[6], send[5], send[4], send[3], send[2], send[1], send[0], 1'b0};
+    $display("payload = 0b%b",payload);
 	for (k=0; k < 11; k = k + 1)
 	begin
         ps2_data = payload[k];
         ps2_clk = 1;
+        $display("payload = 0b%b :: send = 0b%b :: ps2_data = 0b%b :: k = %d", payload, send, ps2_data, k);
         CLOCK(1);
         ps2_clk = 0;
         CLOCK(1);
