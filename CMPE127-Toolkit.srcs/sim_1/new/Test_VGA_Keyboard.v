@@ -44,8 +44,8 @@ task RESET;
 begin
     rst = 0;
     clk = 0;
-    ps2_clk = 0;
-    ps2_data = 0;
+    ps2_clk = 1;
+    ps2_data = 1;
     #5
     rst = 1;
     #5
@@ -67,12 +67,48 @@ begin
 end
 endtask
 
-parameter FULL_CYCLE = 32'd1000;
+reg [10:0] payload;
+
+task PS2_TRANSMIT;
+	input [7:0] send;
+	integer k;
+begin
+    
+    payload = {1'b1, ~^send, send[7], send[6], send[5], send[4], send[3], send[2], send[1], send[0], 1'b0};
+    $display("payload = 0b%b",payload);
+	for (k=0; k < 11; k = k + 1)
+	begin
+        ps2_data = payload[k];
+        ps2_clk = 1;
+        $display("payload = 0b%b :: send = 0b%b :: ps2_data = 0b%b :: k = %d", payload, send, ps2_data, k);
+        CLOCK(1);
+        ps2_clk = 0;
+        CLOCK(1);
+	end
+    ps2_clk = 1;
+    CLOCK(1);
+end
+endtask
+
+parameter FULL_CYCLE = 32'd10_000;
 
 initial begin
     #10
     #10
 	RESET;
+    CLOCK(FULL_CYCLE);
+    CLOCK(5);
+    PS2_TRANSMIT(8'h1C);
+    CLOCK(5);
+    PS2_TRANSMIT(8'hF0);
+    CLOCK(5);
+    PS2_TRANSMIT(8'h1C);
+    CLOCK(1);
+    PS2_TRANSMIT(8'h32);
+    CLOCK(5);
+    PS2_TRANSMIT(8'hF0);
+    CLOCK(5);
+    PS2_TRANSMIT(8'h32);
     CLOCK(FULL_CYCLE);
     #10 $stop;
     #5 $finish;

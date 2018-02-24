@@ -54,7 +54,8 @@ wire is_valid_scan_code;
 wire scancode_based_clear;
 wire ready;
 
-assign internal_clear = (rst | clr  | scancode_based_clear);
+// assign internal_clear = (rst | clr  | scancode_based_clear);
+assign internal_clear = (rst | clr);
 // assign scancode_based_clear = (new_code && (scan_code[9:2] == 8'hF0 || scan_code[9:2] == 8'hE0));
 assign count_finished = (count_output == `SCAN_CODE_LENGTH);
 // assign ready = (new_code && scan_code[9:2] != 8'hF0 && scan_code[9:2] != 8'hE0);
@@ -229,8 +230,27 @@ Keyboard keyboard(
     .ready(ready)
 );
 
+reg rd_cs;
+reg rd_en;
+wire [7:0] fifo_stored_scancode;
+wire full, empty;
+
+FIFO #(.LENGTH(16), .WIDTH(8)
+) scan_code_fifo (
+    .clk(clk),
+    .rst(rst),
+    .wr_cs(ready),
+    .wr_en(ready),
+    .rd_cs(rd_cs),
+    .rd_en(rd_en),
+    .full(full),
+    .empty(empty),
+    .out(fifo_stored_scancode),
+    .in(scan_code)
+);
+
 KeyboardToASCIIROM rom(
-    .scan_code(scan_code_reg),
+    .scan_code(fifo_stored_scancode),
     .ascii(ascii)
 );
 
@@ -245,12 +265,12 @@ VGA_Terminal vga_term(
     .values({
         32'h0,
         32'h0,
-        {24'h0, scan_code},
+        {31'h0, full},
         {24'h0, scan_code_reg},
 
         32'h0,
         32'h0,
-        {24'h0, ascii},
+        {31'h0, empty},
         {24'h0, ascii_reg},
         
         32'h0,
@@ -287,13 +307,13 @@ reg vga_cs;
 
 parameter IDLE = 0;
 parameter KEY_PRESS_SCANCODE_DETECTED = 1;
-parameter CLEAR_SCANCODE = 2;
-parameter WAIT_FOR_KEY_RELEASE_SIGNAL = 3;
-parameter CLEAR_RELEASE_SCANCODE = 4;
-parameter WAIT_FOR_FINAL_SCANCODE = 5;
-parameter CLEAR_FINAL_SCANCODE = 6;
-parameter INCREMENT_ADDRESS = 7;
-parameter STATE_WIDTH = $clog2(INCREMENT_ADDRESS);
+parameter GET_FIFO_SCANCODE = 2;
+parameter GET_ASCII_AND_WRITE_TO_VGA = 3;
+parameter WAIT_FOR_KEY_RELEASE_SIGNAL = 4;
+parameter INTERMISSION = 5;
+parameter WAIT_FOR_FINAL_SCANCODE = 6;
+parameter INTERMISSION2 = 7;
+parameter STATE_WIDTH = $clog2(INTERMISSION2);
 
 always@(posedge clk or posedge rst)
 begin
@@ -305,75 +325,86 @@ begin
         clr = 0;
         counter = 0;
         vga_cs = 0;
+        rd_en = 0;
+        rd_cs = 0;
     end
     else
     begin
+        if(ready)
+        begin
+            scan_code_reg = scan_code;
+            clr = 1;
+        end
+        else 
+        begin
+            clr = 0;
+        end
         case(state)
             IDLE: begin
-                clr     = 0;
                 vga_cs  = 0;
-                if(ready)
+                rd_en = 0;
+                rd_cs = 0;
+                if(!empty)
                 begin
-                    scan_code_reg = scan_code;
-                    vga_cs = 1;
+                    rd_en = 1;
+                    rd_cs = 1;
                     state  = KEY_PRESS_SCANCODE_DETECTED;
                 end
             end
             KEY_PRESS_SCANCODE_DETECTED: begin
-                clr    = 0;
-                ascii_reg = ascii;
-                vga_cs = 1;
-                state = CLEAR_SCANCODE;
-            end
-            CLEAR_SCANCODE: begin
-                clr    = 1;
                 vga_cs = 0;
+                rd_en = 0;
+                rd_cs = 0;
+                state = GET_FIFO_SCANCODE;
+            end
+            GET_FIFO_SCANCODE: begin
+                vga_cs = 1;
+                rd_en = 0;
+                rd_cs = 0;
+                scan_code_reg = fifo_stored_scancode;
+                state = GET_ASCII_AND_WRITE_TO_VGA;
+            end
+            GET_ASCII_AND_WRITE_TO_VGA: begin
+                vga_cs = 1;
+                rd_en = 0;
+                rd_cs = 0;
+                ascii_reg = ascii;
                 state = WAIT_FOR_KEY_RELEASE_SIGNAL;
             end
             WAIT_FOR_KEY_RELEASE_SIGNAL: begin
-                clr    = 0;
                 vga_cs = 0;
-                if(ready)
+                if(!empty)
                 begin
-                    scan_code_reg = scan_code;
-                    if(scan_code == 8'hF0)
-                    begin
-                        state = WAIT_FOR_FINAL_SCANCODE;
-                    end
-                    vga_cs = 0;
-                    clr    = 1;
+                    rd_en = 1;
+                    rd_cs = 1;
+                    state = INTERMISSION;
                 end
             end
-            // CLEAR_RELEASE_SCANCODE: begin
-            //     clr    = 1;
-            //     vga_cs = 0;
-            //     state = WAIT_FOR_FINAL_SCANCODE;
-            // end
+            INTERMISSION: begin
+                vga_cs = 0;
+                rd_en = 0;
+                rd_cs = 0;
+                state = WAIT_FOR_FINAL_SCANCODE;
+            end
             WAIT_FOR_FINAL_SCANCODE: begin
-                clr    = 0;
                 vga_cs = 0;
-                if(ready)
+                if(!empty)
                 begin
-                    clr    = 1;
+                    rd_en = 1;
+                    rd_cs = 1;
+                    state = INTERMISSION2;
                     address = address + 1;
-                    state = IDLE;
                 end
             end
-            // CLEAR_FINAL_SCANCODE: begin
-            //     clr    = 1;
-            //     vga_cs = 0;
-            //     state = INCREMENT_ADDRESS;
-            // end
-            // INCREMENT_ADDRESS: begin
-            //     clr    = 0;
-            //     vga_cs = 0;
-            //     address = address + 1;
-            //     state = IDLE;
-            // end
-            default: begin
-                clr    = 1;
+            INTERMISSION2: begin
                 vga_cs = 0;
-                state = IDLE;  
+                rd_en = 0;
+                rd_cs = 0;
+                state = IDLE;
+            end
+            default: begin
+                vga_cs = 0;
+                state = IDLE;
             end
         endcase
     end
