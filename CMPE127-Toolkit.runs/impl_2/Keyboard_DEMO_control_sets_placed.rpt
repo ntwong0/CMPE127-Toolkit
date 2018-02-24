@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.3 (lin64) Build 2018833 Wed Oct  4 19:58:07 MDT 2017
-| Date         : Fri Feb 23 13:39:56 2018
+| Date         : Fri Feb 23 17:54:53 2018
 | Host         : kammce-Lenovo-Y40-80 running 64-bit Ubuntu 16.04.3 LTS
 | Command      : report_control_sets -file Keyboard_DEMO_control_sets_placed.rpt
 | Design       : Keyboard_DEMO
@@ -31,11 +31,11 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               2 |            1 |
+| No           | No                    | No                     |               2 |            2 |
 | No           | No                    | Yes                    |              68 |           20 |
 | No           | Yes                   | No                     |               0 |            0 |
-| Yes          | No                    | No                     |               8 |            2 |
-| Yes          | No                    | Yes                    |             197 |           65 |
+| Yes          | No                    | No                     |              16 |            8 |
+| Yes          | No                    | Yes                    |             197 |           68 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 

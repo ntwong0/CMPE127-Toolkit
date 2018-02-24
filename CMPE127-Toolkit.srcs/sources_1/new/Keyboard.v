@@ -230,7 +230,7 @@ Keyboard keyboard(
 );
 
 KeyboardToASCIIROM rom(
-    .scan_code(scan_code),
+    .scan_code(scan_code_reg),
     .ascii(ascii)
 );
 
@@ -269,8 +269,8 @@ VGA_Terminal vga_term(
         { {(32-STATE_WIDTH){1'b0}}, state }
     }),
     .address(address),
-    .data(ascii),
-    .cs(ready),
+    .data(ascii_reg),
+    .cs(vga_cs),
     .busy()
 );
 
@@ -316,12 +316,12 @@ begin
                 begin
                     scan_code_reg = scan_code;
                     vga_cs = 1;
-                    ascii_reg = ascii;
                     state  = KEY_PRESS_SCANCODE_DETECTED;
                 end
             end
             KEY_PRESS_SCANCODE_DETECTED: begin
                 clr    = 0;
+                ascii_reg = ascii;
                 vga_cs = 1;
                 state = CLEAR_SCANCODE;
             end

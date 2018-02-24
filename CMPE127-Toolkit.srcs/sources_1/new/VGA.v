@@ -338,7 +338,7 @@ FontROM rom(
     .pixels(pixels)
 );
 
-PixelRender pixel_renderer (
+PixelRender pixel_renderer(
     .enable(enable_rgb),
     .hcount(hcount),
     .pixels(pixels),
