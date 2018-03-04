@@ -316,12 +316,16 @@ always @(scan_code) begin
         8'h5D: ascii = "\\";
         8'h29: ascii = " ";
         8'h76: ascii = 8'h03; //// escape
+        8'h54: ascii = "]";
         8'h5B: ascii = "]";
         8'h4C: ascii = ";";
         8'h52: ascii = "'";
         8'h41: ascii = ",";
         8'h49: ascii = ".";
         8'h4A: ascii = "/";
+        8'h7C: ascii = "*";
+        8'h7B: ascii = "-";
+        8'h79: ascii = "+";
         8'h66: ascii = 8'hF7; // backspace
         8'h5A: ascii = "\n"; // enter
       default: ascii = 8'hFF;

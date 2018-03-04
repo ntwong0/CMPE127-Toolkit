@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2017.3 (lin64) Build 2018833 Wed Oct  4 19:58:07 MDT 2017
-| Date             : Sat Mar  3 19:24:11 2018
+| Date             : Sun Mar  4 13:08:57 2018
 | Host             : kammce-Lenovo-Y40-80 running 64-bit Ubuntu 16.04.3 LTS
 | Command          : report_power -file Keyboard_DEMO_power_routed.rpt -pb Keyboard_DEMO_power_summary_routed.pb -rpx Keyboard_DEMO_power_routed.rpx
 | Design           : Keyboard_DEMO
@@ -54,14 +54,14 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.002 |        3 |       --- |             --- |
 | Slice Logic              |     0.005 |     1835 |       --- |             --- |
-|   LUT as Logic           |     0.004 |     1050 |     63400 |            1.66 |
+|   LUT as Logic           |     0.004 |     1049 |     63400 |            1.65 |
 |   CARRY4                 |    <0.001 |      115 |     15850 |            0.73 |
 |   F7/F8 Muxes            |    <0.001 |      165 |     63400 |            0.26 |
 |   LUT as Distributed RAM |    <0.001 |       16 |     19000 |            0.08 |
 |   Register               |    <0.001 |      307 |    126800 |            0.24 |
 |   Others                 |     0.000 |       25 |       --- |             --- |
 |   BUFG                   |     0.000 |        1 |        32 |            3.13 |
-| Signals                  |     0.004 |     1301 |       --- |             --- |
+| Signals                  |     0.004 |     1299 |       --- |             --- |
 | Block RAM                |     0.002 |        2 |       135 |            1.48 |
 | DSPs                     |     0.000 |        1 |       240 |            0.42 |
 | I/O                      |     0.012 |       21 |       210 |           10.00 |
