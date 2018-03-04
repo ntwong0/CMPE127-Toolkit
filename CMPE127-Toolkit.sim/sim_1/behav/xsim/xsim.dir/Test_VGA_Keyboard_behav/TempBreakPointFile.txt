@@ -1,13 +1,1 @@
 Breakpoint File Version 1.0
-111 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_VGA_Keyboard.v
-109 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_VGA_Keyboard.v
-107 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_VGA_Keyboard.v
-108 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_VGA_Keyboard.v
-110 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_VGA_Keyboard.v
-393 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v
-372 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v
-400 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v
-349 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v
-355 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v
-361 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v
-378 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v

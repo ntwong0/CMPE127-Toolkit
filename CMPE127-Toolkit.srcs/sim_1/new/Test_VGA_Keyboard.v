@@ -26,6 +26,7 @@ reg clk, rst;
 reg ps2_clk, ps2_data;
 wire ready, hsync, vsync;
 wire [3:0] r, g, b;
+reg [63:0] counter;
 
 Keyboard_DEMO demo(
     .clk(clk),
@@ -46,6 +47,7 @@ begin
     clk = 0;
     ps2_clk = 1;
     ps2_data = 1;
+    counter = 0;
     #5
     rst = 1;
     #5
@@ -54,7 +56,7 @@ end
 endtask
 
 task CLOCK;
-	input [31:0] count;
+	input [63:0] count;
 	integer k;
 begin
 	for (k=0; k < count; k = k+1)
@@ -63,6 +65,7 @@ begin
 		clk = 1;
 		#5
 		clk = 0;
+		counter = counter + 1;
 	end
 end
 endtask
@@ -90,25 +93,42 @@ begin
 end
 endtask
 
-parameter FULL_CYCLE = 32'd10_000;
+parameter LOAD_RAM = 32'd2400;
+parameter FULL_CYCLE = 32'd1_555_738;
 
 initial begin
     #10
     #10
 	RESET;
+    CLOCK(LOAD_RAM);
+    CLOCK(5);
+    PS2_TRANSMIT(8'h1C);
+    CLOCK(10);
+    PS2_TRANSMIT(8'hF0);
+    CLOCK(10);
+    PS2_TRANSMIT(8'h1C);
+    CLOCK(10);
+    PS2_TRANSMIT(8'h32);
+    CLOCK(10);
+    PS2_TRANSMIT(8'hF0);
+    CLOCK(10);
+    PS2_TRANSMIT(8'h32);
+    CLOCK(10);
+    PS2_TRANSMIT(8'h21);
+    CLOCK(10);
+    PS2_TRANSMIT(8'hF0);
+    CLOCK(10);
+    PS2_TRANSMIT(8'h21);
+    CLOCK(10);
+    PS2_TRANSMIT(8'h66); //// backspace
+    CLOCK(10);
     CLOCK(FULL_CYCLE);
-    CLOCK(5);
-    PS2_TRANSMIT(8'h1C);
-    CLOCK(5);
+    PS2_TRANSMIT(8'h21);
+    CLOCK(10);
     PS2_TRANSMIT(8'hF0);
-    CLOCK(5);
-    PS2_TRANSMIT(8'h1C);
-    CLOCK(1);
-    PS2_TRANSMIT(8'h32);
-    CLOCK(5);
-    PS2_TRANSMIT(8'hF0);
-    CLOCK(5);
-    PS2_TRANSMIT(8'h32);
+    CLOCK(10);
+    PS2_TRANSMIT(8'h21);
+    CLOCK(10);
     CLOCK(FULL_CYCLE);
     #10 $stop;
     #5 $finish;

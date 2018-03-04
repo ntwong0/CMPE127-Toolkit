@@ -60,15 +60,12 @@ proc step_failed { step } {
   close $ch
 }
 
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 
 start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param xicom.use_bs_reader 1
-  set_param synth.incrementalSynthesisCache ./.Xil/Vivado-2304-kammce-Lenovo-Y40-80/incrSyn
   create_project -in_memory -part xc7a100tcsg324-1
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
@@ -95,7 +92,7 @@ set rc [catch {
   create_msg_db opt_design.pb
   opt_design 
   write_checkpoint -force Keyboard_DEMO_opt.dcp
-  create_report "impl_2_opt_report_drc_0" "report_drc -file Keyboard_DEMO_drc_opted.rpt -pb VGA_Terminal_drc_opted.pb -rpx VGA_Terminal_drc_opted.rpx"
+  create_report "impl_2_opt_report_drc_0" "report_drc -file Keyboard_DEMO_drc_opted.rpt -pb Keyboard_DEMO_drc_opted.pb -rpx Keyboard_DEMO_drc_opted.rpx"
   close_msg_db -file opt_design.pb
 } RESULT]
 if {$rc} {
@@ -114,7 +111,7 @@ set rc [catch {
   place_design 
   write_checkpoint -force Keyboard_DEMO_placed.dcp
   create_report "impl_2_place_report_io_0" "report_io -file Keyboard_DEMO_io_placed.rpt"
-  create_report "impl_2_place_report_utilization_0" "report_utilization -file Keyboard_DEMO_utilization_placed.rpt -pb VGA_Terminal_utilization_placed.pb"
+  create_report "impl_2_place_report_utilization_0" "report_utilization -file Keyboard_DEMO_utilization_placed.rpt -pb Keyboard_DEMO_utilization_placed.pb"
   create_report "impl_2_place_report_control_sets_0" "report_control_sets -file Keyboard_DEMO_control_sets_placed.rpt"
   close_msg_db -file place_design.pb
 } RESULT]
@@ -132,11 +129,11 @@ set rc [catch {
   create_msg_db route_design.pb
   route_design 
   write_checkpoint -force Keyboard_DEMO_routed.dcp
-  create_report "impl_2_route_report_drc_0" "report_drc -file Keyboard_DEMO_drc_routed.rpt -pb VGA_Terminal_drc_routed.pb -rpx VGA_Terminal_drc_routed.rpx"
-  create_report "impl_2_route_report_methodology_0" "report_methodology -file Keyboard_DEMO_methodology_drc_routed.rpt -pb VGA_Terminal_methodology_drc_routed.pb -rpx VGA_Terminal_methodology_drc_routed.rpx"
-  create_report "impl_2_route_report_power_0" "report_power -file Keyboard_DEMO_power_routed.rpt -pb VGA_Terminal_power_summary_routed.pb -rpx VGA_Terminal_power_routed.rpx"
-  create_report "impl_2_route_report_route_status_0" "report_route_status -file Keyboard_DEMO_route_status.rpt -pb VGA_Terminal_route_status.pb"
-  create_report "impl_2_route_report_timing_summary_0" "report_timing_summary -file Keyboard_DEMO_timing_summary_routed.rpt -warn_on_violation  -rpx VGA_Terminal_timing_summary_routed.rpx"
+  create_report "impl_2_route_report_drc_0" "report_drc -file Keyboard_DEMO_drc_routed.rpt -pb Keyboard_DEMO_drc_routed.pb -rpx Keyboard_DEMO_drc_routed.rpx"
+  create_report "impl_2_route_report_methodology_0" "report_methodology -file Keyboard_DEMO_methodology_drc_routed.rpt -pb Keyboard_DEMO_methodology_drc_routed.pb -rpx Keyboard_DEMO_methodology_drc_routed.rpx"
+  create_report "impl_2_route_report_power_0" "report_power -file Keyboard_DEMO_power_routed.rpt -pb Keyboard_DEMO_power_summary_routed.pb -rpx Keyboard_DEMO_power_routed.rpx"
+  create_report "impl_2_route_report_route_status_0" "report_route_status -file Keyboard_DEMO_route_status.rpt -pb Keyboard_DEMO_route_status.pb"
+  create_report "impl_2_route_report_timing_summary_0" "report_timing_summary -file Keyboard_DEMO_timing_summary_routed.rpt -warn_on_violation  -rpx Keyboard_DEMO_timing_summary_routed.rpx"
   create_report "impl_2_route_report_incremental_reuse_0" "report_incremental_reuse -file Keyboard_DEMO_incremental_reuse_routed.rpt"
   create_report "impl_2_route_report_clock_utilization_0" "report_clock_utilization -file Keyboard_DEMO_clock_utilization_routed.rpt"
   close_msg_db -file route_design.pb

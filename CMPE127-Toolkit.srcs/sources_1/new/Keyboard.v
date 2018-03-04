@@ -25,6 +25,143 @@
 // Additional Comments:
 //
 //////////////////////////////////////////////////////////////////////////////////
+
+module ASCII_Keyboard(
+    input wire clk,
+    input wire rst,
+    input wire ps2_clk,
+    input wire ps2_data,
+    input wire oe,
+    input wire next,
+    output wire [7:0] ascii,
+    output wire ready,
+    output wire underflow
+);
+
+wire [7:0] fifo_ascii;
+wire [7:0] translated_to_ascii;
+wire full, empty;
+wire [7:0] scan_code; 
+wire key_ready;
+
+assign ascii = (oe) ? fifo_ascii : 8'hZ;
+assign ready = (!empty);
+
+Keyboard keyboard(
+    .clk(clk),
+    .rst(rst),
+    .ps2_clk(ps2_clk),
+    .ps2_data(ps2_data),
+    .data(scan_code),
+    .cs(1),
+    .clr(clr),
+    .ready(key_ready)
+);
+
+FIFO #(
+    .LENGTH(16),
+    .WIDTH(8)
+) ascii_to_vga (
+    .clk(clk),
+    .rst(rst),
+    .wr_cs(fifo_control),
+    .wr_en(fifo_control),
+    .rd_cs(next),
+    .rd_en(next),
+    .full(full),
+    .overflow(),
+    .empty(empty),
+    .underflow(underflow),
+    .out(fifo_ascii),
+    .in(translated_to_ascii)
+);
+
+KeyboardToASCIIROM rom(
+    .scan_code(scan_code_reg),
+    .ascii(translated_to_ascii)
+);
+
+parameter WAITING = 0;
+parameter NEW_CODE = 1;
+parameter TRANSLATE = 2;
+parameter WRITE_TO_FIFO = 3;
+parameter STATE_WIDTH = $clog2(WRITE_TO_FIFO+1);
+
+reg [11:0] address;
+reg [STATE_WIDTH-1:0] state;
+reg [7:0] scan_code_reg;
+reg clr;
+reg break_code_detected;
+reg empty_reg;
+reg previously_empty;
+reg fifo_control;
+
+// ==================================
+//// Behavioral Block
+// ==================================
+always@(posedge clk or posedge rst)
+begin
+    if(rst)
+    begin
+        state = WAITING;
+        clr = 0;
+        fifo_control = 0;
+        address = 0;
+        scan_code_reg = 0;
+        break_code_detected = 0;
+    end
+    else
+    begin
+        case(state)
+            WAITING: begin
+                clr          = 0;
+                fifo_control = 0;
+                if(key_ready)
+                begin
+                    scan_code_reg = scan_code;
+                    state = NEW_CODE;
+                end
+            end
+            NEW_CODE: begin
+                fifo_control = 0;
+                clr          = 1;
+                if(break_code_detected)
+                begin
+                    break_code_detected = 0;
+                    state = WAITING;
+                end
+                else begin
+                    state = TRANSLATE;
+                end
+            end
+            TRANSLATE: begin
+                fifo_control = 0;
+                clr          = 0;
+                if(scan_code_reg == 8'hF0)
+                begin
+                    break_code_detected = 1;
+                    state = WAITING;
+                end
+                else begin
+                    state = WRITE_TO_FIFO;
+                end
+            end
+            WRITE_TO_FIFO: begin
+                fifo_control = 1;
+                clr          = 0;
+                state = WAITING;
+            end
+            default: begin
+                fifo_control = 0;
+                clr = 1;
+                state = WAITING;
+            end
+        endcase
+    end
+end
+
+endmodule
+
 module Keyboard(
     //// input 100 MHz clock
     input wire clk,
@@ -34,7 +171,7 @@ module Keyboard(
     input wire ps2_data,
     //// chip select for Keyboard module
     input wire cs,
-    //// clear signal to clear 
+    //// signal to clear previous key
     input wire clr,
     //// 8-bit data input bus 
     output wire [`SCAN_CODE_DATA_LENGTH-1:0] data,
@@ -185,7 +322,8 @@ always @(scan_code) begin
         8'h41: ascii = ",";
         8'h49: ascii = ".";
         8'h4A: ascii = "/";
-        8'h66: ascii = 8'h7F; // backspace
+        8'h66: ascii = 8'hF7; // backspace
+        8'h5A: ascii = "\n"; // enter
       default: ascii = 8'hFF;
     endcase
 end
@@ -199,6 +337,8 @@ module Keyboard_DEMO(
     input wire ps2_clk,
     input wire ps2_data,
     // input wire clr,
+    input wire text_button,
+    input wire background_button,
     output wire ready,
     //// Horizontal sync pulse for VGA controller
     output wire hsync,
@@ -212,46 +352,23 @@ module Keyboard_DEMO(
 
 wire [7:0] ascii;
 wire [7:0] scan_code;
+wire ready;
+wire busy;
+// wire [12:0] address;
+reg [12:0] address;
+wire underflow;
+wire next;
 
-Keyboard keyboard(
-    //// input 100 MHz clock
-    .clk(clk),
+ASCII_Keyboard keyboard(
+    .clk(!clk),
     .rst(rst),
-    //// ps2 
     .ps2_clk(ps2_clk),
     .ps2_data(ps2_data),
-    //// 8-bit data input bus 
-    .data(scan_code),
-    //// chip select for Keyboard module
-    .cs(1),
-    //// clear signal to clear 
-    .clr(clr),
-    //// busy signal to tell CPU or other hardware that the VGA controller cannot be writen to.
-    .ready(ready)
-);
-
-reg rd_cs;
-reg rd_en;
-wire [7:0] fifo_stored_scancode;
-wire full, empty;
-
-FIFO #(.LENGTH(16), .WIDTH(8)
-) scan_code_fifo (
-    .clk(clk),
-    .rst(rst),
-    .wr_cs(ready),
-    .wr_en(ready),
-    .rd_cs(rd_cs),
-    .rd_en(rd_en),
-    .full(full),
-    .empty(empty),
-    .out(fifo_stored_scancode),
-    .in(scan_code)
-);
-
-KeyboardToASCIIROM rom(
-    .scan_code(fifo_stored_scancode),
-    .ascii(ascii)
+    .oe(1),
+    .next(!busy),
+    .ascii(ascii),
+    .ready(ready),
+    .underflow(underflow)
 );
 
 VGA_Terminal vga_term(
@@ -265,148 +382,95 @@ VGA_Terminal vga_term(
     .values({
         32'h0,
         32'h0,
-        {31'h0, full},
-        {24'h0, scan_code_reg},
+        {20'h0, address},
+        {24'h0, ascii},
 
         32'h0,
         32'h0,
-        {31'h0, empty},
-        {24'h0, ascii_reg},
-        
-        32'h0,
-        32'h0,
-        {31'h0, ready},
+        conflict,
         32'h0,
         
         32'h0,
         32'h0,
-        {31'h0, clr},
-        {20'h0, address},
+        32'h0,
+        32'h0,
         
         32'h0,
         32'h0,
-        {31'h0, vga_cs},
-        { {(32-STATE_WIDTH){1'b0}}, state }
+        32'h0,
+        32'h0,
+        
+        32'h0,
+        32'h0,
+        32'h0,
+        32'h0
     }),
     .address(address),
-    .data(ascii_reg),
-    .cs(vga_cs),
-    .busy()
+    .data(ascii),
+    .cs(ready),
+    .busy(busy),
+    .text(text_color_reg),
+    .background(background_color_reg)
 );
 
-// ==================================
-//// Behavioral Block
-// ==================================
-reg [11:0] address;
-reg [STATE_WIDTH-1:0] state;
-reg [7:0] ascii_reg;
-reg [7:0] scan_code_reg;
-reg [31:0] counter;
-reg clr;
-reg vga_cs;
+reg [2:0] text_color_reg;
+reg [2:0] background_color_reg;
+reg previous_tsync;
+reg previous_bsync;
+reg previously_backspace;
+reg previously_busy;
+reg [31:0] conflict;
 
-parameter IDLE = 0;
-parameter KEY_PRESS_SCANCODE_DETECTED = 1;
-parameter GET_FIFO_SCANCODE = 2;
-parameter GET_ASCII_AND_WRITE_TO_VGA = 3;
-parameter WAIT_FOR_KEY_RELEASE_SIGNAL = 4;
-parameter INTERMISSION = 5;
-parameter WAIT_FOR_FINAL_SCANCODE = 6;
-parameter INTERMISSION2 = 7;
-parameter STATE_WIDTH = $clog2(INTERMISSION2);
-
-always@(posedge clk or posedge rst)
+always @(posedge clk or posedge rst)
 begin
     if(rst)
     begin
-        state = IDLE;
+        text_color_reg = 3'b010;
+        background_color_reg = 3'b000;
+        previous_tsync = 0;
+        previous_bsync = 0;
         address = 0;
-        ascii_reg = 0;
-        clr = 0;
-        counter = 0;
-        vga_cs = 0;
-        rd_en = 0;
-        rd_cs = 0;
+        previously_busy = 1;
+        conflict = 0;
     end
     else
     begin
-        if(ready)
+        if(ready && !busy)
         begin
-            scan_code_reg = scan_code;
-            clr = 1;
+            if(ascii == "\n")
+            begin
+            address = (address + 80) - (address % 80);
+            end
+            else if(ascii == 8'hF7)
+            begin
+                address = address - 1;
+            end
+            else
+            begin
+                address = address + 1;
+            end                            
         end
-        else 
+        //// Background color change
+        if(!background_button && previous_bsync)
         begin
-            clr = 0;
+            background_color_reg = background_color_reg + 1;
+            previous_bsync = 0;
         end
-        case(state)
-            IDLE: begin
-                vga_cs  = 0;
-                rd_en = 0;
-                rd_cs = 0;
-                if(!empty)
-                begin
-                    rd_en = 1;
-                    rd_cs = 1;
-                    state  = KEY_PRESS_SCANCODE_DETECTED;
-                end
-            end
-            KEY_PRESS_SCANCODE_DETECTED: begin
-                vga_cs = 0;
-                rd_en = 0;
-                rd_cs = 0;
-                state = GET_FIFO_SCANCODE;
-            end
-            GET_FIFO_SCANCODE: begin
-                vga_cs = 1;
-                rd_en = 0;
-                rd_cs = 0;
-                scan_code_reg = fifo_stored_scancode;
-                state = GET_ASCII_AND_WRITE_TO_VGA;
-            end
-            GET_ASCII_AND_WRITE_TO_VGA: begin
-                vga_cs = 1;
-                rd_en = 0;
-                rd_cs = 0;
-                ascii_reg = ascii;
-                state = WAIT_FOR_KEY_RELEASE_SIGNAL;
-            end
-            WAIT_FOR_KEY_RELEASE_SIGNAL: begin
-                vga_cs = 0;
-                if(!empty)
-                begin
-                    rd_en = 1;
-                    rd_cs = 1;
-                    state = INTERMISSION;
-                end
-            end
-            INTERMISSION: begin
-                vga_cs = 0;
-                rd_en = 0;
-                rd_cs = 0;
-                state = WAIT_FOR_FINAL_SCANCODE;
-            end
-            WAIT_FOR_FINAL_SCANCODE: begin
-                vga_cs = 0;
-                if(!empty)
-                begin
-                    rd_en = 1;
-                    rd_cs = 1;
-                    state = INTERMISSION2;
-                    address = address + 1;
-                end
-            end
-            INTERMISSION2: begin
-                vga_cs = 0;
-                rd_en = 0;
-                rd_cs = 0;
-                state = IDLE;
-            end
-            default: begin
-                vga_cs = 0;
-                state = IDLE;
-            end
-        endcase
+        if(background_button && !previous_bsync)
+        begin
+            previous_bsync = 1;
+        end
+        //// Text color change
+        if(!text_button && previous_tsync)
+        begin
+            text_color_reg = text_color_reg + 1;
+            previous_tsync = 0;
+        end
+        if(text_button && !previous_tsync) 
+        begin
+            previous_tsync = 1;
+        end
     end
 end
+
 endmodule

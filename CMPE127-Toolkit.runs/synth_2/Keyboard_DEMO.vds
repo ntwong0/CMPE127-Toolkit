@@ -2,8 +2,8 @@
 # Vivado v2017.3 (64-bit)
 # SW Build 2018833 on Wed Oct  4 19:58:07 MDT 2017
 # IP Build 2016188 on Wed Oct  4 21:52:56 MDT 2017
-# Start of session at: Fri Feb 23 19:23:49 2018
-# Process ID: 5708
+# Start of session at: Sat Mar  3 19:21:16 2018
+# Process ID: 19621
 # Current directory: /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2
 # Command line: vivado -log Keyboard_DEMO.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Keyboard_DEMO.tcl
 # Log file: /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2/Keyboard_DEMO.vds
@@ -15,29 +15,30 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 5728 
+INFO: Helper process launched with PID 19656 
 WARNING: [Synth 8-2507] parameter declaration becomes local in MUX with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:121]
 WARNING: [Synth 8-2507] parameter declaration becomes local in RAM with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:38]
-WARNING: [Synth 8-2507] parameter declaration becomes local in FIFO with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:90]
+WARNING: [Synth 8-2507] parameter declaration becomes local in FIFO with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:92]
 WARNING: [Synth 8-2306] macro FREQ_IN redefined [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:7]
-WARNING: [Synth 8-2611] redeclaration of ansi port ready is not allowed [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:55]
-WARNING: [Synth 8-976] ready has already been declared [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:55]
-WARNING: [Synth 8-2654] second declaration of ready ignored [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:55]
-INFO: [Synth 8-994] ready is declared here [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:42]
+WARNING: [Synth 8-2611] redeclaration of ansi port ready is not allowed [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:192]
+WARNING: [Synth 8-976] ready has already been declared [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:192]
+WARNING: [Synth 8-2654] second declaration of ready ignored [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:192]
+INFO: [Synth 8-994] ready is declared here [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:179]
+WARNING: [Synth 8-2611] redeclaration of ansi port ready is not allowed [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:355]
+WARNING: [Synth 8-976] ready has already been declared [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:355]
+WARNING: [Synth 8-2654] second declaration of ready ignored [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:355]
+INFO: [Synth 8-994] ready is declared here [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:342]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1246.398 ; gain = 73.277 ; free physical = 1943 ; free virtual = 17013
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1246.402 ; gain = 73.277 ; free physical = 1464 ; free virtual = 16524
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'Keyboard_DEMO' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:195]
-	Parameter IDLE bound to: 0 - type: integer 
-	Parameter KEY_PRESS_SCANCODE_DETECTED bound to: 1 - type: integer 
-	Parameter GET_FIFO_SCANCODE bound to: 2 - type: integer 
-	Parameter GET_ASCII_AND_WRITE_TO_VGA bound to: 3 - type: integer 
-	Parameter WAIT_FOR_KEY_RELEASE_SIGNAL bound to: 4 - type: integer 
-	Parameter INTERMISSION bound to: 5 - type: integer 
-	Parameter WAIT_FOR_FINAL_SCANCODE bound to: 6 - type: integer 
-	Parameter INTERMISSION2 bound to: 7 - type: integer 
-	Parameter STATE_WIDTH bound to: 3 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'Keyboard' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:28]
+INFO: [Synth 8-638] synthesizing module 'Keyboard_DEMO' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:333]
+INFO: [Synth 8-638] synthesizing module 'ASCII_Keyboard' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:29]
+	Parameter WAITING bound to: 0 - type: integer 
+	Parameter NEW_CODE bound to: 1 - type: integer 
+	Parameter TRANSLATE bound to: 2 - type: integer 
+	Parameter WRITE_TO_FIFO bound to: 3 - type: integer 
+	Parameter STATE_WIDTH bound to: 2 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'Keyboard' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:165]
 INFO: [Synth 8-638] synthesizing module 'Syncronizer' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:331]
 	Parameter WIDTH bound to: 1 - type: integer 
 	Parameter DEFAULT_DISABLED bound to: 0 - type: integer 
@@ -60,25 +61,26 @@ INFO: [Synth 8-256] done synthesizing module 'AND' (5#1) [/home/kammce/Documents
 INFO: [Synth 8-638] synthesizing module 'TRIBUFFER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:37]
 	Parameter WIDTH bound to: 8 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'TRIBUFFER' (6#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:37]
-INFO: [Synth 8-256] done synthesizing module 'Keyboard' (7#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:28]
+INFO: [Synth 8-256] done synthesizing module 'Keyboard' (7#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:165]
 INFO: [Synth 8-638] synthesizing module 'FIFO' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:71]
 	Parameter LENGTH bound to: 16 - type: integer 
 	Parameter WIDTH bound to: 8 - type: integer 
 	Parameter ADDRESS_WIDTH bound to: 4 - type: integer 
-WARNING: [Synth 8-5788] Register mem_reg in module FIFO is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
-WARNING: [Synth 8-5788] Register out_reg in module FIFO is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:137]
-WARNING: [Synth 8-4767] Trying to implement RAM 'mem_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
-Reason is one or more of the following :
-	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
-RAM "mem_reg" dissolved into registers
+WARNING: [Synth 8-6014] Unused sequential element previously_empty_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:124]
+WARNING: [Synth 8-5788] Register out_reg in module FIFO is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:156]
+WARNING: [Synth 8-3848] Net overflow in module/entity FIFO does not have driver. [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:82]
+WARNING: [Synth 8-3848] Net underflow in module/entity FIFO does not have driver. [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:85]
 INFO: [Synth 8-256] done synthesizing module 'FIFO' (8#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:71]
-INFO: [Synth 8-638] synthesizing module 'KeyboardToASCIIROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:133]
-INFO: [Synth 8-256] done synthesizing module 'KeyboardToASCIIROM' (9#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:133]
+INFO: [Synth 8-638] synthesizing module 'KeyboardToASCIIROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:270]
+INFO: [Synth 8-256] done synthesizing module 'KeyboardToASCIIROM' (9#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:270]
+INFO: [Synth 8-226] default block is never used [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:115]
+WARNING: [Synth 8-6014] Unused sequential element address_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:109]
+INFO: [Synth 8-256] done synthesizing module 'ASCII_Keyboard' (10#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:29]
 INFO: [Synth 8-638] synthesizing module 'VGA_Terminal' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:133]
-INFO: [Synth 8-638] synthesizing module 'PixelClock' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:711]
+INFO: [Synth 8-638] synthesizing module 'PixelClock' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:725]
 	Parameter HOLD_TICK_COUNT bound to: 2 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'PixelClock' (10#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:711]
-INFO: [Synth 8-638] synthesizing module 'VGA' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:755]
+INFO: [Synth 8-256] done synthesizing module 'PixelClock' (11#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:725]
+INFO: [Synth 8-638] synthesizing module 'VGA' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:769]
 	Parameter DISPLAY_WIDTH bound to: 639 - type: integer 
 	Parameter DISPLAY_HEIGHT bound to: 479 - type: integer 
 	Parameter HORIZONTAL_FRONT_PORCH bound to: 16 - type: integer 
@@ -87,44 +89,45 @@ INFO: [Synth 8-638] synthesizing module 'VGA' [/home/kammce/Documents/University
 	Parameter VERTICAL_FRONT_PORCH bound to: 11 - type: integer 
 	Parameter VERTICAL_SYNC_PULSE bound to: 2 - type: integer 
 	Parameter VERTICAL_BACK_PORCH bound to: 31 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'VGA' (11#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:755]
-INFO: [Synth 8-638] synthesizing module 'VGA_Terminal_Control_Unit' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:354]
+INFO: [Synth 8-256] done synthesizing module 'VGA' (12#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:769]
+INFO: [Synth 8-638] synthesizing module 'VGA_Terminal_Control_Unit' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:359]
 	Parameter LOAD_RAMS bound to: 0 - type: integer 
 	Parameter WAIT_FOR_VBLANK bound to: 1 - type: integer 
 	Parameter WRITE_HEX_TO_BUFFER bound to: 2 - type: integer 
 	Parameter COPY_BUFFER_TO_VIDEO bound to: 3 - type: integer 
 	Parameter WAIT_OUT_VBLANK bound to: 4 - type: integer 
 	Parameter STATE_WIDTH bound to: 2 - type: integer 
-WARNING: [Synth 8-151] case item 32'b00000000000000000000000000000100 is unreachable [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:571]
-INFO: [Synth 8-226] default block is never used [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:442]
-WARNING: [Synth 8-6014] Unused sequential element temp_value_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:424]
-INFO: [Synth 8-256] done synthesizing module 'VGA_Terminal_Control_Unit' (12#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:354]
-INFO: [Synth 8-638] synthesizing module 'ConvertXYToAddress' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:667]
-INFO: [Synth 8-256] done synthesizing module 'ConvertXYToAddress' (13#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:667]
+WARNING: [Synth 8-151] case item 32'b00000000000000000000000000000100 is unreachable [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:585]
+INFO: [Synth 8-226] default block is never used [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:448]
+WARNING: [Synth 8-6014] Unused sequential element temp_value_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:430]
+INFO: [Synth 8-256] done synthesizing module 'VGA_Terminal_Control_Unit' (13#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:359]
+INFO: [Synth 8-638] synthesizing module 'ConvertXYToAddress' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:681]
+INFO: [Synth 8-256] done synthesizing module 'ConvertXYToAddress' (14#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:681]
 INFO: [Synth 8-638] synthesizing module 'MUX' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
 	Parameter WIDTH bound to: 12 - type: integer 
 	Parameter INPUTS bound to: 2 - type: integer 
 	Parameter SELECT bound to: 1 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'MUX' (14#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
+INFO: [Synth 8-256] done synthesizing module 'MUX' (15#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
 INFO: [Synth 8-638] synthesizing module 'RAM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
 	Parameter LENGTH bound to: 2400 - type: integer 
 	Parameter WIDTH bound to: 8 - type: integer 
 	Parameter ADDRESS_WIDTH bound to: 12 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'RAM' (15#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
+INFO: [Synth 8-256] done synthesizing module 'RAM' (16#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
 INFO: [Synth 8-638] synthesizing module 'MUX__parameterized0' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
 	Parameter WIDTH bound to: 1 - type: integer 
 	Parameter INPUTS bound to: 2 - type: integer 
 	Parameter SELECT bound to: 1 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'MUX__parameterized0' (15#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
+INFO: [Synth 8-256] done synthesizing module 'MUX__parameterized0' (16#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
 INFO: [Synth 8-638] synthesizing module 'FontROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:23]
-INFO: [Synth 8-256] done synthesizing module 'FontROM' (16#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:23]
-INFO: [Synth 8-638] synthesizing module 'PixelRender' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:678]
-INFO: [Synth 8-256] done synthesizing module 'PixelRender' (17#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:678]
-INFO: [Synth 8-256] done synthesizing module 'VGA_Terminal' (18#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:133]
-INFO: [Synth 8-226] default block is never used [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:342]
-WARNING: [Synth 8-6014] Unused sequential element counter_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:326]
-WARNING: [Synth 8-5788] Register scan_code_reg_reg in module Keyboard_DEMO is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:269]
-INFO: [Synth 8-256] done synthesizing module 'Keyboard_DEMO' (19#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:195]
+WARNING: [Synth 8-151] case item 8'b00001010 is unreachable [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:33]
+INFO: [Synth 8-256] done synthesizing module 'FontROM' (17#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:23]
+INFO: [Synth 8-638] synthesizing module 'PixelRender' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:692]
+INFO: [Synth 8-256] done synthesizing module 'PixelRender' (18#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:692]
+INFO: [Synth 8-256] done synthesizing module 'VGA_Terminal' (19#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:133]
+WARNING: [Synth 8-689] width (641) of port connection 'values' does not match port width (640) of module 'VGA_Terminal' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:382]
+WARNING: [Synth 8-689] width (13) of port connection 'address' does not match port width (12) of module 'VGA_Terminal' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:408]
+WARNING: [Synth 8-6014] Unused sequential element previously_busy_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:433]
+INFO: [Synth 8-256] done synthesizing module 'Keyboard_DEMO' (20#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:333]
 WARNING: [Synth 8-3331] design PixelRender has unconnected port hcount[31]
 WARNING: [Synth 8-3331] design PixelRender has unconnected port hcount[30]
 WARNING: [Synth 8-3331] design PixelRender has unconnected port hcount[29]
@@ -195,10 +198,12 @@ WARNING: [Synth 8-3331] design ConvertXYToAddress has unconnected port vcount[2]
 WARNING: [Synth 8-3331] design ConvertXYToAddress has unconnected port vcount[1]
 WARNING: [Synth 8-3331] design ConvertXYToAddress has unconnected port vcount[0]
 WARNING: [Synth 8-3331] design VGA_Terminal_Control_Unit has unconnected port hblank
+WARNING: [Synth 8-3331] design FIFO has unconnected port overflow
+WARNING: [Synth 8-3331] design FIFO has unconnected port underflow
 WARNING: [Synth 8-3331] design SHIFTREGISTER has unconnected port en
 WARNING: [Synth 8-3331] design Syncronizer has unconnected port rst
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1280.648 ; gain = 107.527 ; free physical = 1957 ; free virtual = 17028
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1279.652 ; gain = 106.527 ; free physical = 1475 ; free virtual = 16540
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -208,7 +213,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1280.648 ; gain = 107.527 ; free physical = 1958 ; free virtual = 17029
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1279.652 ; gain = 106.527 ; free physical = 1476 ; free virtual = 16541
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -224,37 +229,37 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1627.250 ; gain = 0.000 ; free physical = 1664 ; free virtual = 16769
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1627.871 ; gain = 0.000 ; free physical = 1245 ; free virtual = 16269
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:27 ; elapsed = 00:00:40 . Memory (MB): peak = 1627.250 ; gain = 454.129 ; free physical = 1838 ; free virtual = 16941
+Finished Constraint Validation : Time (s): cpu = 00:00:26 ; elapsed = 00:00:39 . Memory (MB): peak = 1627.871 ; gain = 454.746 ; free physical = 1331 ; free virtual = 16346
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:27 ; elapsed = 00:00:41 . Memory (MB): peak = 1627.250 ; gain = 454.129 ; free physical = 1838 ; free virtual = 16941
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:26 ; elapsed = 00:00:39 . Memory (MB): peak = 1627.871 ; gain = 454.746 ; free physical = 1331 ; free virtual = 16346
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:27 ; elapsed = 00:00:41 . Memory (MB): peak = 1627.250 ; gain = 454.129 ; free physical = 1840 ; free virtual = 16942
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:26 ; elapsed = 00:00:39 . Memory (MB): peak = 1627.871 ; gain = 454.746 ; free physical = 1333 ; free virtual = 16347
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:315]
 WARNING: [Synth 8-6014] Unused sequential element Q_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:307]
-WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:740]
-WARNING: [Synth 8-6014] Unused sequential element hcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:788]
-WARNING: [Synth 8-6014] Unused sequential element vcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:793]
-INFO: [Synth 8-4471] merging register 'video_wr_reg' into 'video_out_control_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:434]
-INFO: [Synth 8-4471] merging register 'video_oe_reg' into 'xy_count_select_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:436]
-WARNING: [Synth 8-6014] Unused sequential element video_wr_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:434]
-WARNING: [Synth 8-6014] Unused sequential element video_oe_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:436]
-INFO: [Synth 8-4471] merging register 'rd_cs_reg' into 'rd_en_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:244]
-WARNING: [Synth 8-6014] Unused sequential element rd_cs_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:244]
-WARNING: [Synth 8-6014] Unused sequential element address_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:284]
+INFO: [Synth 8-5546] ROM "state" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "break_code_detected" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:754]
+WARNING: [Synth 8-6014] Unused sequential element hcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:802]
+WARNING: [Synth 8-6014] Unused sequential element vcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:807]
+INFO: [Synth 8-4471] merging register 'video_wr_reg' into 'video_out_control_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:440]
+INFO: [Synth 8-4471] merging register 'video_oe_reg' into 'xy_count_select_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:442]
+WARNING: [Synth 8-6014] Unused sequential element video_wr_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:440]
+WARNING: [Synth 8-6014] Unused sequential element video_oe_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:442]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:444]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:28 ; elapsed = 00:00:42 . Memory (MB): peak = 1627.250 ; gain = 454.129 ; free physical = 1829 ; free virtual = 16931
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:27 ; elapsed = 00:00:40 . Memory (MB): peak = 1627.871 ; gain = 454.746 ; free physical = 1320 ; free virtual = 16339
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -269,40 +274,46 @@ Detailed RTL Component Info :
 +---Adders : 
 	   2 Input     32 Bit       Adders := 6     
 	   2 Input     16 Bit       Adders := 1     
+	   2 Input     13 Bit       Adders := 2     
+	   3 Input     13 Bit       Adders := 1     
 	   2 Input     12 Bit       Adders := 2     
 	   3 Input      5 Bit       Adders := 1     
 	   2 Input      4 Bit       Adders := 3     
+	   2 Input      3 Bit       Adders := 2     
 +---XORs : 
 	                8 Bit    Wide XORs := 1     
 	                2 Bit    Wide XORs := 1     
 +---Registers : 
-	               32 Bit    Registers := 3     
+	               32 Bit    Registers := 4     
+	               13 Bit    Registers := 1     
 	               12 Bit    Registers := 2     
 	               11 Bit    Registers := 1     
-	                8 Bit    Registers := 23    
+	                8 Bit    Registers := 6     
 	                5 Bit    Registers := 1     
 	                4 Bit    Registers := 3     
-	                3 Bit    Registers := 1     
-	                2 Bit    Registers := 1     
-	                1 Bit    Registers := 17    
+	                3 Bit    Registers := 2     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 21    
 +---RAMs : 
 	              18K Bit         RAMs := 2     
+	              128 Bit         RAMs := 1     
 +---Muxes : 
 	   4 Input     32 Bit        Muxes := 3     
 	   2 Input     32 Bit        Muxes := 3     
 	   4 Input     12 Bit        Muxes := 1     
 	   2 Input     12 Bit        Muxes := 1     
-	   2 Input      8 Bit        Muxes := 8     
+	   2 Input      8 Bit        Muxes := 4     
 	   4 Input      8 Bit        Muxes := 2     
-	 128 Input      8 Bit        Muxes := 6     
+	   5 Input      8 Bit        Muxes := 1     
+	 130 Input      8 Bit        Muxes := 4     
 	   8 Input      8 Bit        Muxes := 1     
-	   2 Input      4 Bit        Muxes := 3     
-	  10 Input      3 Bit        Muxes := 1     
-	   2 Input      2 Bit        Muxes := 1     
-	   6 Input      2 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 21    
-	   4 Input      1 Bit        Muxes := 15    
-	   8 Input      1 Bit        Muxes := 6     
+	   2 Input      4 Bit        Muxes := 8     
+	 130 Input      3 Bit        Muxes := 2     
+	   2 Input      2 Bit        Muxes := 2     
+	   6 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 9     
+	   4 Input      1 Bit        Muxes := 18    
+	   5 Input      1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -312,14 +323,18 @@ Start RTL Hierarchical Component Statistics
 Hierarchical RTL Component report 
 Module Keyboard_DEMO 
 Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     13 Bit       Adders := 1     
+	   2 Input     13 Bit       Adders := 1     
+	   2 Input      3 Bit       Adders := 2     
 +---Registers : 
-	                8 Bit    Registers := 2     
-	                3 Bit    Registers := 1     
-	                1 Bit    Registers := 3     
+	               32 Bit    Registers := 1     
+	               13 Bit    Registers := 1     
+	                3 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
 +---Muxes : 
-	   8 Input      8 Bit        Muxes := 1     
-	  10 Input      3 Bit        Muxes := 1     
-	   8 Input      1 Bit        Muxes := 6     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 2     
 Module Syncronizer 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -352,13 +367,26 @@ Detailed RTL Component Info :
 	   3 Input      5 Bit       Adders := 1     
 	   2 Input      4 Bit       Adders := 2     
 +---Registers : 
-	                8 Bit    Registers := 17    
+	                8 Bit    Registers := 1     
 	                5 Bit    Registers := 1     
 	                4 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---RAMs : 
+	              128 Bit         RAMs := 1     
 +---Muxes : 
-	   2 Input      8 Bit        Muxes := 2     
-	   2 Input      4 Bit        Muxes := 2     
-	   2 Input      1 Bit        Muxes := 16    
+	   2 Input      8 Bit        Muxes := 3     
+	   2 Input      4 Bit        Muxes := 4     
+	   2 Input      1 Bit        Muxes := 2     
+Module ASCII_Keyboard 
+Detailed RTL Component Info : 
++---Registers : 
+	                8 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   6 Input      2 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 3     
+	   5 Input      1 Bit        Muxes := 1     
 Module PixelClock 
 Detailed RTL Component Info : 
 +---Adders : 
@@ -375,6 +403,7 @@ Module VGA_Terminal_Control_Unit
 Detailed RTL Component Info : 
 +---Adders : 
 	   2 Input     32 Bit       Adders := 6     
+	   2 Input     13 Bit       Adders := 1     
 	   2 Input     12 Bit       Adders := 1     
 +---Registers : 
 	               32 Bit    Registers := 3     
@@ -388,6 +417,7 @@ Detailed RTL Component Info :
 	   4 Input     12 Bit        Muxes := 1     
 	   2 Input     12 Bit        Muxes := 1     
 	   4 Input      8 Bit        Muxes := 2     
+	   2 Input      8 Bit        Muxes := 1     
 	   6 Input      2 Bit        Muxes := 1     
 	   4 Input      1 Bit        Muxes := 15    
 Module RAM 
@@ -399,8 +429,14 @@ Detailed RTL Component Info :
 Module FontROM 
 Detailed RTL Component Info : 
 +---Muxes : 
-	 128 Input      8 Bit        Muxes := 6     
-	   2 Input      8 Bit        Muxes := 6     
+	   5 Input      8 Bit        Muxes := 1     
+	 130 Input      8 Bit        Muxes := 4     
+	   8 Input      8 Bit        Muxes := 1     
+	 130 Input      3 Bit        Muxes := 2     
+Module PixelRender 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 3     
 Module VGA_Terminal 
 Detailed RTL Component Info : 
 +---Adders : 
@@ -420,35 +456,99 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-6014] Unused sequential element keyboard/counter_ps2_clks/Q_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:307]
-WARNING: [Synth 8-6014] Unused sequential element vga_term/pixel_clock_generator/count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:740]
-WARNING: [Synth 8-6014] Unused sequential element vga_term/vga_controller/hcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:788]
-WARNING: [Synth 8-6014] Unused sequential element vga_term/vga_controller/vcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:793]
-WARNING: [Synth 8-6014] Unused sequential element address_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:284]
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-6014] Unused sequential element keyboard/keyboard/counter_ps2_clks/Q_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:307]
+WARNING: [Synth 8-6014] Unused sequential element vga_term/pixel_clock_generator/count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:754]
+WARNING: [Synth 8-6014] Unused sequential element vga_term/vga_controller/hcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:802]
+WARNING: [Synth 8-6014] Unused sequential element vga_term/vga_controller/vcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:807]
 DSP Report: Generating DSP vga_term/linearize/address, operation Mode is: C+A*(B:0x50).
 DSP Report: operator vga_term/linearize/address is absorbed into DSP vga_term/linearize/address.
 DSP Report: operator vga_term/linearize/address0 is absorbed into DSP vga_term/linearize/address.
-WARNING: [Synth 8-3917] design Keyboard_DEMO has port r[3] driven by constant 0
-WARNING: [Synth 8-3917] design Keyboard_DEMO has port r[2] driven by constant 0
-WARNING: [Synth 8-3917] design Keyboard_DEMO has port r[1] driven by constant 0
-WARNING: [Synth 8-3917] design Keyboard_DEMO has port r[0] driven by constant 0
-WARNING: [Synth 8-3917] design Keyboard_DEMO has port b[3] driven by constant 0
-WARNING: [Synth 8-3917] design Keyboard_DEMO has port b[2] driven by constant 0
-WARNING: [Synth 8-3917] design Keyboard_DEMO has port b[1] driven by constant 0
-WARNING: [Synth 8-3917] design Keyboard_DEMO has port b[0] driven by constant 0
 WARNING: [Synth 8-3331] design VGA_Terminal_Control_Unit has unconnected port hblank
 INFO: [Synth 8-5784] Optimized 0 bits of RAM "vga_term/video_ram/ram_reg" due to constant propagation. Old ram width 8 bits, new ram width 8 bits.
 INFO: [Synth 8-4652] Swapped enable and write-enable on 1 RAM instances of RAM vga_term/video_ram/ram_reg to conserve power
 INFO: [Synth 8-5784] Optimized 0 bits of RAM "vga_term/buffer_ram/ram_reg" due to constant propagation. Old ram width 8 bits, new ram width 8 bits.
 INFO: [Synth 8-4652] Swapped enable and write-enable on 1 RAM instances of RAM vga_term/buffer_ram/ram_reg to conserve power
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[18] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[26] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[10] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[30] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[14] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[22] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[6] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[16] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[24] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[8] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[28] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[12] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[20] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[17] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[25] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[29] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[13] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[21] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[31] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[23] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[27] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[19] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\conflict_reg[3] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\vga_term/cu /\buffer_data_out_reg[7] )
 WARNING: [Synth 8-3332] Sequential element (previous_position_reg[0]) is unused and will be removed from module VGA_Terminal_Control_Unit.
 WARNING: [Synth 8-3332] Sequential element (v_reg[31]) is unused and will be removed from module VGA_Terminal_Control_Unit.
 WARNING: [Synth 8-3332] Sequential element (v_reg[30]) is unused and will be removed from module VGA_Terminal_Control_Unit.
 WARNING: [Synth 8-3332] Sequential element (buffer_data_out_reg[7]) is unused and will be removed from module VGA_Terminal_Control_Unit.
-WARNING: [Synth 8-3332] Sequential element (keyboard/scan_code_register/Q_reg[10]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (keyboard/keyboard/scan_code_register/Q_reg[10]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[31]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[30]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[29]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[28]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[27]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[26]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[25]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[24]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[23]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[22]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[21]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[20]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[19]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[18]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[17]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[16]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[15]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[14]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[13]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[12]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[11]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[10]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[9]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[8]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[7]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[6]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[5]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[4]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[3]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[2]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[1]) is unused and will be removed from module Keyboard_DEMO.
+WARNING: [Synth 8-3332] Sequential element (conflict_reg[0]) is unused and will be removed from module Keyboard_DEMO.
+INFO: [Synth 8-3886] merging instance 'keyboard/ascii_to_vga/write_position_reg_rep[0]' (FDCE) to 'keyboard/ascii_to_vga/write_position_reg[0]'
+INFO: [Synth 8-3886] merging instance 'keyboard/ascii_to_vga/write_position_reg_rep[1]' (FDCE) to 'keyboard/ascii_to_vga/write_position_reg[1]'
+INFO: [Synth 8-3886] merging instance 'keyboard/ascii_to_vga/write_position_reg_rep[2]' (FDCE) to 'keyboard/ascii_to_vga/write_position_reg[2]'
+INFO: [Synth 8-3886] merging instance 'keyboard/ascii_to_vga/write_position_reg_rep[3]' (FDCE) to 'keyboard/ascii_to_vga/write_position_reg[3]'
+INFO: [Synth 8-3886] merging instance 'keyboard/ascii_to_vga/read_position_reg_rep[0]' (FDCE) to 'keyboard/ascii_to_vga/read_position_reg[0]'
+INFO: [Synth 8-3886] merging instance 'keyboard/ascii_to_vga/read_position_reg_rep[1]' (FDCE) to 'keyboard/ascii_to_vga/read_position_reg[1]'
+INFO: [Synth 8-3886] merging instance 'keyboard/ascii_to_vga/read_position_reg_rep[2]' (FDCE) to 'keyboard/ascii_to_vga/read_position_reg[2]'
+INFO: [Synth 8-3886] merging instance 'keyboard/ascii_to_vga/read_position_reg_rep[3]' (FDCE) to 'keyboard/ascii_to_vga/read_position_reg[3]'
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:44 ; elapsed = 00:00:58 . Memory (MB): peak = 1627.250 ; gain = 454.129 ; free physical = 1724 ; free virtual = 16872
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:36 ; elapsed = 00:00:49 . Memory (MB): peak = 1627.871 ; gain = 454.746 ; free physical = 1285 ; free virtual = 16300
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -469,8 +569,6 @@ ROM:
 |FontROM            | out              | 256x8         | LUT            | 
 |FontROM            | out              | 256x8         | LUT            | 
 |FontROM            | out              | 256x8         | LUT            | 
-|Keyboard_DEMO      | rom/ascii        | 256x8         | LUT            | 
-|Keyboard_DEMO      | vga_term/rom/out | 256x8         | LUT            | 
 |Keyboard_DEMO      | vga_term/rom/out | 256x8         | LUT            | 
 |Keyboard_DEMO      | vga_term/rom/out | 256x8         | LUT            | 
 |Keyboard_DEMO      | vga_term/rom/out | 256x8         | LUT            | 
@@ -493,6 +591,15 @@ Block RAM: Preliminary Mapping  Report (see note below)
 
 Note: The tale above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
 
+Distributed RAM: Preliminary Mapping  Report (see note below)
++--------------+-------------------------------+-----------+----------------------+--------------+
+|Module Name   | RTL Object                    | Inference | Size (Depth x Width) | Primitives   | 
++--------------+-------------------------------+-----------+----------------------+--------------+
+|Keyboard_DEMO | keyboard/ascii_to_vga/mem_reg | Implied   | 16 x 8               | RAM32M x 4   | 
++--------------+-------------------------------+-----------+----------------------+--------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+
 DSP: Preliminary Mapping  Report (see note below)
 +-------------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 |Module Name        | DSP Mapping  | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
@@ -514,13 +621,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:53 ; elapsed = 00:01:10 . Memory (MB): peak = 1661.250 ; gain = 488.129 ; free physical = 1575 ; free virtual = 16714
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:44 ; elapsed = 00:01:00 . Memory (MB): peak = 1655.871 ; gain = 482.746 ; free physical = 1117 ; free virtual = 16132
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:54 ; elapsed = 00:01:11 . Memory (MB): peak = 1675.266 ; gain = 502.145 ; free physical = 1571 ; free virtual = 16708
+Finished Timing Optimization : Time (s): cpu = 00:00:46 ; elapsed = 00:01:03 . Memory (MB): peak = 1703.910 ; gain = 530.785 ; free physical = 1092 ; free virtual = 16107
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -534,6 +641,14 @@ Block RAM: Final Mapping  Report
 |Keyboard_DEMO | vga_term/buffer_ram/ram_reg | 4 K x 8(READ_FIRST)    | W |   | 4 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 1      | 
 +--------------+-----------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 
+
+Distributed RAM: Final Mapping  Report
++--------------+-------------------------------+-----------+----------------------+--------------+
+|Module Name   | RTL Object                    | Inference | Size (Depth x Width) | Primitives   | 
++--------------+-------------------------------+-----------+----------------------+--------------+
+|Keyboard_DEMO | keyboard/ascii_to_vga/mem_reg | Implied   | 16 x 8               | RAM32M x 4   | 
++--------------+-------------------------------+-----------+----------------------+--------------+
+
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP and Shift Register Reporting
 ---------------------------------------------------------------------------------
@@ -546,12 +661,12 @@ Report RTL Partitions:
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:793]
-INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:788]
+INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:807]
+INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:802]
 INFO: [Synth 8-4480] The timing for the instance vga_term/video_ram/ram_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 INFO: [Synth 8-4480] The timing for the instance vga_term/buffer_ram/ram_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:55 ; elapsed = 00:01:12 . Memory (MB): peak = 1695.289 ; gain = 522.168 ; free physical = 1559 ; free virtual = 16700
+Finished Technology Mapping : Time (s): cpu = 00:00:47 ; elapsed = 00:01:04 . Memory (MB): peak = 1719.926 ; gain = 546.801 ; free physical = 1092 ; free virtual = 16107
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -575,7 +690,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:55 ; elapsed = 00:01:13 . Memory (MB): peak = 1695.289 ; gain = 522.168 ; free physical = 1562 ; free virtual = 16702
+Finished IO Insertion : Time (s): cpu = 00:00:48 ; elapsed = 00:01:04 . Memory (MB): peak = 1719.926 ; gain = 546.801 ; free physical = 1092 ; free virtual = 16108
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -588,7 +703,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:55 ; elapsed = 00:01:13 . Memory (MB): peak = 1695.289 ; gain = 522.168 ; free physical = 1562 ; free virtual = 16702
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:48 ; elapsed = 00:01:04 . Memory (MB): peak = 1719.926 ; gain = 546.801 ; free physical = 1092 ; free virtual = 16108
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -600,25 +715,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:56 ; elapsed = 00:01:13 . Memory (MB): peak = 1695.289 ; gain = 522.168 ; free physical = 1565 ; free virtual = 16702
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:48 ; elapsed = 00:01:04 . Memory (MB): peak = 1719.926 ; gain = 546.801 ; free physical = 1092 ; free virtual = 16108
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:56 ; elapsed = 00:01:13 . Memory (MB): peak = 1695.289 ; gain = 522.168 ; free physical = 1565 ; free virtual = 16702
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:48 ; elapsed = 00:01:04 . Memory (MB): peak = 1719.926 ; gain = 546.801 ; free physical = 1092 ; free virtual = 16108
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:56 ; elapsed = 00:01:13 . Memory (MB): peak = 1695.289 ; gain = 522.168 ; free physical = 1566 ; free virtual = 16704
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:48 ; elapsed = 00:01:05 . Memory (MB): peak = 1719.926 ; gain = 546.801 ; free physical = 1092 ; free virtual = 16108
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:56 ; elapsed = 00:01:13 . Memory (MB): peak = 1695.289 ; gain = 522.168 ; free physical = 1566 ; free virtual = 16704
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:48 ; elapsed = 00:01:05 . Memory (MB): peak = 1719.926 ; gain = 546.801 ; free physical = 1092 ; free virtual = 16108
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -635,64 +750,68 @@ Report Cell Usage:
 |      |Cell     |Count |
 +------+---------+------+
 |1     |BUFG     |     2|
-|2     |CARRY4   |    98|
+|2     |CARRY4   |   115|
 |3     |DSP48E1  |     1|
-|4     |LUT1     |    85|
-|5     |LUT2     |   267|
-|6     |LUT3     |    55|
-|7     |LUT4     |   147|
-|8     |LUT5     |    66|
-|9     |LUT6     |   501|
-|10    |MUXF7    |   130|
-|11    |MUXF8    |    27|
-|12    |RAMB36E1 |     2|
-|13    |FDCE     |   279|
-|14    |FDRE     |   154|
-|15    |IBUF     |     4|
-|16    |OBUF     |    15|
+|4     |LUT1     |    95|
+|5     |LUT2     |   280|
+|6     |LUT3     |    75|
+|7     |LUT4     |   113|
+|8     |LUT5     |    97|
+|9     |LUT6     |   533|
+|10    |MUXF7    |   131|
+|11    |MUXF8    |    34|
+|12    |RAM32M   |     4|
+|13    |RAMB36E1 |     2|
+|14    |FDCE     |   295|
+|15    |FDPE     |     2|
+|16    |FDRE     |    10|
+|17    |IBUF     |     6|
+|18    |OBUF     |    15|
 +------+---------+------+
 
 Report Instance Areas: 
 +------+--------------------------+--------------------------+------+
 |      |Instance                  |Module                    |Cells |
 +------+--------------------------+--------------------------+------+
-|1     |top                       |                          |  1833|
-|2     |  keyboard                |Keyboard                  |    37|
-|3     |    counter_ps2_clks      |COUNTER                   |    22|
-|4     |    scan_code_register    |SHIFTREGISTER             |    13|
-|5     |    sync_clk              |Syncronizer               |     1|
-|6     |    sync_data             |Syncronizer_1             |     1|
-|7     |  rom                     |KeyboardToASCIIROM        |    24|
-|8     |  scan_code_fifo          |FIFO                      |   326|
-|9     |  vga_term                |VGA_Terminal              |  1325|
-|10    |    ram_address_mux       |MUX                       |    12|
-|11    |    buffer_ram            |RAM                       |     1|
-|12    |    cu                    |VGA_Terminal_Control_Unit |   863|
-|13    |    linearize             |ConvertXYToAddress        |     1|
-|14    |    pixel_clock_generator |PixelClock                |    47|
-|15    |    rom                   |FontROM                   |   202|
-|16    |    vga_controller        |VGA                       |   191|
-|17    |    video_ram             |RAM_0                     |     2|
+|1     |top                       |                          |  1810|
+|2     |  keyboard                |ASCII_Keyboard            |   200|
+|3     |    ascii_to_vga          |FIFO                      |   128|
+|4     |    keyboard              |Keyboard                  |    29|
+|5     |      counter_ps2_clks    |COUNTER                   |    14|
+|6     |      scan_code_register  |SHIFTREGISTER             |    13|
+|7     |      sync_clk            |Syncronizer               |     1|
+|8     |      sync_data           |Syncronizer_1             |     1|
+|9     |    rom                   |KeyboardToASCIIROM        |    16|
+|10    |  vga_term                |VGA_Terminal              |  1409|
+|11    |    ram_address_mux       |MUX                       |    12|
+|12    |    buffer_ram            |RAM                       |     1|
+|13    |    cu                    |VGA_Terminal_Control_Unit |   867|
+|14    |    linearize             |ConvertXYToAddress        |     1|
+|15    |    pixel_clock_generator |PixelClock                |    47|
+|16    |    rom                   |FontROM                   |   309|
+|17    |    vga_controller        |VGA                       |   170|
+|18    |    video_ram             |RAM_0                     |     2|
 +------+--------------------------+--------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:56 ; elapsed = 00:01:13 . Memory (MB): peak = 1695.289 ; gain = 522.168 ; free physical = 1566 ; free virtual = 16704
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:48 ; elapsed = 00:01:05 . Memory (MB): peak = 1719.926 ; gain = 546.801 ; free physical = 1092 ; free virtual = 16108
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 27 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:47 ; elapsed = 00:00:53 . Memory (MB): peak = 1695.289 ; gain = 175.566 ; free physical = 1638 ; free virtual = 16776
-Synthesis Optimization Complete : Time (s): cpu = 00:00:56 ; elapsed = 00:01:13 . Memory (MB): peak = 1695.297 ; gain = 522.168 ; free physical = 1638 ; free virtual = 16776
+Synthesis finished with 0 errors, 0 critical warnings and 48 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:40 ; elapsed = 00:00:45 . Memory (MB): peak = 1719.926 ; gain = 198.582 ; free physical = 1163 ; free virtual = 16178
+Synthesis Optimization Complete : Time (s): cpu = 00:00:48 ; elapsed = 00:01:05 . Memory (MB): peak = 1719.934 ; gain = 546.801 ; free physical = 1163 ; free virtual = 16178
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 262 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 293 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
-INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 4 load pin(s).
 INFO: [Project 1-111] Unisim Transformation Summary:
-No Unisim elements were transformed.
+  A total of 4 instances were transformed.
+  RAM32M => RAM32M (inverted pins: WCLK) (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 4 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-70 Infos, 113 Warnings, 0 Critical Warnings and 0 Errors encountered.
+116 Infos, 143 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:58 ; elapsed = 00:01:15 . Memory (MB): peak = 1695.297 ; gain = 535.551 ; free physical = 1674 ; free virtual = 16798
+synth_design: Time (s): cpu = 00:00:51 ; elapsed = 00:01:06 . Memory (MB): peak = 1719.934 ; gain = 560.184 ; free physical = 1191 ; free virtual = 16206
 INFO: [Common 17-1381] The checkpoint '/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2/Keyboard_DEMO.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file Keyboard_DEMO_utilization_synth.rpt -pb VGA_Terminal_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00.13 ; elapsed = 00:00:00.16 . Memory (MB): peak = 1719.301 ; gain = 0.000 ; free physical = 1667 ; free virtual = 16795
-INFO: [Common 17-206] Exiting Vivado at Fri Feb 23 19:25:16 2018...
+report_utilization: Time (s): cpu = 00:00:00.10 ; elapsed = 00:00:00.13 . Memory (MB): peak = 1743.938 ; gain = 0.000 ; free physical = 1191 ; free virtual = 16206
+INFO: [Common 17-206] Exiting Vivado at Sat Mar  3 19:22:34 2018...

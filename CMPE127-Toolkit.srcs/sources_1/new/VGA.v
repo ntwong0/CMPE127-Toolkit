@@ -151,7 +151,9 @@ module VGA_Terminal(
     //// chip select for this VGA Terminal module
     input wire cs,
     //// busy signal to tell CPU or other hardware that the VGA controller cannot be writen to.
-    output wire busy
+    output wire busy,
+    input wire [2:0] text,
+    input wire [2:0] background
 );
 // ==================================
 //// Internal Parameter Field
@@ -257,6 +259,7 @@ VGA_Terminal_Control_Unit cu(
     .values(values),
     .video_address(video_ctrl_address),
     .buffer_address(buffer_ctrl_address),
+    .external_address(external_address),
     .video_data(video_data),
     .buffer_data(buffer_data),
     .xy_count_select(xy_count_select),
@@ -344,7 +347,9 @@ PixelRender pixel_renderer(
     .pixels(pixels),
     .r(r),
     .g(g),
-    .b(b)
+    .b(b),
+    .text(text),
+    .background(background)
 );
 // ==================================
 //// Behavioral Block
@@ -359,6 +364,7 @@ module VGA_Terminal_Control_Unit(
     input wire [(`TOTAL_SEGMENTS*`VALUE_BIT_WIDTH)-1:0] values,
     output reg [11:0] video_address,
     output reg [11:0] buffer_address,
+    input wire [11:0] external_address,
     inout wire [7:0] video_data,
     inout wire [7:0] buffer_data,
     output reg xy_count_select,
@@ -443,9 +449,9 @@ always @(posedge pclk or posedge rst) begin
             LOAD_RAMS: begin
                 if(i < `TERMINAL_COLUMNS*`TERMINAL_ROWS) begin
                     xy_count_select 	= 0;
-                    video_wr 		= 1;
-                    video_cs 		= 1;
-                    video_oe 		= 0;
+                    video_wr 		    = 1;
+                    video_cs 		    = 1;
+                    video_oe 		    = 0;
                     buffer_wr 			= 1;
                     buffer_cs 			= 1;
                     buffer_oe 			= 0;
@@ -491,9 +497,9 @@ always @(posedge pclk or posedge rst) begin
             WRITE_HEX_TO_BUFFER: begin
                 xy_count_select 	= 0;
 
-                video_wr 		= 0;
-                video_cs 		= 0;
-                video_oe 		= 0;
+                video_wr 		    = 0;
+                video_cs 		    = 0;
+                video_oe 		    = 0;
 
                 buffer_wr 			= 1;
                 buffer_cs 			= 1;
@@ -524,7 +530,7 @@ always @(posedge pclk or posedge rst) begin
                     4'hF: buffer_data_out = "F";
                 endcase
                 
-                if(i > (`TERMINAL_COLUMNS*(`HARDWARE_CONTROLLED_ROWS-1))-2)
+                if(i > (`TERMINAL_COLUMNS*(`HARDWARE_CONTROLLED_ROWS-1)-1))
                 begin
                     state = COPY_BUFFER_TO_VIDEO;
                     i = 0;
@@ -544,9 +550,9 @@ always @(posedge pclk or posedge rst) begin
             COPY_BUFFER_TO_VIDEO: begin
                 xy_count_select 	= 0;
 
-                video_wr 		= 1;
-                video_cs 		= 1;
-                video_oe 		= 0;
+                video_wr 		    = 1;
+                video_cs 		    = 1;
+                video_oe 		    = 0;
 
                 buffer_wr 			= 0;
                 buffer_cs 			= 1;
@@ -558,7 +564,15 @@ always @(posedge pclk or posedge rst) begin
                 buffer_address 		= i;
                 video_address 		= (i > 1) ? i-2 : 0;
 
-                video_data_out = buffer_data;
+                if(buffer_address == external_address+2)
+                begin
+                    video_data_out = 8'h81;
+                end
+                else
+                begin
+                    video_data_out = buffer_data;  
+                end
+                
 
                 if(i < (`TERMINAL_COLUMNS*`TERMINAL_ROWS)-1) begin
                     i = i + 1;
@@ -682,14 +696,14 @@ module PixelRender
     input wire  [`PIXEL_WIDTH-1:0] pixels,
     output wire [`RGB_RESOLUTION-1:0] r,
     output wire [`RGB_RESOLUTION-1:0] g,
-    output wire [`RGB_RESOLUTION-1:0] b
+    output wire [`RGB_RESOLUTION-1:0] b,
+    input wire [2:0] text,
+    input wire [2:0] background
 );
 
-assign r = 0;
-// assign r = (pixels[7-hcount[2:0]] && enable) ? 0 : 0;
-assign g = (pixels[7-hcount[2:0]] && enable) ? 4'hF : 0;
-// assign b = (pixels[7-hcount[2:0]] && enable) ? 0 : 0;
-assign b = 0;
+assign r = (pixels[7-hcount[2:0]] && enable) ? { text[0], text[0], text[0], text[0] } : { background[0], background[0], background[0], background[0] };
+assign g = (pixels[7-hcount[2:0]] && enable) ? { text[1], text[1], text[1], text[1] } : { background[1], background[1], background[1], background[1] };
+assign b = (pixels[7-hcount[2:0]] && enable) ? { text[2], text[2], text[2], text[2] } : { background[2], background[2], background[2], background[2] };
 
 endmodule
 

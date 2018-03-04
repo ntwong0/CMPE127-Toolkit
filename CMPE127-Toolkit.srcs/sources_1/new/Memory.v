@@ -79,8 +79,10 @@ module FIFO #(
     input wire wr_en,
     input wire rd_cs,
     input wire rd_en,
-    output wire full,
-    output wire empty,
+    output reg overflow,
+    output reg full,
+    output reg empty,
+    output reg underflow,
     output reg [WIDTH-1:0] out,
     input wire [WIDTH-1:0] in
 );
@@ -94,15 +96,16 @@ parameter ADDRESS_WIDTH = $clog2(LENGTH);
 reg [ADDRESS_WIDTH-1:0] write_position;
 reg [ADDRESS_WIDTH-1:0] read_position;
 reg [ADDRESS_WIDTH:0] status_count;
-reg [WIDTH-1:0] mem [0:LENGTH-1];
+reg [WIDTH-1:0] mem [0:LENGTH];
+reg previously_empty;
 // ==================================
 //// Wires
 // ==================================
 // ==================================
 //// Wire Assignments
 // ==================================
-assign full  = (status_count == (LENGTH));
-assign empty = (status_count == 0);
+// assign full  = (status_count == (LENGTH));
+// assign empty = (status_count == 0);
 // ==================================
 //// Modules
 // ==================================
@@ -116,9 +119,23 @@ begin
         write_position = 0;
         read_position = 0;
         status_count = 0;
+        mem[write_position] = " ";
+        write_position = 0;
+        previously_empty = 0;
+        full = 0;
+        empty = 1;
     end
     else 
     begin
+        if(status_count == 0)
+        begin
+            empty = 1;
+        end
+        if(status_count == LENGTH)
+        begin
+            full = 1;
+        end
+        //// Enqueue data
         if (wr_cs && wr_en && !full)
         begin
             mem[write_position] = in;
@@ -131,7 +148,9 @@ begin
                 write_position = write_position + 1;
             end
             status_count = status_count + 1;
+            empty = 0;
         end
+        //// Dequeue data
         if (rd_cs && rd_en && !empty)
         begin
             out = mem[read_position];
@@ -144,6 +163,7 @@ begin
                 read_position = read_position + 1;
             end
             status_count = status_count - 1;
+            full = 0;
         end
     end
 end

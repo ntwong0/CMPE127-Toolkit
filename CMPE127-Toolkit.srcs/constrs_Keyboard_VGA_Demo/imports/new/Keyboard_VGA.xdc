@@ -13,7 +13,8 @@ set_property -dict { PACKAGE_PIN N15   IOSTANDARD LVCMOS33 } [get_ports { ready 
 #set_property -dict { PACKAGE_PIN G14   IOSTANDARD LVCMOS33 } [get_ports { busy }];  # Blue RGB LED
 
 ### clr button
-#set_property -dict { PACKAGE_PIN P18   IOSTANDARD LVCMOS33 } [get_ports { clr }];
+set_property -dict { PACKAGE_PIN P18   IOSTANDARD LVCMOS33 } [get_ports { text_button }];
+set_property -dict { PACKAGE_PIN M17   IOSTANDARD LVCMOS33 } [get_ports { background_button }];
 
 ##VGA Connector
 set_property -dict { PACKAGE_PIN A3    IOSTANDARD LVCMOS33 } [get_ports { r[0] }]; #IO_L8N_T1_AD14N_35 Sch=r[0]
