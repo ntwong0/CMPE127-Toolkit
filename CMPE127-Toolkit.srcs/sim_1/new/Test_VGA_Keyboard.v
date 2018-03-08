@@ -1,4 +1,11 @@
 `timescale 1ns / 1ps
+
+`define BREAK_CODE              8'hF0
+`define SHIFT_CODE_LEFT         8'h12        
+`define SHIFT_CODE_RIGHT        8'h59
+`define A_SCAN_CODE             8'h1C
+`define B_SCAN_CODE             8'h32
+`define BACKSPACE_SCAN_CODE     8'h66
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -101,31 +108,49 @@ initial begin
     #10
 	RESET;
     CLOCK(LOAD_RAM);
+    //// pressing A key
     CLOCK(5);
-    PS2_TRANSMIT(8'h1C);
+    PS2_TRANSMIT(`A_SCAN_CODE);
     CLOCK(10);
-    PS2_TRANSMIT(8'hF0);
+    PS2_TRANSMIT(`BREAK_CODE);
     CLOCK(10);
-    PS2_TRANSMIT(8'h1C);
+    PS2_TRANSMIT(`A_SCAN_CODE);
     CLOCK(10);
-    PS2_TRANSMIT(8'h32);
+    //// press shift key
+    PS2_TRANSMIT(`SHIFT_CODE_LEFT);
     CLOCK(10);
-    PS2_TRANSMIT(8'hF0);
+    //// press lowercase a key
+    PS2_TRANSMIT(`A_SCAN_CODE);
     CLOCK(10);
-    PS2_TRANSMIT(8'h32);
+    PS2_TRANSMIT(`BREAK_CODE);
+    CLOCK(10);
+    PS2_TRANSMIT(`A_SCAN_CODE);
+    CLOCK(10);
+    PS2_TRANSMIT(`BREAK_CODE);
+    CLOCK(10);
+    PS2_TRANSMIT(`SHIFT_CODE_LEFT);
+    CLOCK(10);
+    //// press B scancode
+    PS2_TRANSMIT(`B_SCAN_CODE);
+    CLOCK(10);
+    PS2_TRANSMIT(`BREAK_CODE);
+    CLOCK(10);
+    PS2_TRANSMIT(`B_SCAN_CODE);
+    CLOCK(10);
+    //// press C scancode
+    PS2_TRANSMIT(8'h21);
+    CLOCK(10);
+    PS2_TRANSMIT(`BREAK_CODE);
     CLOCK(10);
     PS2_TRANSMIT(8'h21);
     CLOCK(10);
-    PS2_TRANSMIT(8'hF0);
-    CLOCK(10);
-    PS2_TRANSMIT(8'h21);
-    CLOCK(10);
-    PS2_TRANSMIT(8'h66); //// backspace
+    //// press backspace
+    PS2_TRANSMIT(8'h66);
     CLOCK(10);
     CLOCK(FULL_CYCLE);
     PS2_TRANSMIT(8'h21);
     CLOCK(10);
-    PS2_TRANSMIT(8'hF0);
+    PS2_TRANSMIT(`BREAK_CODE);
     CLOCK(10);
     PS2_TRANSMIT(8'h21);
     CLOCK(10);

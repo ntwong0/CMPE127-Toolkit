@@ -1,11 +1,26 @@
 `timescale 1ns / 1ps
 `default_nettype none
 
-`define SCAN_CODE_LENGTH 11
-`define SCAN_CODE_DATA_LENGTH 8
-`define RGB_RESOLUTION  		 4
-`define FREQ_IN 32'd100_000_000
+`define SCAN_CODE_LENGTH        11
+`define SCAN_CODE_DATA_LENGTH   8
+`define RGB_RESOLUTION  		4
+`define FREQ_IN                 32'd100_000_000
+`define BREAK_CODE              8'hF0
+`define EXTEND_CODE             8'hE0
+`define SHIFT_CODE_LEFT         8'h12        
+`define SHIFT_CODE_RIGHT        8'h59
 
+`define LEFT_ARROW              8'h6B
+`define DOWN_ARROW              8'h72
+`define RIGHT_ARROW             8'hF4
+`define UP_ARROW                8'h75
+
+`define LEFT_ARROW_ASCII        8'hEB
+`define DOWN_ARROW_ASCII        8'hF2
+`define RIGHT_ARROW_ASCII       8'hF4
+`define UP_ARROW_ASCII          8'hF5
+
+`define BACKSPACE               8'hF7
 //////////////////////////////////////////////////////////////////////////////////
 // Company:
 // Engineer:
@@ -35,7 +50,9 @@ module ASCII_Keyboard(
     input wire next,
     output wire [7:0] ascii,
     output wire ready,
-    output wire underflow
+    output reg [7:0] scan_code_reg,
+    output reg [31:0] extended_count,
+    output wire command
 );
 
 wire [7:0] fifo_ascii;
@@ -46,6 +63,7 @@ wire key_ready;
 
 assign ascii = (oe) ? fifo_ascii : 8'hZ;
 assign ready = (!empty);
+assign command = (fifo_ascii == `LEFT_ARROW_ASCII || fifo_ascii == `RIGHT_ARROW_ASCII || fifo_ascii == `UP_ARROW_ASCII || fifo_ascii == `DOWN_ARROW_ASCII);
 
 Keyboard keyboard(
     .clk(clk),
@@ -69,15 +87,14 @@ FIFO #(
     .rd_cs(next),
     .rd_en(next),
     .full(full),
-    .overflow(),
     .empty(empty),
-    .underflow(underflow),
     .out(fifo_ascii),
     .in(translated_to_ascii)
 );
 
 KeyboardToASCIIROM rom(
     .scan_code(scan_code_reg),
+    .shift(shift),
     .ascii(translated_to_ascii)
 );
 
@@ -89,12 +106,14 @@ parameter STATE_WIDTH = $clog2(WRITE_TO_FIFO+1);
 
 reg [11:0] address;
 reg [STATE_WIDTH-1:0] state;
-reg [7:0] scan_code_reg;
+// reg [7:0] scan_code_reg;
 reg clr;
 reg break_code_detected;
 reg empty_reg;
 reg previously_empty;
 reg fifo_control;
+reg shift;
+reg extended; 
 
 // ==================================
 //// Behavioral Block
@@ -109,6 +128,9 @@ begin
         address = 0;
         scan_code_reg = 0;
         break_code_detected = 0;
+        shift = 0;
+        extended = 0;
+        extended_count = 0;
     end
     else
     begin
@@ -125,8 +147,21 @@ begin
             NEW_CODE: begin
                 fifo_control = 0;
                 clr          = 1;
-                if(break_code_detected)
+                if(scan_code_reg == `EXTEND_CODE)
                 begin
+                    extended = 1;
+                    extended_count = extended_count + 1;
+                    state = WAITING;
+                end
+                else if(break_code_detected && (scan_code_reg == `SHIFT_CODE_LEFT || scan_code_reg == `SHIFT_CODE_RIGHT))
+                begin
+                    shift = 0;
+                    break_code_detected = 0;
+                    state = WAITING;
+                end
+                else if(break_code_detected)
+                begin
+                    extended = 0;
                     break_code_detected = 0;
                     state = WAITING;
                 end
@@ -137,9 +172,20 @@ begin
             TRANSLATE: begin
                 fifo_control = 0;
                 clr          = 0;
-                if(scan_code_reg == 8'hF0)
+                if(scan_code_reg == `BREAK_CODE)
                 begin
                     break_code_detected = 1;
+                    state = WAITING;
+                end
+                else if(extended)
+                begin
+                    extended = 0;
+                    scan_code_reg[7] = 1;
+                    state = WRITE_TO_FIFO;
+                end
+                else if (scan_code_reg == `SHIFT_CODE_LEFT || scan_code_reg == `SHIFT_CODE_RIGHT)
+                begin
+                    shift = 1;
                     state = WAITING;
                 end
                 else begin
@@ -269,67 +315,135 @@ endmodule
 
 module KeyboardToASCIIROM(
     input wire [7:0] scan_code,
+    input wire shift,
     output reg [7:0] ascii
 );
 
-always @(scan_code) begin
-    case (scan_code)
-        8'h1C: ascii = "A";
-        8'h32: ascii = "B";
-        8'h21: ascii = "C";
-        8'h23: ascii = "D";
-        8'h24: ascii = "E";
-        8'h2B: ascii = "F";
-        8'h34: ascii = "G";
-        8'h33: ascii = "H";
-        8'h43: ascii = "I";
-        8'h3B: ascii = "J";
-        8'h42: ascii = "K";
-        8'h4B: ascii = "L";
-        8'h3A: ascii = "M";
-        8'h31: ascii = "N";
-        8'h44: ascii = "O";
-        8'h4D: ascii = "P";
-        8'h15: ascii = "Q";
-        8'h2D: ascii = "R";
-        8'h1B: ascii = "S";
-        8'h2C: ascii = "T";
-        8'h3C: ascii = "U";
-        8'h2A: ascii = "V";
-        8'h1D: ascii = "W";
-        8'h22: ascii = "X";
-        8'h35: ascii = "Y";
-        8'h1A: ascii = "Z";
-        8'h45: ascii = "0";
-        8'h16: ascii = "1";
-        8'h1E: ascii = "2";
-        8'h26: ascii = "3";
-        8'h25: ascii = "4";
-        8'h2E: ascii = "5";
-        8'h36: ascii = "6";
-        8'h3D: ascii = "7";
-        8'h3E: ascii = "8";
-        8'h46: ascii = "9";
-        8'h0E: ascii = "`";	
-        8'h4E: ascii = "-";	
-        8'h55: ascii = "=";	
-        8'h5D: ascii = "\\";
-        8'h29: ascii = " ";
-        8'h76: ascii = 8'h03; //// escape
-        8'h54: ascii = "]";
-        8'h5B: ascii = "]";
-        8'h4C: ascii = ";";
-        8'h52: ascii = "'";
-        8'h41: ascii = ",";
-        8'h49: ascii = ".";
-        8'h4A: ascii = "/";
-        8'h7C: ascii = "*";
-        8'h7B: ascii = "-";
-        8'h79: ascii = "+";
-        8'h66: ascii = 8'hF7; // backspace
-        8'h5A: ascii = "\n"; // enter
-      default: ascii = 8'hFF;
-    endcase
+always @(scan_code, shift) begin
+    if(!shift)
+    begin
+        case (scan_code)
+            8'h1C: ascii = "a";
+            8'h32: ascii = "b";
+            8'h21: ascii = "c";
+            8'h23: ascii = "d";
+            8'h24: ascii = "e";
+            8'h2B: ascii = "f";
+            8'h34: ascii = "g";
+            8'h33: ascii = "h";
+            8'h43: ascii = "i";
+            8'h3B: ascii = "j";
+            8'h42: ascii = "k";
+            8'h4B: ascii = "l";
+            8'h3A: ascii = "m";
+            8'h31: ascii = "n";
+            8'h44: ascii = "o";
+            8'h4D: ascii = "p";
+            8'h15: ascii = "q";
+            8'h2D: ascii = "r";
+            8'h1B: ascii = "s";
+            8'h2C: ascii = "t";
+            8'h3C: ascii = "u";
+            8'h2A: ascii = "v";
+            8'h1D: ascii = "w";
+            8'h22: ascii = "x";
+            8'h35: ascii = "y";
+            8'h1A: ascii = "z";
+            8'h45: ascii = "0";
+            8'h16: ascii = "1";
+            8'h1E: ascii = "2";
+            8'h26: ascii = "3";
+            8'h25: ascii = "4";
+            8'h2E: ascii = "5";
+            8'h36: ascii = "6";
+            8'h3D: ascii = "7";
+            8'h3E: ascii = "8";
+            8'h46: ascii = "9";
+            8'h0E: ascii = "`";	
+            8'h4E: ascii = "-";	
+            8'h55: ascii = "=";	
+            8'h5D: ascii = "\\";
+            8'h29: ascii = " ";
+            8'h76: ascii = 8'h03; //// escape
+            8'h54: ascii = "[";
+            8'h5B: ascii = "]";
+            8'h4C: ascii = ";";
+            8'h52: ascii = "'";
+            8'h41: ascii = ",";
+            8'h49: ascii = ".";
+            8'h4A: ascii = "/";
+            8'h7C: ascii = "*";
+            8'h7B: ascii = "-";
+            8'h79: ascii = "+";
+            8'h66: ascii = `BACKSPACE; // backspace
+            8'h5A: ascii = "\n"; // enter
+            `LEFT_ARROW: ascii = `LEFT_ARROW_ASCII;
+            `DOWN_ARROW: ascii = `DOWN_ARROW_ASCII;
+            `RIGHT_ARROW: ascii = `RIGHT_ARROW_ASCII;
+            `UP_ARROW: ascii = `UP_ARROW_ASCII;
+            default: ascii = 8'hFF;
+        endcase
+    end
+    else 
+    begin
+        case (scan_code)
+            8'h1C: ascii = "A";
+            8'h32: ascii = "B";
+            8'h21: ascii = "C";
+            8'h23: ascii = "D";
+            8'h24: ascii = "E";
+            8'h2B: ascii = "F";
+            8'h34: ascii = "G";
+            8'h33: ascii = "H";
+            8'h43: ascii = "I";
+            8'h3B: ascii = "J";
+            8'h42: ascii = "K";
+            8'h4B: ascii = "L";
+            8'h3A: ascii = "M";
+            8'h31: ascii = "N";
+            8'h44: ascii = "O";
+            8'h4D: ascii = "P";
+            8'h15: ascii = "Q";
+            8'h2D: ascii = "R";
+            8'h1B: ascii = "S";
+            8'h2C: ascii = "T";
+            8'h3C: ascii = "U";
+            8'h2A: ascii = "V";
+            8'h1D: ascii = "W";
+            8'h22: ascii = "X";
+            8'h35: ascii = "Y";
+            8'h1A: ascii = "Z";
+            8'h45: ascii = ")";
+            8'h16: ascii = "!";
+            8'h1E: ascii = "@";
+            8'h26: ascii = "#";
+            8'h25: ascii = "$";
+            8'h2E: ascii = "%";
+            8'h36: ascii = "^";
+            8'h3D: ascii = "&";
+            8'h3E: ascii = "*";
+            8'h46: ascii = "(";
+            8'h0E: ascii = "~";	
+            8'h4E: ascii = "_";	
+            8'h55: ascii = "+";	
+            8'h5D: ascii = "|";
+            8'h29: ascii = " ";
+            8'h76: ascii = 8'h03; //// escape
+            8'h54: ascii = "{";
+            8'h5B: ascii = "}";
+            8'h4C: ascii = ":";
+            8'h52: ascii = "\"";
+            8'h41: ascii = "<";
+            8'h49: ascii = ">";
+            8'h4A: ascii = "?";
+            8'h7C: ascii = "*";
+            8'h7B: ascii = "-";
+            8'h79: ascii = "+";
+            8'h66: ascii = `BACKSPACE; // backspace
+            8'h5A: ascii = "\n"; // enter
+            default: ascii = 8'hFF;
+        endcase
+    end
 end
 
 endmodule
@@ -360,8 +474,10 @@ wire ready;
 wire busy;
 // wire [12:0] address;
 reg [12:0] address;
-wire underflow;
 wire next;
+wire [7:0] scan_code;
+wire [31:0] extended_count;
+wire command;
 
 ASCII_Keyboard keyboard(
     .clk(!clk),
@@ -372,7 +488,9 @@ ASCII_Keyboard keyboard(
     .next(!busy),
     .ascii(ascii),
     .ready(ready),
-    .underflow(underflow)
+    .scan_code_reg(scan_code),
+    .extended_count(extended_count),
+    .command(command)
 );
 
 VGA_Terminal vga_term(
@@ -391,8 +509,8 @@ VGA_Terminal vga_term(
 
         32'h0,
         32'h0,
-        conflict,
-        32'h0,
+        {24'h0, scan_code},
+        extended_count,
         
         32'h0,
         32'h0,
@@ -411,7 +529,7 @@ VGA_Terminal vga_term(
     }),
     .address(address),
     .data(ascii),
-    .cs(ready),
+    .cs({ ready && !command }),
     .busy(busy),
     .text(text_color_reg),
     .background(background_color_reg)
@@ -423,7 +541,6 @@ reg previous_tsync;
 reg previous_bsync;
 reg previously_backspace;
 reg previously_busy;
-reg [31:0] conflict;
 
 always @(posedge clk or posedge rst)
 begin
@@ -435,7 +552,6 @@ begin
         previous_bsync = 0;
         address = 0;
         previously_busy = 1;
-        conflict = 0;
     end
     else
     begin
@@ -443,9 +559,25 @@ begin
         begin
             if(ascii == "\n")
             begin
-            address = (address + 80) - (address % 80);
+                address = (address + 80) - (address % 80);
             end
-            else if(ascii == 8'hF7)
+            else if(ascii == `LEFT_ARROW_ASCII)
+            begin
+                address = address - 1;
+            end
+            else if(ascii == `RIGHT_ARROW_ASCII)
+            begin
+                address = address + 1;
+            end
+            else if(ascii == `UP_ARROW_ASCII)
+            begin
+                address = address - 80;
+            end
+            else if(ascii == `DOWN_ARROW_ASCII)
+            begin
+                address = address + 80;
+            end
+            else if(ascii == `BACKSPACE)
             begin
                 address = address - 1;
             end

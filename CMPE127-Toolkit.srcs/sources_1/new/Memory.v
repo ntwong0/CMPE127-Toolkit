@@ -79,10 +79,8 @@ module FIFO #(
     input wire wr_en,
     input wire rd_cs,
     input wire rd_en,
-    output reg overflow,
     output reg full,
     output reg empty,
-    output reg underflow,
     output reg [WIDTH-1:0] out,
     input wire [WIDTH-1:0] in
 );
