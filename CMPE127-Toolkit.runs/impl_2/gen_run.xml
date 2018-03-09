@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_2" LaunchPart="xc7a100tcsg324-1" LaunchTime="1520385382">
+<GenRun Id="impl_2" LaunchPart="xc7a100tcsg324-1" LaunchTime="1520553596">
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <File Type="BG-DRC" Name="Keyboard_DEMO.drc"/>
   <File Type="BG-BGN" Name="Keyboard_DEMO.bgn"/>
@@ -72,13 +72,6 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/AmbientLightSensorTop.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/new/BinaryToLEDDisplay.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -138,13 +131,6 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/QuadratureDecoder.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/QuadratureTop.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>

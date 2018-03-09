@@ -33,9 +33,6 @@ module Motherboard(
 	output wire [15:0] leds
 );
 
-PULLDOWN i0 (.O(ext_phase_a_real));
-PULLDOWN i1 (.O(ext_phase_b_real));
-
 wire [31:0] data;
 wire oe;
 wire we;
