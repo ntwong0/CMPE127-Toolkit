@@ -1,7 +1,0 @@
-Running: xsim.dir/Test_AmbientLightSensor_behav/xsimk -simmode gui -wdb Test_AmbientLightSensor_behav.wdb -simrunnum 0 -socket 57940
-Design successfully loaded
-Design Loading Memory Usage: 47252 KB (Peak: 47372 KB)
-Design Loading CPU Usage: 10 ms
-Simulation completed
-Simulation Memory Usage: 135104 KB (Peak: 194524 KB)
-Simulation CPU Usage: 370 ms

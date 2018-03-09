@@ -19,6 +19,37 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 
+module AmbientLightSensorDemo(
+	input wire clk,
+	input wire rst,
+	input wire oe,
+	input wire trigger,
+	input wire sdata,
+	output wire cs,
+	output wire sclk,
+	output wire done
+);
+
+wire [31:0] data;
+wire not_oe;
+wire not_trigger;
+
+assign not_oe = ~oe;
+assign not_trigger = ~trigger;
+
+AmbientLightSensor U0(
+    .clk(clk),
+    .rst(rst),
+    .oe(not_oe),
+    .trigger(not_trigger),
+    .sdata(sdata),
+    .sclk(sclk),
+    .cs(cs),
+    .done(done),
+    .data(data)
+);
+
+endmodule
 
 module AmbientLightSensor(
     input wire clk,

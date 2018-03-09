@@ -1,7 +1,0 @@
-Running: xsim.dir/Test_QuadratureDecoder_behav/xsimk -simmode gui -wdb Test_QuadratureDecoder_behav.wdb -simrunnum 0 -socket 56244
-Design successfully loaded
-Design Loading Memory Usage: 47260 KB (Peak: 47380 KB)
-Design Loading CPU Usage: 30 ms
-Simulation completed
-Simulation Memory Usage: 128996 KB (Peak: 194532 KB)
-Simulation CPU Usage: 50 ms
