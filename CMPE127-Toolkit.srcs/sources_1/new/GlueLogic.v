@@ -114,11 +114,10 @@ module MUX #(
     parameter WIDTH  = 1,
     parameter INPUTS = 2
 )(
-    input wire [SELECT-1:0] select,
+    input wire [$clog2(INPUTS)-1:0] select,
     input wire [(WIDTH*INPUTS)-1:0] in,
     output wire [WIDTH-1:0] out
 );
-parameter SELECT = $clog2(INPUTS);
 
 assign out = (in >> (select*WIDTH));
 
@@ -240,8 +239,8 @@ endmodule
 //////////////////////////////////
 
 module DFLIPFLOP #(parameter WIDTH = 1)(
-	input wire rst,
 	input wire clk,
+	input wire rst,
 	input wire [WIDTH-1:0] D,
 	output reg [WIDTH-1:0] Q
 );
@@ -255,32 +254,6 @@ begin
     else
     begin
         Q <= D;
-    end
-end
-
-endmodule
-
-//////////////////////////////////
-// Registers
-//////////////////////////////////
-
-module SHIFTREGISTER #(parameter WIDTH = 8)(
-	input wire rst,
-	input wire clk,
-	input wire en,
-	input wire in,
-	output reg [WIDTH-1:0] Q
-);
-
-always @(posedge clk or posedge rst)
-begin
-    if (rst)
-    begin
-    	Q <= 0;
-    end
-    else
-    begin
-        Q <= { Q[WIDTH-2:0], in };
     end
 end
 
